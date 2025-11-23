@@ -49,7 +49,7 @@ filename = file_path.name          # file.txt
 extension = file_path.suffix       # .txt
 ```
 
-🥇 **pathlib wins** with simpler and more straightforward access to file attributes.
+**pathlib wins** with simpler and more straightforward access to file attributes.
 
 ### Reading Files
 
@@ -70,7 +70,7 @@ file_path = Path('directory') / 'file.txt'
 content = file_path.read_text()
 ```
 
-🥇 **pathlib wins** with less boilerplate code for reading a file.
+**pathlib wins** with less boilerplate code for reading a file.
 
 ### Listing All Files in a Directory
 
@@ -94,28 +94,7 @@ directory = Path('some_directory')
 files = [f for f in directory.iterdir() if f.is_file()]
 ```
 
-🥇 **pathlib wins** with a more concise and discoverable way to list a directory (less code to memorize).
-
-### Creating a New Directory
-
-**os.path:**
-```python
-import os
-
-dir_path = os.path.join('path', 'to', 'new_directory')
-if not os.path.exists(dir_path):
-    os.makedirs(dir_path)
-```
-
-**pathlib:**
-```python
-from pathlib import Path
-
-dir_path = Path('path') / 'to' / 'new_directory'
-dir_path.mkdir(parents=True, exist_ok=True)
-```
-
-🥇 **pathlib wins** with built-in controls over common use-cases.
+**pathlib wins** with a more concise and discoverable way to list a directory (less code to memorize).
 
 ## Compatibility
 
@@ -139,7 +118,7 @@ So, you can use this approach if you want to have your API support both strings 
 
 `pathlib` is a more modern approach to handle file system functionality. It provides an object-oriented interface which is more readable, saves you from repeating boilerplate code, exposes edge-case controls and much more. `os.path` provides a functional programming interface and a more low-level approach, that is coupled to the `os` module — which some may prefer, or some scenarios may require.
 
-🏆 **For me, pathlib is the clear winner! OOP FTW!**
+**For me, pathlib is the clear winner! OOP FTW!**
 
 ## Tip
 

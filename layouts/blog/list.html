@@ -170,7 +170,7 @@
             {{ if .Params.tags }}
               <div class="blogCardTags">
                 {{ range .Params.tags }}
-                  <span class="blogCardTag">#{{ . }}</span>
+                  <span class="blogCardTag">#{{ . | lower }}</span>
                 {{ end }}
               </div>
             {{ end }}
