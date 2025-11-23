@@ -234,7 +234,7 @@ code {
 @for $i from 1 through 6 {
   h#{$i} {
     font-family: 'Fira Mono', monospace;
-    color: $text-primary;
+    color: $accent-primary;
   }
 }
 
@@ -621,4 +621,33 @@ dd {
 
 dt::after {
   content: ":";
+}
+
+// Colored blockquotes using theme accent
+blockquote {
+  border-left: 4px solid $accent-secondary;
+  padding-left: 20px;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+  color: $text-secondary;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 10px 10px 10px 20px;
+  border-radius: 0 4px 4px 0;
+  
+  p {
+    margin: 0.5em 0;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  em {
+    color: $text-dim;
+  }
 }

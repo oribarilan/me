@@ -21,36 +21,40 @@ I spend my personal time with my family, woodworking, playing casual chess or, h
 
 ## In the Office
 
-- **2020 – Present · Senior Software Engineer @ Microsoft**
-    - Building AI systems and tooling to defend against malicious cyber attacks.
+#### 2020 – Present · Senior Software Engineer @ Microsoft
 
-- **2018 – 2020 · R&D Team Lead @ Zeitgold (acquired by Deel)**
-    - Led a team of engineers and data scientists to build AI-powered accounting software for small businesses.
+- Building AI systems and tooling to defend against malicious cyber attacks.
 
-- **2016 – 2018 · Backend Software Engineer @ Microsoft**
-     - Led real-time ML project to personalize student learning, enhancing efficiency by 17% in a 400-student trial. Co-authored a paper on “Sequencing Content using the Zone of Proximal Development” (“EDU Data Mining”, Canada, 2019).
+#### 2018 – 2020 · R&D Team Lead @ Zeitgold (acquired by Deel)
 
-- **2015 – 2016 · Full Stack Software Engineer (Part-time)**
-    -   Developed a web application for chip fault detection.
+- Led a team of engineers and data scientists to build AI-powered accounting software for small businesses.
+
+#### 2016 – 2018 · Backend Software Engineer @ Microsoft
+
+ - Led real-time ML project to personalize student learning, enhancing efficiency by 17% in a 400-student trial. Co-authored a paper on “Sequencing Content using the Zone of Proximal Development” (“EDU Data Mining”, Canada, 2019).
+
+#### 2015 – 2016 · Full Stack Software Engineer (Part-time)
+
+-   Developed a web application for chip fault detection.
 
 ## Outside the Office: Workshops & Talks
 
-- **From Dependency Hell to Environment Heaven**  
+#### From Dependency Hell to Environment Heaven  
 From “it works on my machine” to reliable, repeatable Python setups. A practical tour of local, containerized, and cloud-based environments, with concrete tools and a cheat-sheet you can actually use.
 
-- **Introduction to Azure OpenAI**
+#### Introduction to Azure OpenAI
 A fast-paced, hands-on 45min introduction to Azure OpenAI – deploy a model, call its API, and wire it into a small app to see the magic in action.
 
-- **Building LLM-powered Applications**
+#### Building LLM-powered Applications
 Five days of LLM basics and practical app-building – combine core concepts with guided coding while you develop your own idea into a working prototype, covering prompt engineering, context management, tool calling, RAG, and more.
 
- - **Frictionless Repos: Designing Codebases That Teams Love to Work In.**
+#### Frictionless Repos: Designing Codebases That Teams Love to Work In.
 Practical patterns for collaboration-ready repos. From command runners and formatting to dev containers and CI/CD, learn how to reduce setup pain and keep contributions flowing.
 
 ## Education
-- **2013 - 2018 · B.Sc. + M.Sc. in Computer Science (Software Engineering Track) · Ben-Gurion University of the Negev**
-    - Graduated with honors. Thesis on “Automated Software Fault Localization" (Italy, 2017).
-    - Dean's excellence award.
+#### 2013 - 2018 · B.Sc. + M.Sc. in Computer Science (Software Engineering Track) · Ben-Gurion University of the Negev
+- Graduated with honors. Thesis on “Automated Software Fault Localization" (Italy, 2017).
+- Dean's excellence award.
 
 ## Get in Touch
 
