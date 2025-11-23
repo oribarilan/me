@@ -24,6 +24,7 @@ pagerSize = 10
 [params]
 user = "oribarilan"
 hostname = "github.io"
+footerHtml = ""
 
 openLinksInNewTab = true
 displayDateFormat = "2006-01-02"

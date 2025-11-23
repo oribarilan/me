@@ -9,10 +9,29 @@
     {{ partial "head.html" . }}
     
     <style>
+        .indexWrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .indexContent {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .indexHeader {
+            margin: 0;
+            text-align: left;
+        }
+        
         .authorDescription {
-            max-width: 600px;
-            margin: 2rem auto;
-            text-align: center;
+            text-align: left;
             font-size: 1.1rem;
             line-height: 1.6;
             color: var(--text-primary);
@@ -26,6 +45,22 @@
             border-radius: 50%;
             object-fit: cover;
         }
+        
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .indexWrapper {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .indexHeader {
+                text-align: center;
+            }
+            
+            .authorDescription {
+                text-align: center;
+            }
+        }
     </style>
 
 </head>
@@ -38,23 +73,18 @@
         <div class="content vertical">
             <main class="main">
                 <div class="indexWrapper">
-                    {{ if .Site.Params.author.avatarFirst }}
-                        {{ partial "avatar.html" . }}
-                    {{ end }}
-                    <div>
+                    {{ partial "avatar.html" . }}
+                    <div class="indexContent">
                         <h1 class="indexHeader">{{ .Site.Params.author.name }}</h1>
+                        {{ if .Site.Params.author.description }}
+                            <div class="authorDescription">
+                                <p>{{ .Site.Params.author.description }}</p>
+                            </div>
+                        {{ end }}
+                        {{ if isset .Site.Params "social" }}
+                            {{ partial "social.html" . }}
+                        {{ end }}
                     </div>
-                    {{ if not .Site.Params.author.avatarFirst }}
-                        {{ partial "avatar.html" . }}
-                    {{ end }}
-                    {{ if .Site.Params.author.description }}
-                        <div class="authorDescription">
-                            <p>{{ .Site.Params.author.description }}</p>
-                        </div>
-                    {{ end }}
-                    {{ if isset .Site.Params "social" }}
-                        {{ partial "social.html" . }}
-                    {{ end }}
                 </div>
             </main>
         </div>
