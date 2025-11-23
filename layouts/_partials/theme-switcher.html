@@ -1,0 +1,350 @@
+<div class="theme-switcher">
+    <button class="theme-btn" id="theme-switcher-btn" aria-label="Change theme">
+        <span class="theme-icon">[theme]</span>
+    </button>
+    <div class="theme-terminal" id="theme-terminal">
+        <div class="terminal-header">
+            <span class="terminal-title">$ theme --select</span>
+            <button class="terminal-close" id="terminal-close">×</button>
+        </div>
+        <div class="terminal-body">
+            <div class="terminal-prompt">
+                <span class="prompt-text">Available themes:</span>
+            </div>
+            <div class="terminal-options">
+                <button class="terminal-option" data-theme="default">
+                    <span class="option-bracket">[</span><span class="option-num">1</span><span class="option-bracket">]</span>
+                    <span class="option-name">default</span>
+                    <span class="option-desc">// clean dark</span>
+                </button>
+                <button class="terminal-option" data-theme="tokyonight">
+                    <span class="option-bracket">[</span><span class="option-num">2</span><span class="option-bracket">]</span>
+                    <span class="option-name">tokyonight</span>
+                    <span class="option-desc">// neon purple-blue</span>
+                </button>
+                <button class="terminal-option" data-theme="gruvbox">
+                    <span class="option-bracket">[</span><span class="option-num">3</span><span class="option-bracket">]</span>
+                    <span class="option-name">gruvbox</span>
+                    <span class="option-desc">// warm retro</span>
+                </button>
+                <button class="terminal-option" data-theme="catppuccin">
+                    <span class="option-bracket">[</span><span class="option-num">4</span><span class="option-bracket">]</span>
+                    <span class="option-name">catppuccin</span>
+                    <span class="option-desc">// soft pastel</span>
+                </button>
+                <button class="terminal-option" data-theme="nord">
+                    <span class="option-bracket">[</span><span class="option-num">5</span><span class="option-bracket">]</span>
+                    <span class="option-name">nord</span>
+                    <span class="option-desc">// arctic blue</span>
+                </button>
+            </div>
+            <div class="terminal-footer">
+                <span class="cursor-blink">█</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.theme-switcher {
+    position: relative;
+    display: inline-block;
+}
+
+.theme-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 6px 12px;
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.theme-btn:hover {
+    background: var(--bg-secondary);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.theme-terminal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+    background: var(--bg-darker);
+    border: 2px solid var(--border-color);
+    box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    font-family: 'Fira Mono', monospace;
+    animation: terminalSlideIn 0.2s ease-out;
+}
+
+@keyframes terminalSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.theme-terminal.active {
+    display: block;
+}
+
+.terminal-header {
+    background: var(--bg-secondary);
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.terminal-title {
+    color: var(--accent-secondary);
+    font-size: 0.9rem;
+}
+
+.terminal-close {
+    background: none;
+    border: none;
+    color: var(--accent-error);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.terminal-close:hover {
+    color: var(--text-primary);
+}
+
+.terminal-body {
+    padding: 20px;
+}
+
+.terminal-prompt {
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.prompt-text::before {
+    content: '> ';
+    color: var(--prompt-user);
+}
+
+.terminal-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.terminal-option {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 10px 15px;
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.85rem;
+    text-align: left;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.terminal-option:hover {
+    background: var(--bg-secondary);
+    border-color: var(--accent-primary);
+    transform: translateX(4px);
+}
+
+.terminal-option.active {
+    border-color: var(--accent-secondary);
+    background: var(--bg-secondary);
+}
+
+.option-bracket {
+    color: var(--text-dim);
+}
+
+.option-num {
+    color: var(--accent-warning);
+    font-weight: bold;
+}
+
+.option-name {
+    color: var(--text-primary);
+    min-width: 110px;
+}
+
+.terminal-option.active .option-name {
+    color: var(--accent-secondary);
+    font-weight: bold;
+}
+
+.option-desc {
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    font-style: italic;
+}
+
+.terminal-footer {
+    color: var(--prompt-user);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cursor-blink {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .theme-terminal {
+        width: 95%;
+        max-width: none;
+    }
+    
+    .terminal-body {
+        padding: 15px;
+    }
+    
+    .option-desc {
+        display: none;
+    }
+}
+</style>
+
+<script>
+(function() {
+    // Get saved theme or default
+    const savedTheme = localStorage.getItem('color-theme') || 'default';
+    
+    // Apply theme on load
+    function applyTheme(theme) {
+        if (theme === 'default') {
+            document.documentElement.removeAttribute('data-theme');
+        } else {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+        localStorage.setItem('color-theme', theme);
+        
+        // Update active state in terminal
+        document.querySelectorAll('.terminal-option').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.theme === theme);
+        });
+    }
+    
+    // Apply saved theme immediately to prevent flash
+    applyTheme(savedTheme);
+    
+    // Setup theme switcher when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('theme-switcher-btn');
+        const terminal = document.getElementById('theme-terminal');
+        const closeBtn = document.getElementById('terminal-close');
+        
+        if (!btn || !terminal) return;
+        
+        // Open terminal
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            terminal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Close terminal
+        function closeTerminal() {
+            terminal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        closeBtn.addEventListener('click', closeTerminal);
+        
+        // Close on backdrop click
+        terminal.addEventListener('click', function(e) {
+            if (e.target === terminal) {
+                closeTerminal();
+            }
+        });
+        
+        // Handle keyboard shortcuts globally
+        document.addEventListener('keydown', function(e) {
+            // Don't interfere if user is typing in input/textarea
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                return;
+            }
+            
+            const isTerminalOpen = terminal.classList.contains('active');
+            
+            // Close on escape key (only when terminal is open)
+            if (e.key === 'Escape' && isTerminalOpen) {
+                closeTerminal();
+                return;
+            }
+            
+            // Handle theme selection with number keys (1-5)
+            const themes = ['default', 'tokyonight', 'gruvbox', 'catppuccin', 'nord'];
+            const key = e.key;
+            
+            // Check for both regular digits and numpad digits
+            let num = null;
+            if (key >= '1' && key <= '5') {
+                num = parseInt(key);
+            }
+            
+            if (num !== null && num >= 1 && num <= 5) {
+                e.preventDefault(); // Prevent any default behavior
+                console.log('Theme switcher: selecting theme', num, themes[num - 1]);
+                applyTheme(themes[num - 1]);
+                if (isTerminalOpen) {
+                    closeTerminal();
+                } else {
+                    // Show brief feedback when terminal is closed
+                    terminal.classList.add('active');
+                    setTimeout(function() {
+                        closeTerminal();
+                    }, 300);
+                }
+            }
+        });
+        
+        // Handle theme selection with clicks
+        document.querySelectorAll('.terminal-option').forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const theme = this.dataset.theme;
+                applyTheme(theme);
+                closeTerminal();
+            });
+        });
+    });
+})();
+</script>

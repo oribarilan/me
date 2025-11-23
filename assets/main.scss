@@ -1,0 +1,536 @@
+// Theme definitions as CSS custom properties
+// All themes are embedded, JavaScript will switch between them
+
+:root {
+  // Default theme colors
+  --bg-primary: #292a2d;
+  --bg-secondary: #252627;
+  --bg-darker: #252627;
+  --text-primary: #f8f8ff;
+  --text-secondary: #e0e0e0;
+  --text-dim: #a0a0a0;
+  --accent-primary: #80AADD;
+  --accent-secondary: #33D17A;
+  --accent-warning: #FFB300;
+  --accent-error: #F26E74;
+  --prompt-user: #33D17A;
+  --prompt-host: #80AADD;
+  --prompt-path: #FFB300;
+  --code-bg: #252627;
+  --code-text: #f8f8ff;
+  --border-color: #404040;
+  --selection-bg: #404040;
+}
+
+// Tokyo Night theme
+[data-theme="tokyonight"] {
+  --bg-primary: #1a1b26;
+  --bg-secondary: #16161e;
+  --bg-darker: #16161e;
+  --text-primary: #c0caf5;
+  --text-secondary: #a9b1d6;
+  --text-dim: #565f89;
+  --accent-primary: #7aa2f7;
+  --accent-secondary: #9ece6a;
+  --accent-warning: #e0af68;
+  --accent-error: #f7768e;
+  --prompt-user: #9ece6a;
+  --prompt-host: #7aa2f7;
+  --prompt-path: #bb9af7;
+  --code-bg: #16161e;
+  --code-text: #c0caf5;
+  --border-color: #292e42;
+  --selection-bg: #283457;
+}
+
+// Gruvbox theme
+[data-theme="gruvbox"] {
+  --bg-primary: #282828;
+  --bg-secondary: #1d2021;
+  --bg-darker: #1d2021;
+  --text-primary: #ebdbb2;
+  --text-secondary: #d5c4a1;
+  --text-dim: #a89984;
+  --accent-primary: #83a598;
+  --accent-secondary: #b8bb26;
+  --accent-warning: #fabd2f;
+  --accent-error: #fb4934;
+  --prompt-user: #b8bb26;
+  --prompt-host: #83a598;
+  --prompt-path: #fe8019;
+  --code-bg: #1d2021;
+  --code-text: #ebdbb2;
+  --border-color: #504945;
+  --selection-bg: #504945;
+}
+
+// Catppuccin theme
+[data-theme="catppuccin"] {
+  --bg-primary: #1e1e2e;
+  --bg-secondary: #181825;
+  --bg-darker: #181825;
+  --text-primary: #cdd6f4;
+  --text-secondary: #bac2de;
+  --text-dim: #6c7086;
+  --accent-primary: #89b4fa;
+  --accent-secondary: #a6e3a1;
+  --accent-warning: #f9e2af;
+  --accent-error: #f38ba8;
+  --prompt-user: #a6e3a1;
+  --prompt-host: #89b4fa;
+  --prompt-path: #cba6f7;
+  --code-bg: #181825;
+  --code-text: #cdd6f4;
+  --border-color: #313244;
+  --selection-bg: #45475a;
+}
+
+// Nord theme
+[data-theme="nord"] {
+  --bg-primary: #2e3440;
+  --bg-secondary: #3b4252;
+  --bg-darker: #3b4252;
+  --text-primary: #eceff4;
+  --text-secondary: #e5e9f0;
+  --text-dim: #81a1c1;
+  --accent-primary: #88c0d0;
+  --accent-secondary: #a3be8c;
+  --accent-warning: #ebcb8b;
+  --accent-error: #bf616a;
+  --prompt-user: #a3be8c;
+  --prompt-host: #88c0d0;
+  --prompt-path: #81a1c1;
+  --code-bg: #3b4252;
+  --code-text: #eceff4;
+  --border-color: #4c566a;
+  --selection-bg: #434c5e;
+}
+
+// SCSS variables reference CSS custom properties
+$bg-primary: var(--bg-primary);
+$bg-secondary: var(--bg-secondary);
+$bg-darker: var(--bg-darker);
+$text-primary: var(--text-primary);
+$text-secondary: var(--text-secondary);
+$text-dim: var(--text-dim);
+$accent-primary: var(--accent-primary);
+$accent-secondary: var(--accent-secondary);
+$accent-warning: var(--accent-warning);
+$accent-error: var(--accent-error);
+$prompt-user: var(--prompt-user);
+$prompt-host: var(--prompt-host);
+$prompt-path: var(--prompt-path);
+$code-bg: var(--code-bg);
+$code-text: var(--code-text);
+$border-color: var(--border-color);
+$selection-bg: var(--selection-bg);
+
+// Base styles using theme variables
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: $text-primary;
+  background-color: $bg-primary;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  color: $accent-primary;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+pre code {
+  font-family: 'Fira Mono', monospace;
+  font-size: 75%;
+  display: block;
+  background: $code-bg;
+  color: $code-text;
+  padding: 10px;
+  overflow: auto;
+  border: 1px solid $border-color;
+}
+
+code {
+  font-family: 'Fira Mono', monospace;
+  font-size: 75%;
+  background: $code-bg;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-family: 'Fira Mono', monospace;
+    color: $text-primary;
+  }
+}
+
+::selection {
+  background-color: $selection-bg;
+  color: $text-primary;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+
+// Fonts
+@font-face{
+    font-family: "Fira Mono";
+    src: url("../fonts/FiraMono/FiraMono-Medium.eot");
+    src: local("Fira Mono"),
+         url("../fonts/FiraMono/FiraMono-Medium.eot") format("embedded-opentype"),
+         url("../fonts/FiraMono/FiraMono-Medium.woff2") format("woff2"),
+         url("../fonts/FiraMono/FiraMono-Medium.woff") format("woff"),
+         url("../fonts/FiraMono/FiraMono-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans/OpenSans-Regular.eot");
+    src: url("../fonts/OpenSans/OpenSans-Regular.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/OpenSans/OpenSans-Regular.woff") format("woff"),
+    url("../fonts/OpenSans/OpenSans-Regular.ttf") format("truetype"),
+    url("../fonts/OpenSans/OpenSans-Regular.svg#OpenSansRegular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+// Layout - baseof
+.content {
+  text-align: center;
+  flex: 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.content img {
+  max-width: 100%;
+}
+
+.vertical {
+  flex-direction: column;
+  align-items: center;
+}
+
+.flexWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  flex: 1 auto;
+}
+
+$breakLarge: 992px;
+$width: 760px;
+
+.main {
+  height: 100%;
+
+  @media only screen and (min-width: $breakLarge) {
+    width: $width;
+  }
+
+  @media screen and (max-width: $breakLarge) {
+    width: 100%;    
+  }
+}
+
+// Header component
+.header {
+  font-family: 'Fira Mono', monospace;
+  padding: 0 20px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: $width;
+}
+
+.headerWrapper {
+  overflow: auto;
+  box-sizing: border-box;
+  background-color: $bg-secondary;
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.headerLinks {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      display: inline;
+      margin: 5px;
+      a {
+        color: $text-primary;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.terminal,
+.terminal:hover {
+  color: $text-primary;
+  text-decoration: none;
+}
+
+.hamb {
+  cursor: pointer;
+  float: right;
+  display: none;
+  padding: 10px 4px;
+}
+
+.hamb-line {
+  background: $text-primary;
+  display: block;
+  height: 2px;
+  position: relative;
+  width: 24px;
+}
+
+.hamb-line::before,
+.hamb-line::after {
+  background: $text-primary;
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+.hamb-line::before {
+  top: 5px;
+}
+.hamb-line::after {
+  top: -5px;
+}
+
+.side-menu {
+  display: none;
+}
+
+.side-menu:checked ~ .headerLinks {
+  max-height: 100%;
+}
+.side-menu:checked ~ .hamb .hamb-line {
+  background: transparent;
+}
+.side-menu:checked ~ .hamb .hamb-line::before {
+  transform: rotate(-45deg);
+  top: 0;
+}
+.side-menu:checked ~ .hamb .hamb-line::after {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .headerLinks {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    background-color: $bg-primary;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .hamb {
+    display: block;
+  }
+}
+
+// Footer component
+.footer {
+  font-family: 'Fira Mono', monospace;
+  padding: 0 20px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: $width;
+  font-size: 0.7rem;
+}
+
+.footerWrapper {
+  overflow: auto;
+  box-sizing: border-box;
+  background-color: $bg-secondary;
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+// Post component
+.postDate {
+  float: right;
+  color: $text-primary;
+}
+
+.postTitle {
+  color: $accent-primary;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-family: 'Fira Mono', monospace;
+  font-size: 1.2em;
+  float: left;
+}
+
+.postHeader {
+  overflow: hidden;
+}
+
+.postsList {
+  margin-top: 20px;
+}
+
+.postListItem {
+  padding: 20px;
+  background-color: $bg-darker;
+  margin-bottom: 20px;
+}
+
+.postListLink:hover {
+  text-decoration: none;
+}
+
+.postExcerpt {
+  text-align: initial;
+  text-decoration: none;
+  color: $text-primary;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.noDecoration {
+  text-decoration: none;
+}
+
+// Social component
+.socialNavbar {
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      display: inline;
+    }
+  }
+  a {
+    color: $text-primary;
+    text-shadow: $bg-darker 0px 0px 2px;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    margin: 10px;
+  }
+}
+
+// Index page
+.indexWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.indexHeader {
+  font-size: 3em;
+}
+
+/* Avatar sizes (default is M) - XS, S, M, L, XL */
+.authorImageWrapper img.size-xs {
+  height: 7rem;
+  width: 7rem;
+}
+
+.authorImageWrapper img.size-s {
+  height: 9rem;
+  width: 9rem;
+}
+
+.authorImageWrapper img.size-m {
+  height: 11rem;
+  width: 11rem;
+}
+
+.authorImageWrapper img.size-l {
+  height: 13rem;
+  width: 13rem;
+}
+
+.authorImageWrapper img.size-xl {
+  height: 15rem;
+  width: 15rem;
+}
+
+// List page
+.listHeader, .listContent {
+  text-align: left;
+}
+
+.readingTime {
+  text-align: initial;
+  text-decoration: none;
+  color: $text-primary;
+  font-size: 0.9em;
+}
+
+// Single post page
+.postWrapper {
+  text-align: left;
+  padding: 20px;    
+}
+
+.postMetadata {
+  font-family: 'Fira Mono', monospace;
+  display: block;
+  background: $bg-secondary;
+  padding: 10px;
+}
+
+dt, dd {
+  line-height: 1.5;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+dt {
+  grid-column-start: 1;
+}
+
+dd {
+  grid-column-start: 2;
+}
+
+dt::after {
+  content: ":";
+}

@@ -1,2 +1,11 @@
-<footer class="footer">
+<footer class="footerWrapper">
+    <div class="footer">
+        {{ with .Site.Params.footerHtml }}
+            <span>{{ . | safeHTML }}</span>
+        {{ else }}
+            <span>
+                © {{ now.Format "2006" }} {{ .Site.Params.author.name }}
+            </span>
+        {{ end }}
+    </div>
 </footer>

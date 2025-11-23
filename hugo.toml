@@ -26,6 +26,9 @@ user = "oribarilan"
 hostname = "github.io"
 footerHtml = ""
 
+# Color theme: default, tokyonight, gruvbox, catppuccin, nord
+colorTheme = "default"
+
 openLinksInNewTab = true
 displayDateFormat = "2006-01-02"
 
