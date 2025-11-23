@@ -2,7 +2,28 @@
 // All themes are embedded, JavaScript will switch between them
 
 :root {
-  // Default theme colors
+  // Nord theme (default)
+  --bg-primary: #2e3440;
+  --bg-secondary: #3b4252;
+  --bg-darker: #3b4252;
+  --text-primary: #eceff4;
+  --text-secondary: #e5e9f0;
+  --text-dim: #81a1c1;
+  --accent-primary: #88c0d0;
+  --accent-secondary: #a3be8c;
+  --accent-warning: #ebcb8b;
+  --accent-error: #bf616a;
+  --prompt-user: #a3be8c;
+  --prompt-host: #88c0d0;
+  --prompt-path: #81a1c1;
+  --code-bg: #3b4252;
+  --code-text: #eceff4;
+  --border-color: #4c566a;
+  --selection-bg: #434c5e;
+}
+
+// Dark theme (formerly plain/default)
+[data-theme="dark"] {
   --bg-primary: #292a2d;
   --bg-secondary: #252627;
   --bg-darker: #252627;
@@ -20,6 +41,27 @@
   --code-text: #f8f8ff;
   --border-color: #404040;
   --selection-bg: #404040;
+}
+
+// Light theme
+[data-theme="light"] {
+  --bg-primary: #f8f8ff;
+  --bg-secondary: #ffffff;
+  --bg-darker: #ffffff;
+  --text-primary: #2d2d2d;
+  --text-secondary: #3d3d3d;
+  --text-dim: #6d6d6d;
+  --accent-primary: #4080CC;
+  --accent-secondary: #28A05A;
+  --accent-warning: #CC8C00;
+  --accent-error: #D24450;
+  --prompt-user: #28A05A;
+  --prompt-host: #4080CC;
+  --prompt-path: #CC8C00;
+  --code-bg: #f0f0f0;
+  --code-text: #2d2d2d;
+  --border-color: #d0d0d0;
+  --selection-bg: #d0e8ff;
 }
 
 // Tokyo Night theme

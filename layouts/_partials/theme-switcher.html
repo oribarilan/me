@@ -12,30 +12,30 @@
                 <span class="prompt-text">Available themes:</span>
             </div>
             <div class="terminal-options">
-                <button class="terminal-option" data-theme="default">
+                <button class="terminal-option" data-theme="nord">
                     <span class="option-bracket">[</span><span class="option-num">1</span><span class="option-bracket">]</span>
-                    <span class="option-name">default</span>
+                    <span class="option-name">nord</span>
+                    <span class="option-desc">// arctic blue (default)</span>
+                </button>
+                <button class="terminal-option" data-theme="dark">
+                    <span class="option-bracket">[</span><span class="option-num">2</span><span class="option-bracket">]</span>
+                    <span class="option-name">dark</span>
                     <span class="option-desc">// clean dark</span>
                 </button>
-                <button class="terminal-option" data-theme="tokyonight">
-                    <span class="option-bracket">[</span><span class="option-num">2</span><span class="option-bracket">]</span>
-                    <span class="option-name">tokyonight</span>
-                    <span class="option-desc">// neon purple-blue</span>
+                <button class="terminal-option" data-theme="light">
+                    <span class="option-bracket">[</span><span class="option-num">3</span><span class="option-bracket">]</span>
+                    <span class="option-name">light</span>
+                    <span class="option-desc">// clean bright</span>
                 </button>
                 <button class="terminal-option" data-theme="gruvbox">
-                    <span class="option-bracket">[</span><span class="option-num">3</span><span class="option-bracket">]</span>
+                    <span class="option-bracket">[</span><span class="option-num">4</span><span class="option-bracket">]</span>
                     <span class="option-name">gruvbox</span>
                     <span class="option-desc">// warm retro</span>
                 </button>
                 <button class="terminal-option" data-theme="catppuccin">
-                    <span class="option-bracket">[</span><span class="option-num">4</span><span class="option-bracket">]</span>
+                    <span class="option-bracket">[</span><span class="option-num">5</span><span class="option-bracket">]</span>
                     <span class="option-name">catppuccin</span>
                     <span class="option-desc">// soft pastel</span>
-                </button>
-                <button class="terminal-option" data-theme="nord">
-                    <span class="option-bracket">[</span><span class="option-num">5</span><span class="option-bracket">]</span>
-                    <span class="option-name">nord</span>
-                    <span class="option-desc">// arctic blue</span>
                 </button>
             </div>
             <div class="terminal-footer">
@@ -181,6 +181,146 @@
     background: var(--bg-secondary);
 }
 
+/* Nord theme option - preview nord colors */
+.terminal-option[data-theme="nord"] {
+    background: #2e3440;
+    border-color: #4c566a;
+    color: #eceff4;
+}
+
+.terminal-option[data-theme="nord"] .option-bracket { color: #81a1c1; }
+.terminal-option[data-theme="nord"] .option-num { color: #ebcb8b; }
+.terminal-option[data-theme="nord"] .option-name { color: #eceff4; }
+.terminal-option[data-theme="nord"] .option-desc { color: #81a1c1; }
+
+.terminal-option[data-theme="nord"]:hover,
+.terminal-option[data-theme="nord"].highlighted {
+    background: #3b4252;
+    border-color: #88c0d0;
+}
+
+.terminal-option[data-theme="nord"].active {
+    background: #3b4252;
+    border-color: #a3be8c;
+}
+
+.terminal-option[data-theme="nord"].active .option-name {
+    color: #a3be8c;
+    font-weight: bold;
+}
+
+/* Dark theme option - preview dark colors */
+.terminal-option[data-theme="dark"] {
+    background: #292a2d;
+    border-color: #404040;
+    color: #f8f8ff;
+}
+
+.terminal-option[data-theme="dark"] .option-bracket { color: #a0a0a0; }
+.terminal-option[data-theme="dark"] .option-num { color: #FFB300; }
+.terminal-option[data-theme="dark"] .option-name { color: #f8f8ff; }
+.terminal-option[data-theme="dark"] .option-desc { color: #a0a0a0; }
+
+.terminal-option[data-theme="dark"]:hover,
+.terminal-option[data-theme="dark"].highlighted {
+    background: #252627;
+    border-color: #80AADD;
+}
+
+.terminal-option[data-theme="dark"].active {
+    background: #252627;
+    border-color: #33D17A;
+}
+
+.terminal-option[data-theme="dark"].active .option-name {
+    color: #33D17A;
+    font-weight: bold;
+}
+
+/* Light theme option - preview light colors */
+.terminal-option[data-theme="light"] {
+    background: #f8f8ff;
+    border-color: #d0d0d0;
+    color: #2d2d2d;
+}
+
+.terminal-option[data-theme="light"] .option-bracket { color: #6d6d6d; }
+.terminal-option[data-theme="light"] .option-num { color: #CC8C00; }
+.terminal-option[data-theme="light"] .option-name { color: #2d2d2d; }
+.terminal-option[data-theme="light"] .option-desc { color: #6d6d6d; }
+
+.terminal-option[data-theme="light"]:hover,
+.terminal-option[data-theme="light"].highlighted {
+    background: #ffffff;
+    border-color: #4080CC;
+}
+
+.terminal-option[data-theme="light"].active {
+    background: #ffffff;
+    border-color: #28A05A;
+}
+
+.terminal-option[data-theme="light"].active .option-name {
+    color: #28A05A;
+    font-weight: bold;
+}
+
+/* Gruvbox theme option - preview gruvbox colors */
+.terminal-option[data-theme="gruvbox"] {
+    background: #282828;
+    border-color: #504945;
+    color: #ebdbb2;
+}
+
+.terminal-option[data-theme="gruvbox"] .option-bracket { color: #a89984; }
+.terminal-option[data-theme="gruvbox"] .option-num { color: #fabd2f; }
+.terminal-option[data-theme="gruvbox"] .option-name { color: #ebdbb2; }
+.terminal-option[data-theme="gruvbox"] .option-desc { color: #a89984; }
+
+.terminal-option[data-theme="gruvbox"]:hover,
+.terminal-option[data-theme="gruvbox"].highlighted {
+    background: #1d2021;
+    border-color: #83a598;
+}
+
+.terminal-option[data-theme="gruvbox"].active {
+    background: #1d2021;
+    border-color: #b8bb26;
+}
+
+.terminal-option[data-theme="gruvbox"].active .option-name {
+    color: #b8bb26;
+    font-weight: bold;
+}
+
+/* Catppuccin theme option - preview catppuccin colors */
+.terminal-option[data-theme="catppuccin"] {
+    background: #1e1e2e;
+    border-color: #313244;
+    color: #cdd6f4;
+}
+
+.terminal-option[data-theme="catppuccin"] .option-bracket { color: #6c7086; }
+.terminal-option[data-theme="catppuccin"] .option-num { color: #f9e2af; }
+.terminal-option[data-theme="catppuccin"] .option-name { color: #cdd6f4; }
+.terminal-option[data-theme="catppuccin"] .option-desc { color: #6c7086; }
+
+.terminal-option[data-theme="catppuccin"]:hover,
+.terminal-option[data-theme="catppuccin"].highlighted {
+    background: #181825;
+    border-color: #89b4fa;
+}
+
+.terminal-option[data-theme="catppuccin"].active {
+    background: #181825;
+    border-color: #a6e3a1;
+}
+
+.terminal-option[data-theme="catppuccin"].active .option-name {
+    color: #a6e3a1;
+    font-weight: bold;
+}
+
 .option-bracket {
     color: var(--text-dim);
 }
@@ -239,12 +379,12 @@
 
 <script>
 (function() {
-    // Get saved theme or default
-    const savedTheme = localStorage.getItem('color-theme') || 'default';
+    // Get saved theme or default to 'nord'
+    const savedTheme = localStorage.getItem('color-theme') || 'nord';
     
     // Apply theme on load
     function applyTheme(theme) {
-        if (theme === 'default') {
+        if (theme === 'nord') {
             document.documentElement.removeAttribute('data-theme');
         } else {
             document.documentElement.setAttribute('data-theme', theme);
@@ -347,7 +487,7 @@
             }
             
             // Handle theme selection with number keys (1-5)
-            const themes = ['default', 'tokyonight', 'gruvbox', 'catppuccin', 'nord'];
+            const themes = ['nord', 'dark', 'light', 'gruvbox', 'catppuccin'];
             const key = e.key;
             
             // Check for both regular digits and numpad digits
