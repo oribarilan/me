@@ -37,6 +37,7 @@
             animation: blink 1s step-end infinite;
             margin-left: 2px;
             font-weight: normal;
+            color: var(--text-primary);
         }
         
         @keyframes blink {
@@ -120,7 +121,15 @@
         {{ partial "footer.html" . }}
     </div>
 
-    {{ partial "typing-utility.html" (dict "selector" ".typed-text" "initialDelay" 300) }}
+    {{ partial "typing-utility.html" . }}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const typedText = document.querySelector('.typed-text');
+        if (typedText) {
+            createTypingEffect(typedText, 300);
+        }
+    });
+    </script>
 
 </body>
 
