@@ -37,7 +37,10 @@ I spend my personal time with my family, woodworking, playing casual chess or, h
 
 -   Developed a web application for chip fault detection.
 
-## Outside the Office: Workshops & Talks
+## Outside the Office
+
+I'm passionate about sharing knowledge in hands-on technical sessions.
+Here are some of the workshops and talks I've delivered recently.
 
 #### From Dependency Hell to Environment Heaven  
 From “it works on my machine” to reliable, repeatable Python setups. A practical tour of local, containerized, and cloud-based environments, with concrete tools and a cheat-sheet you can actually use.
@@ -52,9 +55,10 @@ Five days of LLM basics and practical app-building – combine core concepts wit
 Practical patterns for collaboration-ready repos. From command runners and formatting to dev containers and CI/CD, learn how to reduce setup pain and keep contributions flowing.
 
 ## Education
-#### 2013 - 2018 · B.Sc. + M.Sc. in Computer Science (Software Engineering Track) · Ben-Gurion University of the Negev
-- Graduated with honors. Thesis on “Automated Software Fault Localization" (Italy, 2017).
-- Dean's excellence award.
+#### 2013 - 2018 · B.Sc. + M.Sc. @ Ben-Gurion University of the Negev
+- B.Sc. in Computer Science (Software Engineering track), **Dean's excellence award**.
+- M.Sc. in Software and Information Systems Engineering
+- Thesis on “Automated Software Fault Localization" (Italy, 2017).
 
 ## Get in Touch
 

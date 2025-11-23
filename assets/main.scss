@@ -11,6 +11,7 @@
   --text-dim: #81a1c1;
   --accent-primary: #88c0d0;
   --accent-secondary: #a3be8c;
+  --accent-subheader: #ebcb8b;
   --accent-warning: #ebcb8b;
   --accent-error: #bf616a;
   --prompt-user: #a3be8c;
@@ -32,6 +33,7 @@
   --text-dim: #a0a0a0;
   --accent-primary: #80AADD;
   --accent-secondary: #FF9800;
+  --accent-subheader: #FFB300;
   --accent-warning: #FFB300;
   --accent-error: #F26E74;
   --prompt-user: #FF9800;
@@ -53,6 +55,7 @@
   --text-dim: #6d6d6d;
   --accent-primary: #4080CC;
   --accent-secondary: #28A05A;
+  --accent-subheader: #CC8C00;
   --accent-warning: #CC8C00;
   --accent-error: #D24450;
   --prompt-user: #28A05A;
@@ -74,6 +77,7 @@
   --text-dim: #565f89;
   --accent-primary: #7aa2f7;
   --accent-secondary: #9ece6a;
+  --accent-subheader: #e0af68;
   --accent-warning: #e0af68;
   --accent-error: #f7768e;
   --prompt-user: #9ece6a;
@@ -95,6 +99,7 @@
   --text-dim: #a89984;
   --accent-primary: #83a598;
   --accent-secondary: #b8bb26;
+  --accent-subheader: #fabd2f;
   --accent-warning: #fabd2f;
   --accent-error: #fb4934;
   --prompt-user: #b8bb26;
@@ -116,6 +121,7 @@
   --text-dim: #6c7086;
   --accent-primary: #89b4fa;
   --accent-secondary: #a6e3a1;
+  --accent-subheader: #f9e2af;
   --accent-warning: #f9e2af;
   --accent-error: #f38ba8;
   --prompt-user: #a6e3a1;
@@ -137,6 +143,7 @@
   --text-dim: #81a1c1;
   --accent-primary: #88c0d0;
   --accent-secondary: #a3be8c;
+  --accent-subheader: #ebcb8b;
   --accent-warning: #ebcb8b;
   --accent-error: #bf616a;
   --prompt-user: #a3be8c;
@@ -157,6 +164,7 @@ $text-secondary: var(--text-secondary);
 $text-dim: var(--text-dim);
 $accent-primary: var(--accent-primary);
 $accent-secondary: var(--accent-secondary);
+$accent-subheader: var(--accent-subheader);
 $accent-warning: var(--accent-warning);
 $accent-error: var(--accent-error);
 $prompt-user: var(--prompt-user);
@@ -231,11 +239,26 @@ code {
   border-radius: 3px;
 }
 
-@for $i from 1 through 6 {
-  h#{$i} {
-    font-family: 'Fira Mono', monospace;
-    color: $accent-primary;
-  }
+// Headers with color hierarchy
+h1, h2 {
+  font-family: 'Fira Mono', monospace;
+  color: $accent-primary;
+}
+
+h3, h4 {
+  font-family: 'Fira Mono', monospace;
+  color: $accent-subheader;
+}
+
+h5, h6 {
+  font-family: 'Fira Mono', monospace;
+  color: $text-dim;
+}
+
+// Make bold text stand out with color and weight
+strong, b {
+  font-weight: 700;
+  color: $accent-secondary;
 }
 
 ::selection {
