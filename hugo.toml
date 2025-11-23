@@ -12,7 +12,7 @@ theme = "nightfall"
 pagerSize = 10
 
 [permalinks]
-  blog = "/blog/:filename/"
+  blog = "/blog/:contentbasename/"
 
 [menu]
   [[menu.header]]
