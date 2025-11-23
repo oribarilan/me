@@ -120,37 +120,7 @@
         {{ partial "footer.html" . }}
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const typedTextElement = document.querySelector('.typed-text');
-            if (!typedTextElement) return;
-            
-            const fullText = typedTextElement.textContent;
-            typedTextElement.textContent = '';
-            
-            let charIndex = 0;
-            
-            function getRandomDelay() {
-                // Random delay between 50ms and 150ms, with occasional longer pauses
-                const shouldPause = Math.random() < 0.15; // 15% chance of longer pause
-                if (shouldPause) {
-                    return Math.random() * 150 + 150; // 150-300ms pause
-                }
-                return Math.random() * 100 + 50; // 50-150ms normal typing
-            }
-            
-            function typeNextChar() {
-                if (charIndex < fullText.length) {
-                    typedTextElement.textContent += fullText.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeNextChar, getRandomDelay());
-                }
-            }
-            
-            // Start typing after a brief delay
-            setTimeout(typeNextChar, 300);
-        });
-    </script>
+    {{ partial "typing-utility.html" (dict "selector" ".typed-text" "initialDelay" 300) }}
 
 </body>
 

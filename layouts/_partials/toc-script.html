@@ -1,0 +1,74 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toc = document.querySelector('.toc');
+    if (!toc) return;
+    
+    const tocLinks = toc.querySelectorAll('a');
+    const headings = document.querySelectorAll('.postWrapper h2, .postWrapper h3, .postWrapper h4');
+    
+    if (tocLinks.length === 0 || headings.length === 0) return;
+    
+    // Create a map of heading IDs to TOC links
+    const linkMap = new Map();
+    tocLinks.forEach(link => {
+        const id = link.getAttribute('href').slice(1);
+        linkMap.set(id, link);
+    });
+    
+    // Function to highlight active section
+    function highlightActiveSection() {
+        let currentHeading = null;
+        const scrollPosition = window.scrollY + 100; // Offset for better UX
+        
+        // Find the current heading
+        headings.forEach(heading => {
+            if (heading.offsetTop <= scrollPosition) {
+                currentHeading = heading;
+            }
+        });
+        
+        // Remove all active classes
+        tocLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Add active class to current section
+        if (currentHeading && currentHeading.id) {
+            const activeLink = linkMap.get(currentHeading.id);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+    }
+    
+    // Smooth scroll for TOC links
+    tocLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').slice(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Listen to scroll events
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                highlightActiveSection();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+    
+    // Initial highlight
+    highlightActiveSection();
+});
+</script>
