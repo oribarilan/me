@@ -22,6 +22,7 @@
 - **Simplicity**: Write simple, readable code - avoid unnecessary complexity
 - **Single responsibility**: Keep files short and focused - one template/partial per concern
 - **No over-engineering**: Prefer straightforward solutions over clever abstractions
+- **Markdown content**: Use only one H1 header (`#`) per file - the title from front matter serves as the main heading
 
 ## Design Philosophy
 - Terminal/developer aesthetic with typing animations, block cursors, and command-line UI elements
