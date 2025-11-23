@@ -28,6 +28,28 @@
         .indexHeader {
             margin: 0;
             text-align: left;
+            font-family: 'Courier New', Courier, monospace;
+            display: inline-block;
+        }
+        
+        .indexHeader::after {
+            content: '█';
+            animation: blink 1s step-end infinite;
+            margin-left: 2px;
+            font-weight: normal;
+        }
+        
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            51%, 100% {
+                opacity: 0;
+            }
+        }
+        
+        .indexHeader .typed-text {
+            display: inline-block;
         }
         
         .authorDescription {
@@ -75,7 +97,7 @@
                 <div class="indexWrapper">
                     {{ partial "avatar.html" . }}
                     <div class="indexContent">
-                        <h1 class="indexHeader">{{ .Site.Params.author.name }}</h1>
+                        <h1 class="indexHeader"><span class="typed-text">{{ .Site.Params.author.name }}</span></h1>
                         {{ if .Site.Params.author.description }}
                             <div class="authorDescription">
                                 <p>{{ .Site.Params.author.description }}</p>
@@ -92,6 +114,38 @@
 
         {{ partial "footer.html" . }}
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const typedTextElement = document.querySelector('.typed-text');
+            if (!typedTextElement) return;
+            
+            const fullText = typedTextElement.textContent;
+            typedTextElement.textContent = '';
+            
+            let charIndex = 0;
+            
+            function getRandomDelay() {
+                // Random delay between 50ms and 150ms, with occasional longer pauses
+                const shouldPause = Math.random() < 0.15; // 15% chance of longer pause
+                if (shouldPause) {
+                    return Math.random() * 150 + 150; // 150-300ms pause
+                }
+                return Math.random() * 100 + 50; // 50-150ms normal typing
+            }
+            
+            function typeNextChar() {
+                if (charIndex < fullText.length) {
+                    typedTextElement.textContent += fullText.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeNextChar, getRandomDelay());
+                }
+            }
+            
+            // Start typing after a brief delay
+            setTimeout(typeNextChar, 300);
+        });
+    </script>
 
 </body>
 
