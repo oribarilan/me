@@ -25,7 +25,8 @@ Executive challenge, "Hack for Industry" (of 700 projects)
 ### 2nd place, Microsoft Israel Hackathon 2023  
 "Hack for Good" track (of 176 projects)
 
-## Patents ([here](https://patents.google.com/?inventor=Ori+BAR-ILAN))  
+## Patents   
+Full list of patents available [here](https://patents.google.com/?inventor=Ori+BAR-ILAN)
 ### 2024 (pending), Chat card engine(s) for conversational chat cards
 ### 2023 (pending), Systems, methods, and software for enhanced polling technique
 ### 2021, Early Warning Predictive Insights
