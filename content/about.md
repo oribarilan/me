@@ -12,6 +12,8 @@ ori-bar-ilan
 
 Hi, I'm Ori Bar-ilan!
 
+> *Give me coffee to change the things I can, and beer to accept those I can't*
+
 Welcome to my personal website. This is where I share my thoughts, projects, and experiences.
 
 ## What I Do

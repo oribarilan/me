@@ -1,0 +1,53 @@
+<div class="socialNavbar">
+    <ul>
+        {{ range sort .Site.Params.social "key"}}
+        <li>
+            <a href="{{ .url | safeURL }}" {{ if .target }} target="{{ .target }}" {{ end }} {{ if .aria }} aria-label="{{ .aria }}" {{ else }} aria-hidden="true" {{ end }} title="{{ .name }}" {{ if .rel }} rel="{{ .rel }}"{{ end }}>
+                {{ .name }}
+            </a>
+        </li>
+        {{ end }}
+    </ul>
+</div>
+
+<style>
+.socialNavbar {
+    margin-top: 1.5rem;
+}
+
+.socialNavbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.socialNavbar li {
+    display: inline;
+}
+
+.socialNavbar a {
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--accent-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.socialNavbar a:hover {
+    color: var(--accent-primary);
+    text-decoration: underline;
+}
+
+.socialNavbar a::before {
+    content: '> ';
+    color: var(--accent-primary);
+}
+
+@media (max-width: 768px) {
+    .socialNavbar ul {
+        justify-content: center;
+    }
+}
+</style>

@@ -49,12 +49,19 @@ showCategories = true
     email = "your-email@example.com"
     avatar = "ori.png"
     avatarSize = "size-l"
-    description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    description = "Software engineer building practical AI systems.\n\nI craft production-grade systems by day, and spend my spare time sharing what I learn, woodworking, and playing chess."
 
 # Add your social links here
-# [[params.social]]
-# key = 0
-# name = "github"
-# url = "https://github.com/oribarilan"
-# target = "_blank"
-# aria = "GitHub Profile"
+[[params.social]]
+key = 0
+name = "github"
+url = "https://github.com/oribarilan"
+target = "_blank"
+aria = "GitHub Profile"
+
+[[params.social]]
+key = 1
+name = "linkedin"
+url = "https://www.linkedin.com/in/ori-bar-ilan/"
+target = "_blank"
+aria = "LinkedIn Profile"

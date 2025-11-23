@@ -98,6 +98,11 @@
                     {{ partial "avatar.html" . }}
                     <div class="indexContent">
                         <h1 class="indexHeader"><span class="typed-text">{{ .Site.Params.author.name }}</span></h1>
+                        <div class="tagline">
+                            <p style="font-family: 'Fira Mono', monospace; font-size: 1rem; color: var(--accent-secondary); margin: 0.5rem 0;">
+                                design over beer, code over coffee
+                            </p>
+                        </div>
                         {{ if .Site.Params.author.description }}
                             <div class="authorDescription">
                                 <p>{{ .Site.Params.author.description }}</p>
