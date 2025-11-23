@@ -630,13 +630,14 @@ blockquote {
   margin-left: 0;
   margin-right: 0;
   font-style: italic;
-  color: $text-secondary;
+  color: $text-primary !important;
   background-color: rgba(0, 0, 0, 0.1);
   padding: 10px 10px 10px 20px;
   border-radius: 0 4px 4px 0;
   
   p {
     margin: 0.5em 0;
+    color: $text-primary !important;
     
     &:first-child {
       margin-top: 0;
@@ -648,6 +649,6 @@ blockquote {
   }
   
   em {
-    color: $text-dim;
+    color: $accent-secondary !important;
   }
 }
