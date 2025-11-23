@@ -1,11 +1,14 @@
 ---
-title: "About"
+title: "whoami"
 date: 2025-11-23
 draft: false
 showMetadata: false
 ---
 
-# About Me
+```
+$ whoami
+ori-bar-ilan
+```
 
 Hi, I'm Ori Bar-ilan!
 

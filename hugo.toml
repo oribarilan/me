@@ -17,7 +17,7 @@ pagerSize = 10
     weight = 0
     url = "/posts"
   [[menu.header]]
-    name = "about"
+    name = "whoami"
     weight = 1
     url = "/about"
 
