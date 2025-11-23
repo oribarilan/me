@@ -11,11 +11,14 @@ theme = "nightfall"
 [pagination]
 pagerSize = 10
 
+[permalinks]
+  blog = "/blog/:filename/"
+
 [menu]
   [[menu.header]]
     name = "blog"
     weight = 0
-    url = "/posts"
+    url = "/blog"
   [[menu.header]]
     name = "whoami"
     weight = 1
