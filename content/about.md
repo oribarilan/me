@@ -3,6 +3,7 @@ title: "whoami"
 date: 2025-11-23
 draft: false
 showMetadata: false
+toc: true
 ---
 
 Hi, I'm Ori Bar-ilan!

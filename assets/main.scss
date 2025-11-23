@@ -300,6 +300,7 @@ strong, b {
   flex: 1 auto;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .content img {
@@ -331,6 +332,14 @@ $width: 760px;
 
   @media screen and (max-width: $breakLarge) {
     width: 100%;    
+  }
+  
+  // Expand main container when TOC is present
+  &:has(.singlePageWrapper) {
+    @media only screen and (min-width: 1200px) {
+      width: 100%;
+      max-width: 1400px;
+    }
   }
 }
 
@@ -673,5 +682,99 @@ blockquote {
   
   em {
     color: $accent-secondary !important;
+  }
+}
+
+// Table of Contents (TOC) styling
+.singlePageWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.toc {
+  position: absolute;
+  left: calc(50% - 380px - 40px - 250px); // Center of content (50%) - half content width (380px) - gap (40px) - TOC width (250px)
+  width: 250px;
+  top: 0;
+  
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
+}
+
+.tocSticky {
+  position: sticky;
+  top: 80px;
+  padding: 20px;
+  background-color: $bg-secondary;
+  border-left: 3px solid $accent-primary;
+  border-radius: 4px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  
+  h3 {
+    margin-top: 0;
+    font-size: 0.9em;
+    color: $accent-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  nav#TableOfContents {
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      
+      li {
+        margin: 0.5em 0;
+        
+        a {
+          color: $text-secondary;
+          text-decoration: none;
+          font-size: 0.85em;
+          line-height: 1.4;
+          display: block;
+          padding: 4px 0;
+          transition: color 0.2s ease, padding-left 0.2s ease;
+          
+          &:hover {
+            color: $accent-primary;
+            padding-left: 8px;
+          }
+          
+          &:hover::after {
+            display: none; // Remove the underline animation
+          }
+        }
+        
+        // Nested lists (subsections)
+        ul {
+          padding-left: 16px;
+          margin-top: 0.25em;
+          
+          li a {
+            font-size: 0.8em;
+            color: $text-dim;
+            
+            &:hover {
+              color: $accent-secondary;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.postWrapper.withToc,
+.singlePageWrapper .postWrapper:not(.withToc) {
+  width: 760px;
+  
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+    max-width: 760px;
   }
 }
