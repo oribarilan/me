@@ -19,4 +19,126 @@
 {{ $style := resources.Get "main.scss" | toCSS $options | minify | fingerprint }}
 <link href="{{ $style.RelPermalink }}" rel="stylesheet">
 
+<!-- Notification System Script -->
+<script>
+(function() {
+    // Notification system
+    window.showNotification = function(message) {
+        // Get or create container
+        let container = document.getElementById('notification-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'notification-container';
+            container.className = 'notification-container';
+            document.body.appendChild(container);
+        }
+        
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `
+            <div class="notification-content">
+                <span class="notification-prompt">></span>
+                <span class="notification-message">${message}</span>
+            </div>
+        `;
+        
+        container.appendChild(notification);
+        
+        // Auto-remove after 3 seconds
+        setTimeout(() => {
+            notification.classList.add('hiding');
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 3000);
+    };
+})();
+</script>
+
+<!-- Notification Styles -->
+<style>
+.notification-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.notification {
+    background: var(--bg-darker);
+    border: 2px solid var(--border-color);
+    border-left: 4px solid var(--accent-secondary);
+    padding: 12px 16px;
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    min-width: 250px;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    animation: slideIn 0.3s ease-out;
+    pointer-events: auto;
+}
+
+.notification.hiding {
+    animation: slideOut 0.3s ease-out forwards;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.notification-prompt {
+    color: var(--prompt-user);
+    font-weight: bold;
+}
+
+.notification-message {
+    color: var(--text-primary);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .notification-container {
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+    }
+    
+    .notification {
+        min-width: auto;
+        max-width: none;
+    }
+}
+</style>
+
 {{ partial "custom-head.html" . }}

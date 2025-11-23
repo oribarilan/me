@@ -260,6 +260,12 @@
         document.querySelectorAll('.terminal-option').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.theme === theme);
         });
+        
+        // Update button text to show current theme
+        const themeIcon = document.querySelector('.theme-icon');
+        if (themeIcon) {
+            themeIcon.textContent = `[${theme}]`;
+        }
     }
     
     // Apply saved theme immediately to prevent flash
@@ -322,16 +328,16 @@
             
             if (num !== null && num >= 1 && num <= 5) {
                 e.preventDefault(); // Prevent any default behavior
-                console.log('Theme switcher: selecting theme', num, themes[num - 1]);
-                applyTheme(themes[num - 1]);
+                const themeName = themes[num - 1];
+                applyTheme(themeName);
+                // Only close terminal if it's open, otherwise show notification
                 if (isTerminalOpen) {
                     closeTerminal();
                 } else {
-                    // Show brief feedback when terminal is closed
-                    terminal.classList.add('active');
-                    setTimeout(function() {
-                        closeTerminal();
-                    }, 300);
+                    // Show notification for global theme change
+                    if (window.showNotification) {
+                        window.showNotification(`theme changed to ${themeName}`);
+                    }
                 }
             }
         });
