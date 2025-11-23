@@ -39,7 +39,7 @@
                 </button>
             </div>
             <div class="terminal-footer">
-                <span class="cursor-blink">█</span>
+                <span class="terminal-hints">[j/k] navigate [↑/↓] navigate [enter] select [esc] close</span>
             </div>
         </div>
     </div>
@@ -207,24 +207,18 @@
 }
 
 .terminal-footer {
-    color: var(--prompt-user);
-    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-size: 0.75rem;
     display: flex;
     align-items: center;
-    gap: 4px;
+    justify-content: center;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+    opacity: 0.6;
 }
 
-.cursor-blink {
-    animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-    0%, 50% {
-        opacity: 1;
-    }
-    51%, 100% {
-        opacity: 0;
-    }
+.terminal-hints {
+    font-style: italic;
 }
 
 @media screen and (max-width: 600px) {
