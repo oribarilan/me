@@ -1,0 +1,49 @@
+baseURL = 'https://oribarilan.github.io/'
+languageCode = 'en-us'
+title = 'Ori Bar-ilan'
+theme = "nightfall"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[pagination]
+pagerSize = 10
+
+[menu]
+  [[menu.header]]
+    name = "posts"
+    weight = 0
+    url = "/posts"
+  [[menu.header]]
+    name = "about"
+    weight = 1
+    url = "/about"
+
+[params]
+user = "oribarilan"
+hostname = "github.io"
+
+openLinksInNewTab = true
+displayDateFormat = "2006-01-02"
+
+# Global metadata display settings
+showMetadata = true
+showPublishedDate = true
+showReadingTime = true
+showTags = true
+showAuthors = false
+showCategories = true
+
+  [params.author]
+    name = "Ori Bar-ilan"
+    email = "your-email@example.com"
+
+# Add your social links here
+# [[params.social]]
+# key = 0
+# name = "github"
+# url = "https://github.com/oribarilan"
+# target = "_blank"
+# aria = "GitHub Profile"
