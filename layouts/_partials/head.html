@@ -58,6 +58,78 @@
 })();
 </script>
 
+<!-- Navigation Keybindings Script -->
+<script>
+(function() {
+    console.log('Navigation keybindings script loaded');
+    
+    function handleNavigationKeys(e) {
+        // Ignore if user is typing in an input/textarea
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+            return;
+        }
+        
+        // Ignore if modifier keys are pressed
+        if (e.ctrlKey || e.metaKey || e.altKey) {
+            return;
+        }
+        
+        const key = e.key.toLowerCase();
+        console.log('Navigation key check:', key);
+        
+        const baseURL = window.location.origin + '/';
+        let handled = false;
+        
+        switch(key) {
+            case 'h':
+                console.log('Navigating to home');
+                window.location.href = baseURL;
+                handled = true;
+                break;
+            case 'w':
+                console.log('Navigating to about');
+                window.location.href = baseURL + 'about/';
+                handled = true;
+                break;
+            case 'b':
+                console.log('Navigating to posts');
+                window.location.href = baseURL + 'posts/';
+                handled = true;
+                break;
+            case 'p':
+                console.log('Navigating to projects');
+                window.location.href = baseURL + 'projects/';
+                handled = true;
+                break;
+            case 't':
+                console.log('Toggling theme');
+                const themeSwitcher = document.querySelector('.theme-switcher button');
+                if (themeSwitcher) {
+                    themeSwitcher.click();
+                    handled = true;
+                }
+                break;
+        }
+        
+        if (handled) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    }
+    
+    // Use both DOMContentLoaded and immediate execution
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded - adding keydown listener');
+            document.addEventListener('keydown', handleNavigationKeys, true);
+        });
+    } else {
+        console.log('Document already loaded - adding keydown listener');
+        document.addEventListener('keydown', handleNavigationKeys, true);
+    }
+})();
+</script>
+
 <!-- Notification Styles -->
 <style>
 .notification-container {
