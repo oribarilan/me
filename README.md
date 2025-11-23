@@ -1,11 +1,21 @@
 # me
 
-my personal website
+My personal website
 
-## Setup
+## Local Development
 
-### Install
+```bash
+hugo server -D
+```
 
-### Build
+Visit `http://localhost:1313`
 
-`hugo server -D`
+## Build
+
+```bash
+hugo --gc --minify
+```
+
+## Deploy
+
+Automatically deploys to GitHub Pages on push to `main` branch.
