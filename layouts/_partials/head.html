@@ -74,14 +74,14 @@
             return;
         }
         
-        const key = e.key.toLowerCase();
+        const key = e.key;
         console.log('Navigation key check:', key);
         
         const baseURL = window.location.origin + '/';
         let handled = false;
         
-        switch(key) {
-            case 'h':
+        switch(key.toLowerCase()) {
+            case '/':
                 console.log('Navigating to home');
                 window.location.href = baseURL;
                 handled = true;
