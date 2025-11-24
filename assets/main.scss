@@ -647,15 +647,29 @@ $width: 760px;
     }
   }
   a {
-    color: $text-primary;
+    color: $accent-secondary !important;
     text-shadow: $bg-darker 0px 0px 2px;
     -webkit-font-smoothing: antialiased;
     display: inline-block;
     margin: 10px;
-    border-bottom: none;
+    border-bottom: none !important;
+    position: relative;
+    text-decoration: none !important;
+    
+    &:hover {
+      border-bottom: none !important;
+      text-decoration: none !important;
+    }
     
     &:hover::after {
-      display: none;
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      background: $accent-secondary;
+      animation: linkHighlight 0.3s ease-out;
     }
   }
 }
