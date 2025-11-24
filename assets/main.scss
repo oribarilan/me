@@ -806,7 +806,7 @@ blockquote {
         margin: 0.25em 0;
         
         a {
-          color: $text-secondary;
+          color: $accent-primary-2;
           text-decoration: none;
           border-bottom: none;
           font-size: 0.85em;
@@ -846,7 +846,7 @@ blockquote {
             
             a {
               font-size: 0.8em;
-              color: $text-dim;
+              color: $accent-primary-4;
               padding-left: 0;
               white-space: nowrap;
               overflow: hidden;
@@ -857,7 +857,7 @@ blockquote {
               }
               
               &:hover {
-                color: $accent-secondary;
+                color: $accent-primary-3;
               }
             }
             

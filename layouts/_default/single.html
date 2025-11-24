@@ -7,7 +7,7 @@
     {{ if and (.Params.toc) (.TableOfContents) }}
     <aside class="toc">
         <div class="tocSticky">
-            <h3>On this page</h3>
+            <h3>{{ .Title }}</h3>
             {{ .TableOfContents }}
         </div>
     </aside>
