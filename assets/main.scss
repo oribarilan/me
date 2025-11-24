@@ -652,6 +652,11 @@ $width: 760px;
     -webkit-font-smoothing: antialiased;
     display: inline-block;
     margin: 10px;
+    border-bottom: none;
+    
+    &:hover::after {
+      display: none;
+    }
   }
 }
 
