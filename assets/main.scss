@@ -276,18 +276,29 @@ code {
 
 // Headers with color hierarchy
 // Headers with color hierarchy and cursor effect
+// Headers with color hierarchy and cursor effect
 h1 {
   font-family: 'Fira Mono', monospace;
   color: $accent-primary;
   display: inline-block;
+  line-height: 1.2;
+  font-size: 2em;
   
   &::after {
     content: '█';
     animation: blink 1s step-end infinite;
-    margin-left: 4px;
+    margin-left: 2px;
     font-weight: normal;
     color: $text-primary;
+    display: inline-block;
+    vertical-align: baseline;
   }
+}
+
+// Content h1 headers need smaller cursor to match text height
+.postWrapper h1::after {
+  font-size: 0.8em;
+  vertical-align: 0.15em;
 }
 
 @keyframes blink {
