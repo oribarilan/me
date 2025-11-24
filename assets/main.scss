@@ -2,7 +2,7 @@
 // All themes are embedded, JavaScript will switch between them
 
 :root {
-  // Nord theme (default)
+  // Nord theme (default) - cyan to purple gradient
   --bg-primary: #2e3440;
   --bg-secondary: #3b4252;
   --bg-darker: #3b4252;
@@ -10,6 +10,11 @@
   --text-secondary: #e5e9f0;
   --text-dim: #81a1c1;
   --accent-primary: #88c0d0;
+  --accent-primary-2: #81a1c1;
+  --accent-primary-3: #8a8db8;
+  --accent-primary-4: #9378af;
+  --accent-primary-5: #9c63a6;
+  --accent-primary-6: #a54e9d;
   --accent-secondary: #a3be8c;
   --accent-subheader: #ebcb8b;
   --accent-warning: #ebcb8b;
@@ -23,7 +28,7 @@
   --selection-bg: #434c5e;
 }
 
-// Dark theme (formerly plain/default)
+// Dark theme (formerly plain/default) - blue to purple gradient
 [data-theme="dark"] {
   --bg-primary: #292a2d;
   --bg-secondary: #252627;
@@ -32,6 +37,11 @@
   --text-secondary: #e0e0e0;
   --text-dim: #a0a0a0;
   --accent-primary: #80AADD;
+  --accent-primary-2: #8095CC;
+  --accent-primary-3: #8080BB;
+  --accent-primary-4: #806BAA;
+  --accent-primary-5: #805699;
+  --accent-primary-6: #804188;
   --accent-secondary: #FF9800;
   --accent-subheader: #FFB300;
   --accent-warning: #FFB300;
@@ -54,6 +64,11 @@
   --text-secondary: #3d3d3d;
   --text-dim: #6d6d6d;
   --accent-primary: #4080CC;
+  --accent-primary-2: #5070b8;
+  --accent-primary-3: #5f60a5;
+  --accent-primary-4: #6e5091;
+  --accent-primary-5: #7d407e;
+  --accent-primary-6: #8c306a;
   --accent-secondary: #28A05A;
   --accent-subheader: #CC8C00;
   --accent-warning: #CC8C00;
@@ -67,7 +82,7 @@
   --selection-bg: #d0e8ff;
 }
 
-// Tokyo Night theme
+// Tokyo Night theme - blue to pink gradient
 [data-theme="tokyonight"] {
   --bg-primary: #1a1b26;
   --bg-secondary: #16161e;
@@ -76,6 +91,11 @@
   --text-secondary: #a9b1d6;
   --text-dim: #565f89;
   --accent-primary: #7aa2f7;
+  --accent-primary-2: #8a93e8;
+  --accent-primary-3: #9a84d9;
+  --accent-primary-4: #aa75ca;
+  --accent-primary-5: #ba66bb;
+  --accent-primary-6: #ca57ac;
   --accent-secondary: #9ece6a;
   --accent-subheader: #e0af68;
   --accent-warning: #e0af68;
@@ -89,7 +109,7 @@
   --selection-bg: #283457;
 }
 
-// Gruvbox theme
+// Gruvbox theme - cyan to orange gradient
 [data-theme="gruvbox"] {
   --bg-primary: #282828;
   --bg-secondary: #1d2021;
@@ -98,6 +118,11 @@
   --text-secondary: #d5c4a1;
   --text-dim: #a89984;
   --accent-primary: #83a598;
+  --accent-primary-2: #8c9d7e;
+  --accent-primary-3: #959565;
+  --accent-primary-4: #9e8d4b;
+  --accent-primary-5: #a78532;
+  --accent-primary-6: #b07d18;
   --accent-secondary: #b8bb26;
   --accent-subheader: #fabd2f;
   --accent-warning: #fabd2f;
@@ -111,7 +136,7 @@
   --selection-bg: #504945;
 }
 
-// Catppuccin theme
+// Catppuccin theme - blue to pink gradient
 [data-theme="catppuccin"] {
   --bg-primary: #1e1e2e;
   --bg-secondary: #181825;
@@ -120,6 +145,11 @@
   --text-secondary: #bac2de;
   --text-dim: #6c7086;
   --accent-primary: #89b4fa;
+  --accent-primary-2: #96a7ed;
+  --accent-primary-3: #a39ae0;
+  --accent-primary-4: #b08dd3;
+  --accent-primary-5: #bd80c6;
+  --accent-primary-6: #ca73b9;
   --accent-secondary: #a6e3a1;
   --accent-subheader: #f9e2af;
   --accent-warning: #f9e2af;
@@ -133,7 +163,7 @@
   --selection-bg: #45475a;
 }
 
-// Nord theme
+// Nord theme - cyan to purple gradient
 [data-theme="nord"] {
   --bg-primary: #2e3440;
   --bg-secondary: #3b4252;
@@ -142,6 +172,11 @@
   --text-secondary: #e5e9f0;
   --text-dim: #81a1c1;
   --accent-primary: #88c0d0;
+  --accent-primary-2: #81a1c1;
+  --accent-primary-3: #8a8db8;
+  --accent-primary-4: #9378af;
+  --accent-primary-5: #9c63a6;
+  --accent-primary-6: #a54e9d;
   --accent-secondary: #a3be8c;
   --accent-subheader: #ebcb8b;
   --accent-warning: #ebcb8b;
@@ -163,6 +198,11 @@ $text-primary: var(--text-primary);
 $text-secondary: var(--text-secondary);
 $text-dim: var(--text-dim);
 $accent-primary: var(--accent-primary);
+$accent-primary-2: var(--accent-primary-2);
+$accent-primary-3: var(--accent-primary-3);
+$accent-primary-4: var(--accent-primary-4);
+$accent-primary-5: var(--accent-primary-5);
+$accent-primary-6: var(--accent-primary-6);
 $accent-secondary: var(--accent-secondary);
 $accent-subheader: var(--accent-subheader);
 $accent-warning: var(--accent-warning);
@@ -266,17 +306,27 @@ h1 {
 
 h2 {
   font-family: 'Fira Mono', monospace;
-  color: $accent-primary;
+  color: $accent-primary-2;
 }
 
-h3, h4 {
+h3 {
   font-family: 'Fira Mono', monospace;
-  color: $accent-subheader;
+  color: $accent-primary-3;
 }
 
-h5, h6 {
+h4 {
   font-family: 'Fira Mono', monospace;
-  color: $text-dim;
+  color: $accent-primary-4;
+}
+
+h5 {
+  font-family: 'Fira Mono', monospace;
+  color: $accent-primary-5;
+}
+
+h6 {
+  font-family: 'Fira Mono', monospace;
+  color: $accent-primary-6;
 }
 
 // Make bold text stand out with color and weight
