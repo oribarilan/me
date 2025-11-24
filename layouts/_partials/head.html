@@ -72,10 +72,30 @@
             return;
         }
         
+        // Check if theme terminal is open
+        const themeTerminal = document.getElementById('theme-terminal');
+        const isTerminalOpen = themeTerminal && themeTerminal.classList.contains('active');
+        
+        // Don't handle scrolling when terminal is open
+        if (isTerminalOpen && (e.key === 'j' || e.key === 'k' || e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
+            return;
+        }
+        
         const key = e.key;
         const baseURL = window.location.origin + '/';
         let handled = false;
         
+        // Scrolling with j/k and arrow keys
+        const scrollAmount = 100; // pixels to scroll
+        if (key === 'j' || key === 'ArrowDown') {
+            window.scrollBy({ top: scrollAmount, behavior: 'smooth' });
+            handled = true;
+        } else if (key === 'k' || key === 'ArrowUp') {
+            window.scrollBy({ top: -scrollAmount, behavior: 'smooth' });
+            handled = true;
+        }
+        
+        // Navigation keys
         switch(key.toLowerCase()) {
             case '/':
                 window.location.href = baseURL;
