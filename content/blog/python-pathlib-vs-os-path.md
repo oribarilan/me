@@ -5,6 +5,7 @@ draft: false
 tags: ["python", "programming", "best-practices"]
 categories: ["development"]
 description: "Learn how to work with file system paths using Python's modern pathlib module"
+toc: true
 ---
 
 For years, Python developers used the `os.path` module for file system operations, working with paths as strings. Python 3.4 introduced `pathlib`, a modern object-oriented approach that makes path handling more intuitive and readable.
@@ -34,7 +35,7 @@ Let me show you how `pathlib` simplifies common path operations.
 
 ### Working with Paths & File Attributes
 
-**Traditional approach:**
+Traditional approach:
 ```python
 import os
 
@@ -46,7 +47,7 @@ filename = os.path.basename(file_path)      # file.txt
 extension = os.path.splitext(file_path)[1]  # .txt
 ```
 
-**Modern approach with pathlib:**
+Modern approach with pathlib:
 ```python
 from pathlib import Path
 
@@ -62,7 +63,7 @@ Notice how `pathlib` uses intuitive properties like `.parent`, `.name`, and `.su
 
 ### Reading Files
 
-**Traditional approach:**
+Traditional approach:
 ```python
 import os
 
@@ -71,7 +72,7 @@ with open(file_path, 'r') as file:
     content = file.read()
 ```
 
-**Modern approach with pathlib:**
+Modern approach with pathlib:
 ```python
 from pathlib import Path
 
@@ -83,7 +84,7 @@ The `read_text()` method eliminates boilerplate - no need to manually open and c
 
 ### Listing All Files in a Directory
 
-**Traditional approach:**
+Traditional approach:
 ```python
 import os
 
@@ -95,7 +96,7 @@ files = [
 ]
 ```
 
-**Modern approach with pathlib:**
+Modern approach with pathlib:
 ```python
 from pathlib import Path
 

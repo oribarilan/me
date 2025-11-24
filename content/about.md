@@ -11,10 +11,6 @@ Hi, I'm Ori Bar-ilan!
 > *Give me coffee to change the things I can, and beer to accept those I can't*
 
 ## About
-### About
-#### About
-##### About
-###### About
 I like building AI-based systems that solve a real need. I work in multi-disciplinary teams that collaborate across the stack to deliver data-driven products and features.
 
 Currently my weapons of choice are Python and Azure using Azure AI Foundry, OpenAI, Azure ML on top of the classical cloud engineering stack (K8s, Blobs, Queues, EventHub, Kusto, and more).

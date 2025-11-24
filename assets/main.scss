@@ -785,6 +785,8 @@ blockquote {
   border-radius: 4px;
   max-height: calc(100vh - 100px);
   overflow-y: auto;
+  font-family: 'Fira Mono', monospace;
+  text-align: left;
   
   h3 {
     margin-top: 0;
@@ -801,39 +803,66 @@ blockquote {
       margin: 0;
       
       li {
-        margin: 0.5em 0;
+        margin: 0.25em 0;
         
         a {
           color: $text-secondary;
           text-decoration: none;
           border-bottom: none;
           font-size: 0.85em;
-          line-height: 1.4;
+          line-height: 1.2;
           display: block;
-          padding: 4px 0;
-          transition: color 0.2s ease, padding-left 0.2s ease;
+          padding: 2px 0;
+          transition: color 0.2s ease;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          
+          &::before {
+            content: '├─ ';
+            color: $text-dim;
+          }
           
           &:hover {
             color: $accent-primary;
-            padding-left: 8px;
           }
           
           &:hover::after {
-            display: none; // Remove the underline animation
+            display: none;
           }
+        }
+        
+        &:last-child > a::before {
+          content: '└─ ';
         }
         
         // Nested lists (subsections)
         ul {
-          padding-left: 16px;
-          margin-top: 0.25em;
+          padding-left: 3ch;
+          margin-top: 0;
           
-          li a {
-            font-size: 0.8em;
-            color: $text-dim;
+          li {
+            margin: 0.25em 0;
             
-            &:hover {
-              color: $accent-secondary;
+            a {
+              font-size: 0.8em;
+              color: $text-dim;
+              padding-left: 0;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              
+              &::before {
+                content: '├─ ';
+              }
+              
+              &:hover {
+                color: $accent-secondary;
+              }
+            }
+            
+            &:last-child > a::before {
+              content: '└─ ';
             }
           }
         }
