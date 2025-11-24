@@ -826,11 +826,13 @@ blockquote {
           color: $accent-primary-2;
           text-decoration: none;
           border-bottom: none;
+          border-left: 2px solid transparent;
           font-size: 0.85em;
           line-height: 1.2;
           display: block;
-          padding: 2px 0;
-          transition: color 0.2s ease;
+          padding: 2px 0 2px 4px;
+          margin-left: -6px;
+          transition: color 0.2s ease, border-left-color 0.2s ease, background-color 0.2s ease;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -842,6 +844,8 @@ blockquote {
           
           &:hover {
             color: $accent-primary;
+            border-left-color: $accent-primary;
+            background-color: rgba(136, 192, 208, 0.1);
           }
           
           &:hover::after {
@@ -851,6 +855,7 @@ blockquote {
           &.active {
             color: $accent-primary;
             font-weight: 600;
+            border-left-color: $accent-primary;
             
             &::before {
               color: $accent-primary;
@@ -873,7 +878,9 @@ blockquote {
             a {
               font-size: 0.8em;
               color: $accent-primary-4;
-              padding-left: 0;
+              padding: 2px 0 2px 4px;
+              margin-left: -6px;
+              border-left: 2px solid transparent;
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
@@ -884,11 +891,14 @@ blockquote {
               
               &:hover {
                 color: $accent-primary-3;
+                border-left-color: $accent-primary-3;
+                background-color: rgba(138, 141, 184, 0.1);
               }
               
               &.active {
                 color: $accent-primary-3;
                 font-weight: 600;
+                border-left-color: $accent-primary-3;
                 
                 &::before {
                   color: $accent-primary-3;
