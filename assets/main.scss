@@ -70,12 +70,12 @@
   --accent-primary-5: #7d407e;
   --accent-primary-6: #8c306a;
   --accent-secondary: #28A05A;
-  --accent-subheader: #CC8C00;
-  --accent-warning: #CC8C00;
+  --accent-subheader: #996600;
+  --accent-warning: #996600;
   --accent-error: #D24450;
   --prompt-user: #28A05A;
   --prompt-host: #4080CC;
-  --prompt-path: #CC8C00;
+  --prompt-path: #996600;
   --code-bg: #f0f0f0;
   --code-text: #2d2d2d;
   --border-color: #d0d0d0;
@@ -227,22 +227,17 @@ body {
 }
 
 a {
-  color: $accent-primary;
+  color: $accent-secondary;
   text-decoration: none;
   position: relative;
-  transition: color 0.2s ease;
-  
-  &:hover {
-    color: $accent-secondary;
-    text-decoration: none;
-  }
+  border-bottom: 1px dashed $accent-secondary;
   
   &:hover::after {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -2px;
+    bottom: -1px;
     height: 2px;
     background: $accent-secondary;
     animation: linkHighlight 0.3s ease-out;
@@ -332,7 +327,7 @@ h6 {
 // Make bold text stand out with color and weight
 strong, b {
   font-weight: 700;
-  color: $accent-secondary;
+  color: $accent-warning;
 }
 
 ::selection {
@@ -448,6 +443,7 @@ $width: 760px;
       a {
         color: $text-primary;
         text-decoration: none;
+        border-bottom: none;
         position: relative;
         transition: color 0.2s ease;
         
@@ -467,6 +463,7 @@ $width: 760px;
 .terminal:hover {
   color: $accent-secondary;
   text-decoration: none;
+  border-bottom: none;
   transition: color 0.2s ease;
   
   &:hover {
@@ -732,7 +729,7 @@ dt::after {
 
 // Colored blockquotes using theme accent
 blockquote {
-  border-left: 4px solid $accent-secondary;
+  border-left: 4px solid $accent-warning;
   padding-left: 20px;
   margin-left: 0;
   margin-right: 0;
@@ -756,7 +753,7 @@ blockquote {
   }
   
   em {
-    color: $accent-secondary !important;
+    color: $accent-warning !important;
   }
 }
 
@@ -809,6 +806,7 @@ blockquote {
         a {
           color: $text-secondary;
           text-decoration: none;
+          border-bottom: none;
           font-size: 0.85em;
           line-height: 1.4;
           display: block;
