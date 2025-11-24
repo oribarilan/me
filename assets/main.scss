@@ -578,6 +578,15 @@ $width: 760px;
   align-items: center;
   width: $width;
   font-size: 0.7rem;
+  
+  .keybindings-hint {
+    opacity: 0.7;
+    font-family: 'Fira Mono', monospace;
+  }
+  
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
 
 .footerWrapper {
@@ -587,6 +596,12 @@ $width: 760px;
   display: flex;
   justify-content: center;
   flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+  
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
 
 // Post component

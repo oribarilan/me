@@ -3,13 +3,8 @@
         {{ with .Site.Params.footerHtml }}
             <span>{{ . | safeHTML }}</span>
         {{ else }}
-            <span>
-                © {{ now.Format "2006" }} {{ .Site.Params.author.name }}
-            </span>
+            <span>© {{ now.Format "2006" }} {{ .Site.Params.author.name }}</span>
         {{ end }}
-        
-        <div class="keybindings-hint" style="margin-top: 1rem; opacity: 0.7; font-family: monospace;">
-            [/] home [w]hoami [b]log [p]rojects [t]hemes
-        </div>
+        <span class="keybindings-hint">[/] home [w]hoami [b]log [p]rojects [t]hemes</span>
     </div>
 </footer>
