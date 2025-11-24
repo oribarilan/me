@@ -6,15 +6,26 @@ showMetadata: false
 toc: true
 ---
 
-## Open Source
-
+## Personal Projects
 ### Lensline.nvim
-[![lensline.nvim](https://github-readme-stats.vercel.app/api/pin/?username=oribarilan&repo=lensline.nvim)](https://github.com/oribarilan/lensline.nvim)
+> Modular nvim codelens support with inline references, git blame and more
+
+Lensline.nvim is a Neovim plugin that provides modular codelens support, allowing you to see inline code references, git blame information, and other contextual data directly in your editor.
+
+It is completely modular and extensible, allowing users to create their own lenses and have multiple codelense profiles.
+
+[![GitHub stars](https://img.shields.io/github/stars/oribarilan/lensline.nvim?style=flat-square&logo=github)](https://github.com/oribarilan/lensline.nvim)  
 
 ## Achievements
 
 ### 1st place, Microsoft Israel Hackathon 2025  
-[![DebugMCP](https://github-readme-stats.vercel.app/api/pin/?username=microsoft&repo=DebugMCP)](https://github.com/microsoft/DebugMCP)
+> Gift your VS Code agent a real debugger: breakpoints, stepping, inspection.
+
+DebugMCP is a VS Code extension that provides real deubugging capabilities to any AI coding agent.
+
+It does so by spininning a local MCP Server that communicates with the relevant Debugger (using DAP) to achieve full debugging capabilities, and exposing this server to the AI agent using ngrok.
+
+[![GitHub stars](https://img.shields.io/github/stars/microsoft/DebugMCP?style=flat-square&logo=github)](https://github.com/microsoft/DebugMCP)  
 
 ### 1st place, DBMI Hackathon 2018  
 Predicting drug-to-drug interactions
