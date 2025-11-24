@@ -231,6 +231,11 @@ a {
   text-decoration: none;
   position: relative;
   border-bottom: 1px dashed $accent-secondary;
+  transition: filter 0.2s ease;
+  
+  &:hover {
+    filter: brightness(1.2);
+  }
   
   &:hover::after {
     content: '';
