@@ -7,14 +7,14 @@
     {{ if and (.Params.toc) (.TableOfContents) }}
     <aside class="toc">
         <div class="tocSticky">
-            <h3>{{ .Title }}</h3>
+            <h3><a href="#page-top">{{ .Title }}</a></h3>
             {{ .TableOfContents }}
         </div>
     </aside>
     {{ end }}
 
     <div class="postWrapper {{ if .Params.toc }}withToc{{ end }}">
-        <h1>{{ .Title }}</h1>
+        <h1 id="page-top">{{ .Title }}</h1>
         {{ if .Description}}
         	<p>{{.Description}}</p>
         {{ end }}

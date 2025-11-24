@@ -766,10 +766,12 @@ blockquote {
 }
 
 .toc {
-  position: absolute;
+  position: fixed;
   left: calc(50% - 380px - 40px - 250px); // Center of content (50%) - half content width (380px) - gap (40px) - TOC width (250px)
   width: 250px;
-  top: 0;
+  top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
   
   @media screen and (max-width: 1200px) {
     display: none;
@@ -794,6 +796,21 @@ blockquote {
     color: $accent-primary;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    
+    a {
+      color: $accent-primary;
+      text-decoration: none;
+      border-bottom: none;
+      
+      &:hover {
+        color: $accent-primary;
+        filter: brightness(1.2);
+      }
+      
+      &:hover::after {
+        display: none;
+      }
+    }
   }
   
   nav#TableOfContents {
@@ -830,6 +847,15 @@ blockquote {
           &:hover::after {
             display: none;
           }
+          
+          &.active {
+            color: $accent-primary;
+            font-weight: 600;
+            
+            &::before {
+              color: $accent-primary;
+            }
+          }
         }
         
         &:last-child > a::before {
@@ -858,6 +884,15 @@ blockquote {
               
               &:hover {
                 color: $accent-primary-3;
+              }
+              
+              &.active {
+                color: $accent-primary-3;
+                font-weight: 600;
+                
+                &::before {
+                  color: $accent-primary-3;
+                }
               }
             }
             
