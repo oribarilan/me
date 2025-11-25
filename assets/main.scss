@@ -1176,9 +1176,12 @@ blockquote {
     border-bottom: none !important;
     color: $accent-primary !important;
     display: inline !important;
+    border-bottom: 1px dashed rgba(163, 190, 140, 0.3) !important;
+    transition: border-color 0.2s ease !important;
     
     &:hover {
       color: $accent-secondary !important;
+      border-bottom-color: rgba(163, 190, 140, 0.6) !important;
     }
     
     &:hover::after {
