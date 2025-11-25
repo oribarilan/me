@@ -1138,20 +1138,44 @@ blockquote {
 .pagefind-ui__result {
   border: 2px solid $border-color !important;
   background: $bg-secondary !important;
-  padding: 12px !important;
+  padding: 16px !important;
   margin-bottom: 12px !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease !important;
   
   &:hover {
     border-color: $accent-secondary !important;
+    background: $bg-darker !important;
+    transform: translateX(4px) !important;
   }
+}
+
+.pagefind-ui__result-link {
+  text-decoration: none !important;
+  display: block !important;
 }
 
 .pagefind-ui__result-title {
   font-family: 'Fira Mono', monospace !important;
   color: $accent-primary !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 8px !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: baseline !important;
+  
+  &::before {
+    content: '> ' !important;
+    color: $prompt-user !important;
+    font-weight: bold !important;
+    margin-right: 4px !important;
+    flex-shrink: 0 !important;
+  }
   
   a {
     border-bottom: none !important;
+    color: $accent-primary !important;
+    display: inline !important;
     
     &:hover {
       color: $accent-secondary !important;
@@ -1166,6 +1190,74 @@ blockquote {
 .pagefind-ui__result-excerpt {
   font-family: 'Open Sans', sans-serif !important;
   color: $text-secondary !important;
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+  margin-top: 8px !important;
+  padding-left: 12px !important;
+  border-left: 2px solid $border-color !important;
+}
+
+.pagefind-ui__result-nested {
+  margin-top: 8px !important;
+  padding-top: 8px !important;
+  border-top: 1px solid $border-color !important;
+  margin-left: 12px !important;
+}
+
+.pagefind-ui__result-nested .pagefind-ui__result-title {
+  font-size: 0.95rem !important;
+  
+  &::before {
+    content: '└─ ' !important;
+    color: $text-dim !important;
+  }
+}
+
+// Hide the arrow icon in nested results
+.pagefind-ui__result-nested .pagefind-ui__result-icon {
+  display: none !important;
+}
+
+.pagefind-ui__result-tag {
+  display: inline-block !important;
+  font-family: 'Fira Mono', monospace !important;
+  font-size: 0.75rem !important;
+  padding: 2px 8px !important;
+  background: $bg-primary !important;
+  border: 1px solid $accent-primary !important;
+  border-radius: 3px !important;
+  color: $accent-primary !important;
+  margin-right: 6px !important;
+  margin-top: 8px !important;
+}
+
+.pagefind-ui__button {
+  font-family: 'Fira Mono', monospace !important;
+  background: $bg-secondary !important;
+  border: 2px solid $border-color !important;
+  color: $text-primary !important;
+  padding: 8px 16px !important;
+  border-radius: 3px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  
+  &:hover {
+    border-color: $accent-secondary !important;
+    color: $accent-secondary !important;
+  }
+}
+
+.pagefind-ui__results-area {
+  padding: 16px !important;
+}
+
+// Highlight matched search terms
+.pagefind-ui__result-excerpt mark {
+  background: $accent-secondary !important;
+  color: $bg-primary !important;
+  padding: 2px 4px !important;
+  border-radius: 2px !important;
+  font-weight: 600 !important;
 }
 
 .pagefind-ui__message {
