@@ -436,7 +436,7 @@ $width: 760px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: $width;
+  width: calc($width * 1.15);
 }
 
 .headerWrapper {
