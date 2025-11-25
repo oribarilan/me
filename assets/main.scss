@@ -398,7 +398,23 @@ strong, b {
 }
 
 $breakLarge: 992px;
+$breakTocVisible: 1200px;
+$breakMobile: 768px;
 $width: 760px;
+$widthWithToc: 1400px;
+
+// Layout dimensions
+$headerHeight: 60px;
+$headerPadding: 20px;
+$headerWidthMultiplier: 1.15;
+$footerHeight: 60px;
+
+// TOC dimensions
+$tocWidth: 250px;
+$tocGap: 40px;
+$tocTopOffset: 80px;
+$tocBottomMargin: 100px;
+$contentHalfWidth: 380px; // Half of 760px
 
 .main {
   height: 100%;
@@ -413,9 +429,9 @@ $width: 760px;
   
   // Expand main container when TOC is present
   &:has(.singlePageWrapper) {
-    @media only screen and (min-width: 1200px) {
+    @media only screen and (min-width: $breakTocVisible) {
       width: 100%;
-      max-width: 1400px;
+      max-width: $widthWithToc;
     }
   }
 }
@@ -423,12 +439,12 @@ $width: 760px;
 // Header component
 .header {
   font-family: 'Fira Mono', monospace;
-  padding: 0 20px;
-  height: 60px;
+  padding: 0 $headerPadding;
+  height: $headerHeight;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: calc($width * 1.15);
+  width: calc($width * $headerWidthMultiplier);
 }
 
 .headerWrapper {
@@ -531,12 +547,12 @@ $width: 760px;
   top: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $breakMobile) {
   .headerLinks {
     width: 100%;
     height: 100%;
     position: fixed;
-    top: 60px;
+    top: $headerHeight;
     left: 0;
     background-color: $bg-primary;
     overflow: hidden;
@@ -563,8 +579,8 @@ $width: 760px;
 // Footer component
 .footer {
   font-family: 'Fira Mono', monospace;
-  padding: 0 20px;
-  height: 60px;
+  padding: 0 $headerPadding;
+  height: $footerHeight;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -576,7 +592,7 @@ $width: 760px;
     font-family: 'Fira Mono', monospace;
   }
   
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: $breakMobile) {
     display: none;
   }
 }
@@ -591,7 +607,7 @@ $width: 760px;
   position: sticky;
   bottom: 0;
   
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: $breakMobile) {
     display: none;
   }
 }
@@ -812,25 +828,25 @@ blockquote {
 
 .toc {
   position: fixed;
-  left: calc(50% - 380px - 40px - 250px); // Center of content (50%) - half content width (380px) - gap (40px) - TOC width (250px)
-  width: 250px;
-  top: 80px;
-  max-height: calc(100vh - 100px);
+  left: calc(50% - $contentHalfWidth - $tocGap - $tocWidth);
+  width: $tocWidth;
+  top: $tocTopOffset;
+  max-height: calc(100vh - $tocBottomMargin);
   overflow-y: auto;
   
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: $breakTocVisible) {
     display: none;
   }
 }
 
 .tocSticky {
   position: sticky;
-  top: 80px;
+  top: $tocTopOffset;
   padding: 20px;
   background-color: $bg-secondary;
   border-left: 3px solid $accent-primary;
   border-radius: 4px;
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - $tocBottomMargin);
   overflow-y: auto;
   font-family: 'Fira Mono', monospace;
   text-align: left;
@@ -963,11 +979,11 @@ blockquote {
 
 .postWrapper.withToc,
 .singlePageWrapper .postWrapper:not(.withToc) {
-  width: 760px;
+  width: $width;
   
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: $breakTocVisible) {
     width: 100%;
-    max-width: 760px;
+    max-width: $width;
   }
 }
 
@@ -1349,9 +1365,9 @@ blockquote {
   margin-bottom: 0 !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $breakMobile) {
   .search-modal {
-    padding-top: 60px;
+    padding-top: $headerHeight;
   }
   
   .search-modal-content {
