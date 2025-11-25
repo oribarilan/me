@@ -5,6 +5,9 @@
         {{ else }}
             <span>© {{ now.Format "2006" }} {{ .Site.Params.author.name }}</span>
         {{ end }}
+        {{ with .Site.Params.version }}
+            <span class="version">v{{ . }}</span>
+        {{ end }}
         <span class="keybindings-hint">[j/k] scroll [/] home [w]hoami [b]log [p]rojects [t]hemes</span>
     </div>
 </footer>

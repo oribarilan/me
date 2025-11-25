@@ -24,6 +24,15 @@
 - **No over-engineering**: Prefer straightforward solutions over clever abstractions
 - **Markdown content**: Use only one H1 header (`#`) per file - the title from front matter serves as the main heading
 
+## Versioning
+- **Version location**: Site version is stored in `hugo.toml` under `[params.version]`
+- **Version format**: Semantic versioning (MAJOR.MINOR.PATCH)
+- **When to bump**:
+  - **Major**: Complete redesigns, major feature overhauls, fundamental changes
+  - **Minor**: New features, new sections/pages, significant layout/functionality changes
+  - **Patch**: Bug fixes, copy updates, small tweaks, styling adjustments
+- **Important**: Always bump the version in `hugo.toml` after implementing changes according to the versioning scheme above
+
 ## Design Philosophy
 - Terminal/developer aesthetic with typing animations, block cursors, and command-line UI elements
 - Pixel art compatible (circular avatar with border-radius: 50%)
