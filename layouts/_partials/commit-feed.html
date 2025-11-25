@@ -1,9 +1,8 @@
-<div class="commit-feed" id="commitFeedContainer">
+<div class="commit-feed" id="commitFeedContainer" style="display: none;">
     <div class="commit-feed-header">
         <span class="prompt-symbol">></span> git log --oneline
     </div>
     <div class="commit-feed-content" id="commitFeed">
-        <div class="commit-loading">...</div>
     </div>
 </div>
 
@@ -18,6 +17,14 @@
     z-index: 100;
     cursor: default;
     padding: 8px 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.commit-feed.loaded {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .commit-feed-content {
@@ -84,29 +91,64 @@
     gap: 1ch;
     line-height: 1.3;
     transition: opacity 0.3s linear;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: commitSlideIn 0.3s ease-out forwards;
+}
+
+@keyframes commitSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .commit-item:nth-child(1) {
-    opacity: 1;
+    animation-delay: 0.05s;
 }
 
 .commit-item:nth-child(2) {
-    opacity: 0.8;
+    animation-delay: 0.1s;
 }
 
 .commit-item:nth-child(3) {
-    opacity: 0.6;
+    animation-delay: 0.15s;
 }
 
 .commit-item:nth-child(4) {
-    opacity: 0.45;
+    animation-delay: 0.2s;
 }
 
 .commit-item:nth-child(5) {
-    opacity: 0.3;
+    animation-delay: 0.25s;
 }
 
 .commit-item:nth-child(n+6) {
+    animation-delay: 0.3s;
+}
+
+/* Fade opacity after animation completes */
+.commit-item.animated:nth-child(1) {
+    opacity: 1;
+}
+
+.commit-item.animated:nth-child(2) {
+    opacity: 0.8;
+}
+
+.commit-item.animated:nth-child(3) {
+    opacity: 0.6;
+}
+
+.commit-item.animated:nth-child(4) {
+    opacity: 0.45;
+}
+
+.commit-item.animated:nth-child(5) {
+    opacity: 0.3;
+}
+
+.commit-item.animated:nth-child(n+6) {
     opacity: 0.3;
 }
 
@@ -254,8 +296,10 @@
     
     function renderCommits(commits) {
         const feedContent = document.getElementById('commitFeed');
+        const feedContainer = document.getElementById('commitFeedContainer');
+        
         if (!commits || commits.length === 0) {
-            feedContent.innerHTML = '<div class="commit-error">No commits found</div>';
+            // Don't show the feed if there are no commits
             return;
         }
         
@@ -278,6 +322,18 @@
         }).join('');
         
         feedContent.innerHTML = html;
+        
+        // Show the feed with animation
+        feedContainer.style.display = 'block';
+        // Trigger reflow to ensure display change is applied before animation
+        feedContainer.offsetHeight;
+        feedContainer.classList.add('loaded');
+        
+        // Mark items as animated after animation completes
+        setTimeout(() => {
+            const items = feedContent.querySelectorAll('.commit-item');
+            items.forEach(item => item.classList.add('animated'));
+        }, 600); // After all animations complete
     }
     
     function getCachedCommits() {
@@ -312,12 +368,18 @@
     }
     
     function fetchCommits() {
-        const cached = getCachedCommits();
+        // Check for nocache query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const noCache = urlParams.has('nocache');
+        
+        const cached = !noCache ? getCachedCommits() : null;
         if (cached) {
+            console.log('Using cached commits data');
             renderCommits(cached);
             return;
         }
         
+        console.log('Fetching commits from GitHub API...');
         const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/commits?per_page=${COMMIT_COUNT}`;
         
         fetch(apiUrl)
@@ -328,13 +390,16 @@
                 return response.json();
             })
             .then(commits => {
-                setCachedCommits(commits);
+                if (!noCache) {
+                    setCachedCommits(commits);
+                }
+                console.log(`Fetched ${commits.length} commits successfully`);
                 renderCommits(commits);
             })
             .catch(error => {
                 console.error('Error fetching commits:', error);
-                const feedContent = document.getElementById('commitFeed');
-                feedContent.innerHTML = '<div class="commit-error">Failed to load commits</div>';
+                // Silently fail - don't show the feed if we can't load commits
+                // This provides a cleaner UX than showing an error message
             });
     }
     

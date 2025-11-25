@@ -55,3 +55,16 @@ Automatically deploys to GitHub Pages on push to `main` branch via GitHub Action
 - Full-text search with Pagefind (press `/` to open search)
 - Multiple color themes (Nord, Dark, Light, Tokyo Night, Gruvbox, Catppuccin)
 - Responsive design
+- Live git commit feed (bottom-left corner)
+
+## Development Tips
+
+### Bypass Commit Feed Cache
+
+The git commit feed caches data for 5 minutes. To bypass the cache and see live network requests:
+
+```
+http://localhost:1313/?nocache=1
+```
+
+This is useful when testing the commit feed or debugging API issues.
