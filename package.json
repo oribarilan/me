@@ -1,7 +1,7 @@
 {
   "name": "oribarilan-website",
   "version": "1.0.0",
-  "description": "Personal website built with Hugo",
+  "description": "Personal website",
   "scripts": {
     "start": "npm run build && hugo server",
     "dev": "hugo server -D",
