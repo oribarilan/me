@@ -30,6 +30,7 @@
   --accent-primary-rgb: 128, 170, 221;
   --accent-primary-3-rgb: 128, 128, 187;
   --accent-secondary-rgb: 255, 152, 0;
+  --accent-error-rgb: 242, 110, 116;
 }
 
 // Light theme
@@ -60,6 +61,7 @@
   --accent-primary-rgb: 64, 128, 204;
   --accent-primary-3-rgb: 95, 96, 165;
   --accent-secondary-rgb: 40, 160, 90;
+  --accent-error-rgb: 210, 68, 80;
 }
 
 // Tokyo Night theme - blue to pink gradient
@@ -90,6 +92,7 @@
   --accent-primary-rgb: 122, 162, 247;
   --accent-primary-3-rgb: 154, 132, 217;
   --accent-secondary-rgb: 158, 206, 106;
+  --accent-error-rgb: 247, 118, 142;
 }
 
 // Gruvbox theme - cyan to orange gradient
@@ -120,6 +123,7 @@
   --accent-primary-rgb: 131, 165, 152;
   --accent-primary-3-rgb: 149, 149, 101;
   --accent-secondary-rgb: 184, 187, 38;
+  --accent-error-rgb: 251, 73, 52;
 }
 
 // Catppuccin theme - blue to pink gradient
@@ -150,6 +154,7 @@
   --accent-primary-rgb: 137, 180, 250;
   --accent-primary-3-rgb: 163, 154, 224;
   --accent-secondary-rgb: 166, 227, 161;
+  --accent-error-rgb: 243, 139, 168;
 }
 
 // Nord theme - cyan to purple gradient
@@ -180,6 +185,7 @@
   --accent-primary-rgb: 136, 192, 208;
   --accent-primary-3-rgb: 138, 141, 184;
   --accent-secondary-rgb: 163, 190, 140;
+  --accent-error-rgb: 191, 97, 106;
 }
 
 // SCSS variables reference CSS custom properties
@@ -985,14 +991,20 @@ blockquote {
   align-items: center;
   gap: 8px;
   
-  &:hover {
+  &:hover,
+  &:focus {
     border-color: $accent-secondary;
     color: $accent-secondary;
+    outline: none;
     
     .search-key {
       border-color: $accent-secondary;
       color: $accent-secondary;
     }
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(var(--accent-secondary-rgb), 0.3);
   }
   
   .search-text {
@@ -1093,9 +1105,16 @@ blockquote {
   align-items: center;
   justify-content: center;
   transition: color 0.2s ease;
+  border-radius: 3px;
   
-  &:hover {
+  &:hover,
+  &:focus {
     color: $accent-error;
+    outline: none;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(var(--accent-error-rgb), 0.3);
   }
 }
 
@@ -1141,7 +1160,8 @@ blockquote {
   
   &:focus {
     border-color: $accent-secondary !important;
-    outline: none !important;
+    outline: 2px solid $accent-secondary !important;
+    outline-offset: 2px !important;
   }
   
   &::placeholder {
@@ -1289,10 +1309,16 @@ blockquote {
   transition: all 0.2s ease !important;
   
   &:hover,
+  &:focus,
   &.keyboard-selected {
     border-color: $accent-secondary !important;
     color: $accent-secondary !important;
     background: $bg-darker !important;
+    outline: none !important;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(var(--accent-secondary-rgb), 0.3) !important;
   }
 }
 
