@@ -975,3 +975,194 @@ blockquote {
     max-width: 760px;
   }
 }
+
+// Search component
+.search-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.search-button {
+  background: transparent;
+  border: 2px solid $border-color;
+  color: $text-primary;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.9rem;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 3px;
+  
+  &:hover {
+    border-color: $accent-secondary;
+    color: $accent-secondary;
+  }
+  
+  .search-icon {
+    font-weight: bold;
+  }
+}
+
+.search-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10001;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 100px;
+  
+  &.active {
+    display: flex;
+  }
+}
+
+.search-modal-content {
+  background: $bg-primary;
+  border: 2px solid $border-color;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.search-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: $bg-secondary;
+  border-bottom: 2px solid $border-color;
+  font-family: 'Fira Mono', monospace;
+}
+
+.search-prompt {
+  color: $prompt-user;
+  font-weight: bold;
+}
+
+.search-close {
+  background: transparent;
+  border: none;
+  color: $text-primary;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: $accent-error;
+  }
+}
+
+#search-container {
+  overflow-y: auto;
+  flex: 1;
+}
+
+// Pagefind UI customization for terminal aesthetic
+.pagefind-ui {
+  font-family: 'Fira Mono', monospace !important;
+  
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-primary: #{$accent-secondary};
+  --pagefind-ui-text: #{$text-primary};
+  --pagefind-ui-background: #{$bg-primary};
+  --pagefind-ui-border: #{$border-color};
+  --pagefind-ui-tag: #{$accent-primary};
+  --pagefind-ui-border-width: 2px;
+  --pagefind-ui-border-radius: 3px;
+  --pagefind-ui-image-border-radius: 3px;
+  --pagefind-ui-image-box-ratio: 3 / 2;
+  --pagefind-ui-font: 'Fira Mono', monospace;
+}
+
+// Hide the magnifying glass icon
+.pagefind-ui__search-clear,
+.pagefind-ui__drawer-icon {
+  display: none !important;
+}
+
+.pagefind-ui__form::before {
+  display: none !important;
+}
+
+.pagefind-ui__search-input {
+  font-family: 'Fira Mono', monospace !important;
+  background: $bg-secondary !important;
+  border: 2px solid $border-color !important;
+  color: $text-primary !important;
+  padding: 12px !important;
+  padding-left: 12px !important;
+  
+  &:focus {
+    border-color: $accent-secondary !important;
+    outline: none !important;
+  }
+  
+  &::placeholder {
+    color: $text-dim !important;
+  }
+}
+
+.pagefind-ui__result {
+  border: 2px solid $border-color !important;
+  background: $bg-secondary !important;
+  padding: 12px !important;
+  margin-bottom: 12px !important;
+  
+  &:hover {
+    border-color: $accent-secondary !important;
+  }
+}
+
+.pagefind-ui__result-title {
+  font-family: 'Fira Mono', monospace !important;
+  color: $accent-primary !important;
+  
+  a {
+    border-bottom: none !important;
+    
+    &:hover {
+      color: $accent-secondary !important;
+    }
+    
+    &:hover::after {
+      display: none !important;
+    }
+  }
+}
+
+.pagefind-ui__result-excerpt {
+  font-family: 'Open Sans', sans-serif !important;
+  color: $text-secondary !important;
+}
+
+.pagefind-ui__message {
+  color: $text-dim !important;
+  font-family: 'Fira Mono', monospace !important;
+}
+
+@media screen and (max-width: 768px) {
+  .search-modal {
+    padding-top: 60px;
+  }
+  
+  .search-modal-content {
+    width: 95%;
+    max-height: 85vh;
+  }
+}
+

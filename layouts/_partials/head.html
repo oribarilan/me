@@ -72,9 +72,16 @@
             return;
         }
         
-        // Check if theme terminal is open
+        // Check if theme terminal or search modal is open
         const themeTerminal = document.getElementById('theme-terminal');
         const isTerminalOpen = themeTerminal && themeTerminal.classList.contains('active');
+        const searchModal = document.getElementById('search-modal');
+        const isSearchOpen = searchModal && searchModal.classList.contains('active');
+        
+        // Don't handle any navigation when search is open
+        if (isSearchOpen) {
+            return;
+        }
         
         // Don't handle scrolling when terminal is open
         if (isTerminalOpen && (e.key === 'j' || e.key === 'k' || e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
@@ -84,6 +91,11 @@
         const key = e.key;
         const baseURL = window.location.origin + '/';
         let handled = false;
+        
+        // Skip '/' key - it's used for search
+        if (key === '/') {
+            return;
+        }
         
         // Scrolling with j/k and arrow keys
         const scrollAmount = 100; // pixels to scroll
@@ -97,7 +109,7 @@
         
         // Navigation keys
         switch(key.toLowerCase()) {
-            case '/':
+            case 'g':
                 window.location.href = baseURL;
                 handled = true;
                 break;
@@ -221,5 +233,120 @@
     }
 }
 </style>
+
+<!-- Pagefind CSS and JS -->
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+
+<!-- Search Modal Script -->
+<script>
+(function() {
+    let pagefindInstance = null;
+    
+    function initializeSearch() {
+        if (pagefindInstance) return;
+        
+        pagefindInstance = new PagefindUI({
+            element: "#search-container",
+            showSubResults: true,
+            showImages: false,
+            excerptLength: 15,
+            processResult: function(result) {
+                // Ensure results are clickable and close modal on click
+                return result;
+            }
+        });
+        
+        // Close modal when clicking on search results
+        setTimeout(() => {
+            const searchContainer = document.getElementById('search-container');
+            if (searchContainer) {
+                searchContainer.addEventListener('click', function(e) {
+                    // Check if clicked element is a link or inside a result
+                    const link = e.target.closest('a');
+                    if (link && link.href) {
+                        closeSearchModal();
+                    }
+                });
+            }
+        }, 500);
+    }
+    
+    function openSearchModal() {
+        const modal = document.getElementById('search-modal');
+        if (modal) {
+            modal.classList.add('active');
+            initializeSearch();
+            // Focus on the search input after a short delay
+            setTimeout(() => {
+                const searchInput = document.querySelector('.pagefind-ui__search-input');
+                if (searchInput) searchInput.focus();
+            }, 100);
+        }
+    }
+    
+    function closeSearchModal() {
+        const modal = document.getElementById('search-modal');
+        if (modal) {
+            modal.classList.remove('active');
+        }
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setupSearchHandlers();
+        });
+    } else {
+        setupSearchHandlers();
+    }
+    
+    function setupSearchHandlers() {
+        const searchButton = document.getElementById('search-button');
+        const searchClose = document.getElementById('search-close');
+        const searchModal = document.getElementById('search-modal');
+        
+        if (searchButton) {
+            searchButton.addEventListener('click', openSearchModal);
+        }
+        
+        if (searchClose) {
+            searchClose.addEventListener('click', closeSearchModal);
+        }
+        
+        if (searchModal) {
+            // Close modal when clicking outside
+            searchModal.addEventListener('click', function(e) {
+                if (e.target === searchModal) {
+                    closeSearchModal();
+                }
+            });
+        }
+        
+        // Global keyboard shortcut: '/' key to open search
+        document.addEventListener('keydown', function(e) {
+            // Don't trigger if already typing in an input
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                // But allow Escape to close modal
+                if (e.key === 'Escape') {
+                    closeSearchModal();
+                }
+                return;
+            }
+            
+            // Open search with '/' key
+            if (e.key === '/' && !searchModal.classList.contains('active')) {
+                e.preventDefault();
+                openSearchModal();
+            }
+            
+            // Close with Escape key
+            if (e.key === 'Escape') {
+                closeSearchModal();
+            }
+        });
+    }
+})();
+</script>
 
 {{ partial "custom-head.html" . }}

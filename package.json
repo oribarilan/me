@@ -1,0 +1,16 @@
+{
+  "name": "oribarilan-website",
+  "version": "1.0.0",
+  "description": "Personal website built with Hugo",
+  "scripts": {
+    "start": "npm run build && hugo server",
+    "dev": "hugo server -D",
+    "build": "hugo --gc --minify && npx pagefind --site public --glob '**/*.html' --exclude-selectors '.blogCards,.blogListHeader'"
+  },
+  "keywords": [],
+  "author": "Ori Bar-ilan",
+  "license": "MIT",
+  "devDependencies": {
+    "pagefind": "^1.1.0"
+  }
+}

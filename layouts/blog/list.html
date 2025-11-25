@@ -4,6 +4,8 @@
 
 {{ define "main" }}
 
+<div data-pagefind-ignore>
+
 <style>
   .blogListHeader {
     margin-bottom: 2rem;
@@ -181,6 +183,8 @@
   </div>
 
   {{ partial "pagination.html" (dict "paginator" $paginator) }}
+</div>
+
 </div>
 
 {{ end }}
