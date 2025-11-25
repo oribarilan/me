@@ -416,10 +416,14 @@
                         closeSearchModal();
                         break;
                     case 'ArrowDown':
+                    case 'j':
+                        if (e.key === 'j' && !e.ctrlKey) break; // Only Ctrl+J
                         e.preventDefault();
                         selectResult(selectedResultIndex + 1);
                         break;
                     case 'ArrowUp':
+                    case 'k':
+                        if (e.key === 'k' && !e.ctrlKey) break; // Only Ctrl+K
                         e.preventDefault();
                         selectResult(selectedResultIndex - 1);
                         break;
