@@ -1266,6 +1266,8 @@ blockquote {
 
 .pagefind-ui__results-area {
   padding: 16px !important;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
 }
 
 // Highlight matched search terms
@@ -1280,6 +1282,32 @@ blockquote {
 .pagefind-ui__message {
   color: $text-dim !important;
   font-family: 'Fira Mono', monospace !important;
+  margin-top: 8px !important;
+  margin-bottom: 12px !important;
+  padding-top: 0 !important;
+}
+
+.pagefind-ui__form {
+  margin-bottom: 0 !important;
+}
+
+.pagefind-ui__search-input {
+  font-family: 'Fira Mono', monospace !important;
+  background: $bg-secondary !important;
+  border: 2px solid $border-color !important;
+  color: $text-primary !important;
+  padding: 12px !important;
+  padding-left: 12px !important;
+  margin-bottom: 0 !important;
+  
+  &:focus {
+    border-color: $accent-secondary !important;
+    outline: none !important;
+  }
+  
+  &::placeholder {
+    color: $text-dim !important;
+  }
 }
 
 @media screen and (max-width: 768px) {
