@@ -1,4 +1,4 @@
-baseURL = 'https://oribarilan.github.io/'
+baseURL = 'https://oribarilan.github.io/me/'
 languageCode = 'en-us'
 title = 'Ori Bar-ilan'
 theme = "nightfall"
@@ -32,7 +32,7 @@ pagerSize = 10
 user = "oribarilan"
 hostname = "github.io"
 footerHtml = ""
-version = "0.59.3"
+version = "0.59.4"
 
 # Color theme: nord (default), dark, light, gruvbox, catppuccin
 colorTheme = "nord"
