@@ -1,0 +1,47 @@
+// Layout containers and structure
+@use 'variables' as *;
+
+.content {
+  text-align: center;
+  flex: 1 auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.content img {
+  max-width: 100%;
+}
+
+.vertical {
+  flex-direction: column;
+  align-items: center;
+}
+
+.flexWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  flex: 1 auto;
+}
+
+.main {
+  height: 100%;
+
+  @media only screen and (min-width: $breakLarge) {
+    width: $width;
+  }
+
+  @media screen and (max-width: $breakLarge) {
+    width: 100%;    
+  }
+  
+  // Expand main container when TOC is present
+  &:has(.singlePageWrapper) {
+    @media only screen and (min-width: $breakTocVisible) {
+      width: 100%;
+      max-width: $widthWithToc;
+    }
+  }
+}

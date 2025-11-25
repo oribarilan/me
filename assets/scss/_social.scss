@@ -1,0 +1,41 @@
+// Social navbar component
+@use 'variables' as *;
+
+.socialNavbar {
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      display: inline;
+    }
+  }
+  a,
+  a:link,
+  a:visited {
+    color: $accent-secondary;
+    text-shadow: $bg-darker 0px 0px 2px;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    margin: 10px;
+    border-bottom: none;
+    position: relative;
+    text-decoration: none;
+    
+    &:hover,
+    &:active {
+      border-bottom: none;
+      text-decoration: none;
+    }
+    
+    &:hover::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      background: $accent-secondary;
+      animation: linkHighlight 0.3s ease-out;
+    }
+  }
+}

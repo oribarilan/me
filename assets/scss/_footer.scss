@@ -1,0 +1,37 @@
+// Footer component
+@use 'variables' as *;
+
+.footer {
+  font-family: 'Fira Mono', monospace;
+  padding: 0 $headerPadding;
+  height: $footerHeight;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: $width;
+  font-size: 0.7rem;
+  
+  .keybindings-hint {
+    opacity: 0.7;
+    font-family: 'Fira Mono', monospace;
+  }
+  
+  @media screen and (max-width: $breakMobile) {
+    display: none;
+  }
+}
+
+.footerWrapper {
+  overflow: auto;
+  box-sizing: border-box;
+  background-color: $bg-secondary;
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+  
+  @media screen and (max-width: $breakMobile) {
+    display: none;
+  }
+}

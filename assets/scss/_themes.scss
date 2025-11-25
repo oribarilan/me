@@ -1,0 +1,189 @@
+// Theme definitions as CSS custom properties
+// All themes are embedded, JavaScript will switch between them
+// Default theme is Nord (set via data-theme attribute)
+
+// Dark theme (formerly plain/default) - blue to purple gradient
+[data-theme="dark"] {
+  --bg-primary: #292a2d;
+  --bg-secondary: #252627;
+  --bg-darker: #252627;
+  --text-primary: #f8f8ff;
+  --text-secondary: #e0e0e0;
+  --text-dim: #a0a0a0;
+  --accent-primary: #80AADD;
+  --accent-primary-2: #8095CC;
+  --accent-primary-3: #8080BB;
+  --accent-primary-4: #806BAA;
+  --accent-primary-5: #805699;
+  --accent-primary-6: #804188;
+  --accent-secondary: #FF9800;
+  --accent-subheader: #FFB300;
+  --accent-warning: #FFB300;
+  --accent-error: #F26E74;
+  --prompt-user: #FF9800;
+  --prompt-host: #80AADD;
+  --prompt-path: #FFB300;
+  --code-bg: #252627;
+  --code-text: #f8f8ff;
+  --border-color: #404040;
+  --selection-bg: #404040;
+  --accent-primary-rgb: 128, 170, 221;
+  --accent-primary-3-rgb: 128, 128, 187;
+  --accent-secondary-rgb: 255, 152, 0;
+  --accent-error-rgb: 242, 110, 116;
+}
+
+// Light theme
+[data-theme="light"] {
+  --bg-primary: #f8f8ff;
+  --bg-secondary: #ffffff;
+  --bg-darker: #ffffff;
+  --text-primary: #2d2d2d;
+  --text-secondary: #3d3d3d;
+  --text-dim: #6d6d6d;
+  --accent-primary: #4080CC;
+  --accent-primary-2: #5070b8;
+  --accent-primary-3: #5f60a5;
+  --accent-primary-4: #6e5091;
+  --accent-primary-5: #7d407e;
+  --accent-primary-6: #8c306a;
+  --accent-secondary: #28A05A;
+  --accent-subheader: #996600;
+  --accent-warning: #996600;
+  --accent-error: #D24450;
+  --prompt-user: #28A05A;
+  --prompt-host: #4080CC;
+  --prompt-path: #996600;
+  --code-bg: #f0f0f0;
+  --code-text: #2d2d2d;
+  --border-color: #d0d0d0;
+  --selection-bg: #d0e8ff;
+  --accent-primary-rgb: 64, 128, 204;
+  --accent-primary-3-rgb: 95, 96, 165;
+  --accent-secondary-rgb: 40, 160, 90;
+  --accent-error-rgb: 210, 68, 80;
+}
+
+// Tokyo Night theme - blue to pink gradient
+[data-theme="tokyonight"] {
+  --bg-primary: #1a1b26;
+  --bg-secondary: #16161e;
+  --bg-darker: #16161e;
+  --text-primary: #c0caf5;
+  --text-secondary: #a9b1d6;
+  --text-dim: #565f89;
+  --accent-primary: #7aa2f7;
+  --accent-primary-2: #8a93e8;
+  --accent-primary-3: #9a84d9;
+  --accent-primary-4: #aa75ca;
+  --accent-primary-5: #ba66bb;
+  --accent-primary-6: #ca57ac;
+  --accent-secondary: #9ece6a;
+  --accent-subheader: #e0af68;
+  --accent-warning: #e0af68;
+  --accent-error: #f7768e;
+  --prompt-user: #9ece6a;
+  --prompt-host: #7aa2f7;
+  --prompt-path: #bb9af7;
+  --code-bg: #16161e;
+  --code-text: #c0caf5;
+  --border-color: #292e42;
+  --selection-bg: #283457;
+  --accent-primary-rgb: 122, 162, 247;
+  --accent-primary-3-rgb: 154, 132, 217;
+  --accent-secondary-rgb: 158, 206, 106;
+  --accent-error-rgb: 247, 118, 142;
+}
+
+// Gruvbox theme - cyan to orange gradient
+[data-theme="gruvbox"] {
+  --bg-primary: #282828;
+  --bg-secondary: #1d2021;
+  --bg-darker: #1d2021;
+  --text-primary: #ebdbb2;
+  --text-secondary: #d5c4a1;
+  --text-dim: #a89984;
+  --accent-primary: #83a598;
+  --accent-primary-2: #8c9d7e;
+  --accent-primary-3: #959565;
+  --accent-primary-4: #9e8d4b;
+  --accent-primary-5: #a78532;
+  --accent-primary-6: #b07d18;
+  --accent-secondary: #b8bb26;
+  --accent-subheader: #fabd2f;
+  --accent-warning: #fabd2f;
+  --accent-error: #fb4934;
+  --prompt-user: #b8bb26;
+  --prompt-host: #83a598;
+  --prompt-path: #fe8019;
+  --code-bg: #1d2021;
+  --code-text: #ebdbb2;
+  --border-color: #504945;
+  --selection-bg: #504945;
+  --accent-primary-rgb: 131, 165, 152;
+  --accent-primary-3-rgb: 149, 149, 101;
+  --accent-secondary-rgb: 184, 187, 38;
+  --accent-error-rgb: 251, 73, 52;
+}
+
+// Catppuccin theme - blue to pink gradient
+[data-theme="catppuccin"] {
+  --bg-primary: #1e1e2e;
+  --bg-secondary: #181825;
+  --bg-darker: #181825;
+  --text-primary: #cdd6f4;
+  --text-secondary: #bac2de;
+  --text-dim: #6c7086;
+  --accent-primary: #89b4fa;
+  --accent-primary-2: #96a7ed;
+  --accent-primary-3: #a39ae0;
+  --accent-primary-4: #b08dd3;
+  --accent-primary-5: #bd80c6;
+  --accent-primary-6: #ca73b9;
+  --accent-secondary: #a6e3a1;
+  --accent-subheader: #f9e2af;
+  --accent-warning: #f9e2af;
+  --accent-error: #f38ba8;
+  --prompt-user: #a6e3a1;
+  --prompt-host: #89b4fa;
+  --prompt-path: #cba6f7;
+  --code-bg: #181825;
+  --code-text: #cdd6f4;
+  --border-color: #313244;
+  --selection-bg: #45475a;
+  --accent-primary-rgb: 137, 180, 250;
+  --accent-primary-3-rgb: 163, 154, 224;
+  --accent-secondary-rgb: 166, 227, 161;
+  --accent-error-rgb: 243, 139, 168;
+}
+
+// Nord theme - cyan to purple gradient
+[data-theme="nord"] {
+  --bg-primary: #2e3440;
+  --bg-secondary: #3b4252;
+  --bg-darker: #3b4252;
+  --text-primary: #eceff4;
+  --text-secondary: #e5e9f0;
+  --text-dim: #81a1c1;
+  --accent-primary: #88c0d0;
+  --accent-primary-2: #81a1c1;
+  --accent-primary-3: #8a8db8;
+  --accent-primary-4: #9378af;
+  --accent-primary-5: #9c63a6;
+  --accent-primary-6: #a54e9d;
+  --accent-secondary: #a3be8c;
+  --accent-subheader: #ebcb8b;
+  --accent-warning: #ebcb8b;
+  --accent-error: #bf616a;
+  --prompt-user: #a3be8c;
+  --prompt-host: #88c0d0;
+  --prompt-path: #81a1c1;
+  --code-bg: #3b4252;
+  --code-text: #eceff4;
+  --border-color: #4c566a;
+  --selection-bg: #434c5e;
+  --accent-primary-rgb: 136, 192, 208;
+  --accent-primary-3-rgb: 138, 141, 184;
+  --accent-secondary-rgb: 163, 190, 140;
+  --accent-error-rgb: 191, 97, 106;
+}

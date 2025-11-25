@@ -1,0 +1,52 @@
+// Core variables and configuration
+// This file forwards themes and defines all SCSS variables for the site
+
+// Forward themes so they're included in output
+@forward 'themes';
+
+// Breakpoints
+$breakLarge: 992px;
+$breakTocVisible: 1200px;
+$breakMobile: 768px;
+
+// Main widths
+$width: 760px;
+$widthWithToc: 1400px;
+
+// Layout dimensions
+$headerHeight: 60px;
+$headerPadding: 20px;
+$headerWidthMultiplier: 1.15;
+$footerHeight: 60px;
+
+// TOC dimensions
+$tocWidth: 250px;
+$tocGap: 40px;
+$tocTopOffset: 80px;
+$tocBottomMargin: 100px;
+$contentHalfWidth: 380px; // Half of 760px
+
+// SCSS variables that reference CSS custom properties
+$bg-primary: var(--bg-primary);
+$bg-secondary: var(--bg-secondary);
+$bg-darker: var(--bg-darker);
+$text-primary: var(--text-primary);
+$text-secondary: var(--text-secondary);
+$text-dim: var(--text-dim);
+$accent-primary: var(--accent-primary);
+$accent-primary-2: var(--accent-primary-2);
+$accent-primary-3: var(--accent-primary-3);
+$accent-primary-4: var(--accent-primary-4);
+$accent-primary-5: var(--accent-primary-5);
+$accent-primary-6: var(--accent-primary-6);
+$accent-secondary: var(--accent-secondary);
+$accent-subheader: var(--accent-subheader);
+$accent-warning: var(--accent-warning);
+$accent-error: var(--accent-error);
+$prompt-user: var(--prompt-user);
+$prompt-host: var(--prompt-host);
+$prompt-path: var(--prompt-path);
+$code-bg: var(--code-bg);
+$code-text: var(--code-text);
+$border-color: var(--border-color);
+$selection-bg: var(--selection-bg);

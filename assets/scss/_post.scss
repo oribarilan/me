@@ -1,0 +1,138 @@
+// Post, blog, list, and index page components
+@use 'variables' as *;
+
+// Post list components
+.postDate {
+  float: right;
+  color: $text-primary;
+}
+
+.postTitle {
+  color: $accent-primary;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-family: 'Fira Mono', monospace;
+  font-size: 1.2em;
+  float: left;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: $accent-secondary;
+  }
+}
+
+.postHeader {
+  overflow: hidden;
+}
+
+.postsList {
+  margin-top: 20px;
+}
+
+.postListItem {
+  padding: 20px;
+  background-color: $bg-darker;
+  margin-bottom: 20px;
+}
+
+.postListLink:hover {
+  text-decoration: none;
+}
+
+.postExcerpt {
+  text-align: initial;
+  text-decoration: none;
+  color: $text-primary;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.noDecoration {
+  text-decoration: none;
+}
+
+// Index page
+.indexWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.indexHeader {
+  font-size: 3em;
+}
+
+/* Avatar sizes (default is M) - XS, S, M, L, XL */
+.authorImageWrapper img.size-xs {
+  height: 7rem;
+  width: 7rem;
+}
+
+.authorImageWrapper img.size-s {
+  height: 9rem;
+  width: 9rem;
+}
+
+.authorImageWrapper img.size-m {
+  height: 11rem;
+  width: 11rem;
+}
+
+.authorImageWrapper img.size-l {
+  height: 13rem;
+  width: 13rem;
+}
+
+.authorImageWrapper img.size-xl {
+  height: 15rem;
+  width: 15rem;
+}
+
+// List page
+.listHeader, .listContent {
+  text-align: left;
+}
+
+.readingTime {
+  text-align: initial;
+  text-decoration: none;
+  color: $text-primary;
+  font-size: 0.9em;
+}
+
+// Single post page
+.postWrapper {
+  text-align: left;
+  padding: 20px;    
+}
+
+.postMetadata {
+  font-family: 'Fira Mono', monospace;
+  display: block;
+  background: $bg-secondary;
+  padding: 10px;
+}
+
+dt, dd {
+  line-height: 1.5;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+dt {
+  grid-column-start: 1;
+}
+
+dd {
+  grid-column-start: 2;
+}
+
+dt::after {
+  content: ":";
+}
