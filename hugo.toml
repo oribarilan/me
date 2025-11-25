@@ -32,7 +32,7 @@ pagerSize = 10
 user = "oribarilan"
 hostname = "github.io"
 footerHtml = ""
-version = "0.61.0"
+version = "0.61.1"
 
 # Color theme: nord (default), dark, light, gruvbox, catppuccin
 colorTheme = "nord"
