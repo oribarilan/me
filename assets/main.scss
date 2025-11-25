@@ -1214,8 +1214,21 @@ blockquote {
 }
 
 // Hide the arrow icon in nested results
-.pagefind-ui__result-nested .pagefind-ui__result-icon {
+.pagefind-ui__result-nested .pagefind-ui__result-icon,
+.pagefind-ui__result-icon,
+.pagefind-ui__result-inner-icon {
   display: none !important;
+}
+
+// Hide any SVG arrows
+.pagefind-ui__result svg {
+  display: none !important;
+}
+
+// Hide the arrow ::before on result links
+.pagefind-ui__result-link::before {
+  display: none !important;
+  content: none !important;
 }
 
 .pagefind-ui__result-tag {
