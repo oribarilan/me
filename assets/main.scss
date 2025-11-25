@@ -666,19 +666,22 @@ $width: 760px;
       display: inline;
     }
   }
-  a {
-    color: $accent-secondary !important;
+  a,
+  a:link,
+  a:visited {
+    color: $accent-secondary;
     text-shadow: $bg-darker 0px 0px 2px;
     -webkit-font-smoothing: antialiased;
     display: inline-block;
     margin: 10px;
-    border-bottom: none !important;
+    border-bottom: none;
     position: relative;
-    text-decoration: none !important;
+    text-decoration: none;
     
-    &:hover {
-      border-bottom: none !important;
-      text-decoration: none !important;
+    &:hover,
+    &:active {
+      border-bottom: none;
+      text-decoration: none;
     }
     
     &:hover::after {
@@ -784,14 +787,14 @@ blockquote {
   margin-left: 0;
   margin-right: 0;
   font-style: italic;
-  color: $text-primary !important;
+  color: $text-primary;
   background-color: rgba(0, 0, 0, 0.1);
   padding: 10px 10px 10px 20px;
   border-radius: 0 4px 4px 0;
   
   p {
     margin: 0.5em 0;
-    color: $text-primary !important;
+    color: $text-primary;
     
     &:first-child {
       margin-top: 0;
@@ -803,7 +806,7 @@ blockquote {
   }
   
   em {
-    color: $accent-warning !important;
+    color: $accent-warning;
   }
 }
 
