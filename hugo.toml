@@ -24,15 +24,15 @@ pagerSize = 10
     weight = 1
     url = "/about"
   [[menu.header]]
-    name = "projects"
+    name = "portfolio"
     weight = 2
-    url = "/projects"
+    url = "/portfolio"
 
 [params]
 user = "oribarilan"
 hostname = "github.io"
 footerHtml = ""
-version = "0.59.1"
+version = "0.59.2"
 
 # Color theme: nord (default), dark, light, gruvbox, catppuccin
 colorTheme = "nord"
@@ -53,7 +53,7 @@ showCategories = true
     email = "your-email@example.com"
     avatar = "ori.png"
     avatarSize = "size-l"
-    description = "Software engineer building practical AI systems.\n\nI craft production-grade systems by day, and spend my spare time sharing what I learn, woodworking, and playing chess."
+    description = "I build real-world AI systems and share what I learn in talks and workshops. Off the keyboard, I’m usually with my family, woodworking, or blundering a chess piece."
 
 # Add your social links here
 [[params.social]]

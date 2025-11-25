@@ -1,5 +1,5 @@
 ---
-title: "projects"
+title: "portfolio"
 date: 2025-11-23
 draft: false
 showMetadata: false

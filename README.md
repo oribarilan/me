@@ -51,7 +51,7 @@ Automatically deploys to GitHub Pages on push to `main` branch via GitHub Action
 ## Features
 
 - Terminal aesthetic with typing animations
-- Keyboard navigation (j/k to scroll, g for home, b for blog, p for projects, w for about, t for themes)
+- Keyboard navigation (j/k to scroll, g for home, b for blog, p for portfolio, w for about, t for themes)
 - Full-text search with Pagefind (press `/` to open search)
 - Multiple color themes (Nord, Dark, Light, Tokyo Night, Gruvbox, Catppuccin)
 - Responsive design
