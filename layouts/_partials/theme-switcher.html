@@ -1,6 +1,7 @@
 <div class="theme-switcher">
     <button class="theme-btn" id="theme-switcher-btn" aria-label="Change theme">
-        <span class="theme-icon">[theme]</span>
+        <span class="theme-icon">theme</span>
+        <code class="theme-key">t</code>
     </button>
     <div class="theme-terminal" id="theme-terminal">
         <div class="terminal-header">
@@ -52,20 +53,42 @@
 }
 
 .theme-btn {
-    background: none;
-    border: 1px solid var(--border-color);
+    background: transparent;
+    border: 2px solid var(--border-color);
     color: var(--text-primary);
-    cursor: pointer;
-    padding: 6px 12px;
     font-family: 'Fira Mono', monospace;
-    font-size: 0.85rem;
-    transition: all 0.2s;
+    font-size: 0.9rem;
+    padding: 4px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .theme-btn:hover {
+    border-color: var(--accent-secondary);
+    color: var(--accent-secondary);
+}
+
+.theme-btn:hover .theme-key {
+    border-color: var(--accent-secondary);
+    color: var(--accent-secondary);
+}
+
+.theme-icon {
+    opacity: 0.7;
+}
+
+.theme-key {
+    border: 1px solid var(--border-color);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: bold;
     background: var(--bg-secondary);
-    border-color: var(--accent-primary);
-    color: var(--accent-primary);
+    transition: all 0.2s ease;
 }
 
 .theme-terminal {
@@ -399,7 +422,7 @@
         // Update button text to show current theme
         const themeIcon = document.querySelector('.theme-icon');
         if (themeIcon) {
-            themeIcon.textContent = `[${theme}]`;
+            themeIcon.textContent = theme;
         }
     }
     
@@ -451,6 +474,21 @@
             }
             
             const isTerminalOpen = terminal.classList.contains('active');
+            
+            // Open terminal with 't' key (only when closed)
+            if (e.key === 't' && !isTerminalOpen) {
+                e.preventDefault();
+                terminal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Initialize highlight on first option
+                const options = document.querySelectorAll('.terminal-option');
+                options.forEach(opt => opt.classList.remove('highlighted'));
+                if (options.length > 0) {
+                    options[0].classList.add('highlighted');
+                }
+                return;
+            }
             
             // Close on escape key (only when terminal is open)
             if (e.key === 'Escape' && isTerminalOpen) {
