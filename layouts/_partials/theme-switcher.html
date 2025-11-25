@@ -407,11 +407,7 @@
     
     // Apply theme on load
     function applyTheme(theme) {
-        if (theme === 'nord') {
-            document.documentElement.removeAttribute('data-theme');
-        } else {
-            document.documentElement.setAttribute('data-theme', theme);
-        }
+        document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('color-theme', theme);
         
         // Update active state in terminal

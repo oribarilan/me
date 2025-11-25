@@ -1,32 +1,6 @@
 // Theme definitions as CSS custom properties
 // All themes are embedded, JavaScript will switch between them
-
-:root {
-  // Nord theme (default) - cyan to purple gradient
-  --bg-primary: #2e3440;
-  --bg-secondary: #3b4252;
-  --bg-darker: #3b4252;
-  --text-primary: #eceff4;
-  --text-secondary: #e5e9f0;
-  --text-dim: #81a1c1;
-  --accent-primary: #88c0d0;
-  --accent-primary-2: #81a1c1;
-  --accent-primary-3: #8a8db8;
-  --accent-primary-4: #9378af;
-  --accent-primary-5: #9c63a6;
-  --accent-primary-6: #a54e9d;
-  --accent-secondary: #a3be8c;
-  --accent-subheader: #ebcb8b;
-  --accent-warning: #ebcb8b;
-  --accent-error: #bf616a;
-  --prompt-user: #a3be8c;
-  --prompt-host: #88c0d0;
-  --prompt-path: #81a1c1;
-  --code-bg: #3b4252;
-  --code-text: #eceff4;
-  --border-color: #4c566a;
-  --selection-bg: #434c5e;
-}
+// Default theme is Nord (set via data-theme attribute)
 
 // Dark theme (formerly plain/default) - blue to purple gradient
 [data-theme="dark"] {
@@ -53,6 +27,9 @@
   --code-text: #f8f8ff;
   --border-color: #404040;
   --selection-bg: #404040;
+  --accent-primary-rgb: 128, 170, 221;
+  --accent-primary-3-rgb: 128, 128, 187;
+  --accent-secondary-rgb: 255, 152, 0;
 }
 
 // Light theme
@@ -80,6 +57,9 @@
   --code-text: #2d2d2d;
   --border-color: #d0d0d0;
   --selection-bg: #d0e8ff;
+  --accent-primary-rgb: 64, 128, 204;
+  --accent-primary-3-rgb: 95, 96, 165;
+  --accent-secondary-rgb: 40, 160, 90;
 }
 
 // Tokyo Night theme - blue to pink gradient
@@ -107,6 +87,9 @@
   --code-text: #c0caf5;
   --border-color: #292e42;
   --selection-bg: #283457;
+  --accent-primary-rgb: 122, 162, 247;
+  --accent-primary-3-rgb: 154, 132, 217;
+  --accent-secondary-rgb: 158, 206, 106;
 }
 
 // Gruvbox theme - cyan to orange gradient
@@ -134,6 +117,9 @@
   --code-text: #ebdbb2;
   --border-color: #504945;
   --selection-bg: #504945;
+  --accent-primary-rgb: 131, 165, 152;
+  --accent-primary-3-rgb: 149, 149, 101;
+  --accent-secondary-rgb: 184, 187, 38;
 }
 
 // Catppuccin theme - blue to pink gradient
@@ -161,6 +147,9 @@
   --code-text: #cdd6f4;
   --border-color: #313244;
   --selection-bg: #45475a;
+  --accent-primary-rgb: 137, 180, 250;
+  --accent-primary-3-rgb: 163, 154, 224;
+  --accent-secondary-rgb: 166, 227, 161;
 }
 
 // Nord theme - cyan to purple gradient
@@ -188,6 +177,9 @@
   --code-text: #eceff4;
   --border-color: #4c566a;
   --selection-bg: #434c5e;
+  --accent-primary-rgb: 136, 192, 208;
+  --accent-primary-3-rgb: 138, 141, 184;
+  --accent-secondary-rgb: 163, 190, 140;
 }
 
 // SCSS variables reference CSS custom properties
@@ -279,8 +271,6 @@ code {
   border-radius: 3px;
 }
 
-// Headers with color hierarchy
-// Headers with color hierarchy and cursor effect
 // Headers with color hierarchy and cursor effect
 h1 {
   font-family: 'Fira Mono', monospace;
@@ -349,10 +339,6 @@ strong, b {
 ::selection {
   background-color: $selection-bg;
   color: $text-primary;
-}
-
-@-ms-viewport {
-  width: device-width;
 }
 
 // Fonts
@@ -898,7 +884,7 @@ blockquote {
           &:hover {
             color: $accent-primary;
             border-left-color: $accent-primary;
-            background-color: rgba(136, 192, 208, 0.1);
+            background-color: rgba(var(--accent-primary-rgb), 0.1);
           }
           
           &:hover::after {
@@ -945,7 +931,7 @@ blockquote {
               &:hover {
                 color: $accent-primary-3;
                 border-left-color: $accent-primary-3;
-                background-color: rgba(138, 141, 184, 0.1);
+                background-color: rgba(var(--accent-primary-3-rgb), 0.1);
               }
               
               &.active {
@@ -1188,10 +1174,10 @@ blockquote {
   transition: background 0.2s ease !important;
   cursor: pointer !important;
   
-  &:hover,
-  &.keyboard-selected {
-    background: rgba(163, 190, 140, 0.15) !important;
-  }
+    &:hover,
+    &.keyboard-selected {
+      background: rgba(var(--accent-secondary-rgb), 0.15) !important;
+    }
 }
 
 .pagefind-ui__result-title {
@@ -1211,17 +1197,17 @@ blockquote {
     flex-shrink: 0 !important;
   }
   
-  a {
-    border-bottom: none !important;
-    color: $accent-primary !important;
-    display: inline !important;
-    border-bottom: 1px dashed rgba(163, 190, 140, 0.3) !important;
-    transition: border-color 0.2s ease, color 0.2s ease !important;
-    
-    &:hover {
-      color: $accent-secondary !important;
-      border-bottom-color: rgba(163, 190, 140, 0.6) !important;
-    }
+    a {
+      border-bottom: none !important;
+      color: $accent-primary !important;
+      display: inline !important;
+      border-bottom: 1px dashed rgba(var(--accent-secondary-rgb), 0.3) !important;
+      transition: border-color 0.2s ease, color 0.2s ease !important;
+      
+      &:hover {
+        color: $accent-secondary !important;
+        border-bottom-color: rgba(var(--accent-secondary-rgb), 0.6) !important;
+      }
     
     &:hover::after {
       display: none !important;
@@ -1232,7 +1218,7 @@ blockquote {
 // Apply hover styles to keyboard-selected results
 .pagefind-ui__result-link.keyboard-selected .pagefind-ui__result-title a {
   color: $accent-secondary !important;
-  border-bottom-color: rgba(163, 190, 140, 0.6) !important;
+  border-bottom-color: rgba(var(--accent-secondary-rgb), 0.6) !important;
 }
 
 .pagefind-ui__result-excerpt {
@@ -1335,25 +1321,6 @@ blockquote {
 
 .pagefind-ui__form {
   margin-bottom: 0 !important;
-}
-
-.pagefind-ui__search-input {
-  font-family: 'Fira Mono', monospace !important;
-  background: $bg-secondary !important;
-  border: 2px solid $border-color !important;
-  color: $text-primary !important;
-  padding: 12px !important;
-  padding-left: 12px !important;
-  margin-bottom: 0 !important;
-  
-  &:focus {
-    border-color: $accent-secondary !important;
-    outline: none !important;
-  }
-  
-  &::placeholder {
-    color: $text-dim !important;
-  }
 }
 
 @media screen and (max-width: 768px) {
