@@ -242,6 +242,8 @@
 <script>
 (function() {
     let pagefindInstance = null;
+    let selectedResultIndex = -1;
+    let resultLinks = [];
     
     function initializeSearch() {
         if (pagefindInstance) return;
@@ -257,7 +259,7 @@
             }
         });
         
-        // Close modal when clicking on search results and make cards fully clickable
+        // Close modal when clicking on search results
         setTimeout(() => {
             const searchContainer = document.getElementById('search-container');
             if (searchContainer) {
@@ -267,20 +269,56 @@
                     if (link && link.href) {
                         closeSearchModal();
                     }
-                    
-                    // Make entire result card clickable
-                    const resultCard = e.target.closest('.pagefind-ui__result');
-                    if (resultCard && !link) {
-                        // Find the main result link (first link, not nested)
-                        const mainLink = resultCard.querySelector('.pagefind-ui__result-link');
-                        if (mainLink && mainLink.href) {
-                            closeSearchModal();
-                            window.location.href = mainLink.href;
-                        }
-                    }
                 });
+                
+                // Update result links after search completes
+                updateResultLinks();
+                
+                // Watch for changes in search results
+                const observer = new MutationObserver(function() {
+                    updateResultLinks();
+                });
+                observer.observe(searchContainer, { childList: true, subtree: true });
             }
         }, 500);
+    }
+    
+    function updateResultLinks() {
+        resultLinks = Array.from(document.querySelectorAll('.pagefind-ui__result-link'));
+        selectedResultIndex = -1;
+        clearSelection();
+    }
+    
+    function clearSelection() {
+        resultLinks.forEach(link => {
+            link.style.background = '';
+        });
+    }
+    
+    function selectResult(index) {
+        if (resultLinks.length === 0) return;
+        
+        clearSelection();
+        
+        // Wrap around
+        if (index < 0) index = resultLinks.length - 1;
+        if (index >= resultLinks.length) index = 0;
+        
+        selectedResultIndex = index;
+        const selectedLink = resultLinks[selectedResultIndex];
+        
+        if (selectedLink) {
+            selectedLink.style.background = 'rgba(163, 190, 140, 0.15)';
+            selectedLink.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+    
+    function navigateToSelected() {
+        if (selectedResultIndex >= 0 && resultLinks[selectedResultIndex]) {
+            const link = resultLinks[selectedResultIndex];
+            closeSearchModal();
+            window.location.href = link.href;
+        }
     }
     
     function openSearchModal() {
@@ -288,6 +326,7 @@
         if (modal) {
             modal.classList.add('active');
             initializeSearch();
+            selectedResultIndex = -1;
             // Focus on the search input after a short delay
             setTimeout(() => {
                 const searchInput = document.querySelector('.pagefind-ui__search-input');
@@ -300,6 +339,8 @@
         const modal = document.getElementById('search-modal');
         if (modal) {
             modal.classList.remove('active');
+            clearSelection();
+            selectedResultIndex = -1;
         }
     }
     
@@ -334,26 +375,45 @@
             });
         }
         
-        // Global keyboard shortcut: '/' key to open search
+        // Global keyboard shortcuts
         document.addEventListener('keydown', function(e) {
-            // Don't trigger if already typing in an input
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-                // But allow Escape to close modal
-                if (e.key === 'Escape') {
-                    closeSearchModal();
-                }
+            const isSearchOpen = searchModal && searchModal.classList.contains('active');
+            
+            // Don't trigger if already typing in an input (except in search modal)
+            if (!isSearchOpen && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) {
                 return;
             }
             
             // Open search with '/' key
-            if (e.key === '/' && !searchModal.classList.contains('active')) {
+            if (e.key === '/' && !isSearchOpen) {
                 e.preventDefault();
                 openSearchModal();
+                return;
             }
             
-            // Close with Escape key
-            if (e.key === 'Escape') {
-                closeSearchModal();
+            // Handle keys when search is open
+            if (isSearchOpen) {
+                switch(e.key) {
+                    case 'Escape':
+                        e.preventDefault();
+                        closeSearchModal();
+                        break;
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        selectResult(selectedResultIndex + 1);
+                        break;
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        selectResult(selectedResultIndex - 1);
+                        break;
+                    case 'Enter':
+                        // Only handle Enter if a result is selected
+                        if (selectedResultIndex >= 0) {
+                            e.preventDefault();
+                            navigateToSelected();
+                        }
+                        break;
+                }
             }
         });
     }
