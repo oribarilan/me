@@ -1,6 +1,12 @@
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="{{.Description | default .Site.Params.SiteDescription}}">
+
+<!-- Security Headers -->
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
 {{ hugo.Generator }}
 
@@ -65,12 +71,33 @@
 })();
 </script>
 
+<!-- DOM Ready Utility -->
+<script>
+(function() {
+    // Utility function to handle DOM ready state consistently
+    window.onDOMReady = function(callback) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', callback);
+        } else {
+            callback();
+        }
+    };
+    
+    // Utility to check if user is typing in an input
+    window.isTypingInInput = function(target) {
+        return target.tagName === 'INPUT' || target.tagName === 'TEXTAREA';
+    };
+})();
+</script>
+
 <!-- Navigation Keybindings Script -->
 <script>
 (function() {
+    const SCROLL_AMOUNT = 100; // pixels to scroll per keypress
+    
     function handleNavigationKeys(e) {
         // Ignore if user is typing in an input/textarea
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        if (window.isTypingInInput(e.target)) {
             return;
         }
         
@@ -105,12 +132,11 @@
         }
         
         // Scrolling with j/k and arrow keys
-        const scrollAmount = 100; // pixels to scroll
         if (key === 'j' || key === 'ArrowDown') {
-            window.scrollBy({ top: scrollAmount, behavior: 'smooth' });
+            window.scrollBy({ top: SCROLL_AMOUNT, behavior: 'smooth' });
             handled = true;
         } else if (key === 'k' || key === 'ArrowUp') {
-            window.scrollBy({ top: -scrollAmount, behavior: 'smooth' });
+            window.scrollBy({ top: -SCROLL_AMOUNT, behavior: 'smooth' });
             handled = true;
         }
         
@@ -147,14 +173,10 @@
         }
     }
     
-    // Use both DOMContentLoaded and immediate execution
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            document.addEventListener('keydown', handleNavigationKeys, true);
-        });
-    } else {
+    // Initialize navigation keybindings
+    window.onDOMReady(() => {
         document.addEventListener('keydown', handleNavigationKeys, true);
-    }
+    });
 })();
 </script>
 
@@ -248,6 +270,9 @@
 <!-- Search Modal Script -->
 <script>
 (function() {
+    const SEARCH_INIT_DELAY = 500; // ms to wait before initializing pagefind
+    const RESULT_CHECK_DELAY = 100; // ms to wait for search input focus
+    
     let pagefindInstance = null;
     let selectedResultIndex = -1;
     let resultLinks = [];
@@ -282,12 +307,10 @@
                 updateResultLinks();
                 
                 // Watch for changes in search results
-                const observer = new MutationObserver(function() {
-                    updateResultLinks();
-                });
+                const observer = new MutationObserver(updateResultLinks);
                 observer.observe(searchContainer, { childList: true, subtree: true });
             }
-        }, 500);
+        }, SEARCH_INIT_DELAY);
     }
     
     function updateResultLinks() {
@@ -355,7 +378,7 @@
             setTimeout(() => {
                 const searchInput = document.querySelector('.pagefind-ui__search-input');
                 if (searchInput) searchInput.focus();
-            }, 100);
+            }, RESULT_CHECK_DELAY);
         }
     }
     
@@ -366,15 +389,6 @@
             clearSelection();
             selectedResultIndex = -1;
         }
-    }
-    
-    // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            setupSearchHandlers();
-        });
-    } else {
-        setupSearchHandlers();
     }
     
     function setupSearchHandlers() {
@@ -404,7 +418,7 @@
             const isSearchOpen = searchModal && searchModal.classList.contains('active');
             
             // Don't trigger if already typing in an input (except in search modal)
-            if (!isSearchOpen && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) {
+            if (!isSearchOpen && window.isTypingInInput(e.target)) {
                 return;
             }
             
@@ -445,6 +459,9 @@
             }
         });
     }
+    
+    // Initialize when DOM is ready
+    window.onDOMReady(setupSearchHandlers);
 })();
 </script>
 

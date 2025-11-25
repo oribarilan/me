@@ -422,6 +422,8 @@
 
 <script>
 (function() {
+    const THEMES = ['nord', 'dark', 'light', 'gruvbox', 'catppuccin'];
+    
     // Get saved theme or default to 'nord'
     const savedTheme = localStorage.getItem('color-theme') || 'nord';
     
@@ -445,8 +447,16 @@
     // Apply saved theme immediately to prevent flash
     applyTheme(savedTheme);
     
+    function highlightOption(index) {
+        const options = document.querySelectorAll('.terminal-option');
+        options.forEach(opt => opt.classList.remove('highlighted'));
+        if (options[index]) {
+            options[index].classList.add('highlighted');
+        }
+    }
+    
     // Setup theme switcher when DOM is ready
-    document.addEventListener('DOMContentLoaded', function() {
+    window.onDOMReady(function() {
         const btn = document.getElementById('theme-switcher-btn');
         const terminal = document.getElementById('theme-terminal');
         const closeBtn = document.getElementById('terminal-close');
@@ -454,24 +464,22 @@
         if (!btn || !terminal) return;
         
         // Open terminal
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
+        function openTerminal() {
             terminal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            
-            // Initialize highlight on first option
-            const options = document.querySelectorAll('.terminal-option');
-            options.forEach(opt => opt.classList.remove('highlighted'));
-            if (options.length > 0) {
-                options[0].classList.add('highlighted');
-            }
-        });
+            highlightOption(0);
+        }
         
         // Close terminal
         function closeTerminal() {
             terminal.classList.remove('active');
             document.body.style.overflow = '';
         }
+        
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            openTerminal();
+        });
         
         closeBtn.addEventListener('click', closeTerminal);
         
@@ -485,7 +493,7 @@
         // Handle keyboard shortcuts globally
         document.addEventListener('keydown', function(e) {
             // Don't interfere if user is typing in input/textarea
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+            if (window.isTypingInInput(e.target)) {
                 return;
             }
             
@@ -494,15 +502,7 @@
             // Open terminal with 't' key (only when closed)
             if (e.key === 't' && !isTerminalOpen) {
                 e.preventDefault();
-                terminal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Initialize highlight on first option
-                const options = document.querySelectorAll('.terminal-option');
-                options.forEach(opt => opt.classList.remove('highlighted'));
-                if (options.length > 0) {
-                    options[0].classList.add('highlighted');
-                }
+                openTerminal();
                 return;
             }
             
@@ -534,34 +534,27 @@
                 
                 // Update highlighted state
                 if (newIndex !== currentIndex) {
-                    options.forEach(opt => opt.classList.remove('highlighted'));
-                    options[newIndex].classList.add('highlighted');
+                    highlightOption(newIndex);
                     options[newIndex].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
                 }
             }
             
             // Handle theme selection with number keys (1-5)
-            const themes = ['nord', 'dark', 'light', 'gruvbox', 'catppuccin'];
             const key = e.key;
-            
-            // Check for both regular digits and numpad digits
             let num = null;
             if (key >= '1' && key <= '5') {
                 num = parseInt(key);
             }
             
             if (num !== null && num >= 1 && num <= 5) {
-                e.preventDefault(); // Prevent any default behavior
-                const themeName = themes[num - 1];
+                e.preventDefault();
+                const themeName = THEMES[num - 1];
                 applyTheme(themeName);
-                // Only close terminal if it's open, otherwise show notification
+                
                 if (isTerminalOpen) {
                     closeTerminal();
-                } else {
-                    // Show notification for global theme change
-                    if (window.showNotification) {
-                        window.showNotification(`theme changed to ${themeName}`);
-                    }
+                } else if (window.showNotification) {
+                    window.showNotification(`theme changed to ${themeName}`);
                 }
             }
         });
