@@ -1187,7 +1187,7 @@ blockquote {
   
   &:hover,
   &.keyboard-selected {
-    background: rgba(163, 190, 140, 0.1) !important;
+    background: rgba(163, 190, 140, 0.15) !important;
   }
 }
 
@@ -1213,7 +1213,7 @@ blockquote {
     color: $accent-primary !important;
     display: inline !important;
     border-bottom: 1px dashed rgba(163, 190, 140, 0.3) !important;
-    transition: border-color 0.2s ease !important;
+    transition: border-color 0.2s ease, color 0.2s ease !important;
     
     &:hover {
       color: $accent-secondary !important;
@@ -1224,6 +1224,12 @@ blockquote {
       display: none !important;
     }
   }
+}
+
+// Apply hover styles to keyboard-selected results
+.pagefind-ui__result-link.keyboard-selected .pagefind-ui__result-title a {
+  color: $accent-secondary !important;
+  border-bottom-color: rgba(163, 190, 140, 0.6) !important;
 }
 
 .pagefind-ui__result-excerpt {
@@ -1293,9 +1299,11 @@ blockquote {
   cursor: pointer !important;
   transition: all 0.2s ease !important;
   
-  &:hover {
+  &:hover,
+  &.keyboard-selected {
     border-color: $accent-secondary !important;
     color: $accent-secondary !important;
+    background: $bg-darker !important;
   }
 }
 

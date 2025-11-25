@@ -284,7 +284,7 @@
     }
     
     function updateResultLinks() {
-        resultLinks = Array.from(document.querySelectorAll('.pagefind-ui__result-link'));
+        resultLinks = Array.from(document.querySelectorAll('.pagefind-ui__result-link, .pagefind-ui__button'));
         selectedResultIndex = -1;
         clearSelection();
     }
@@ -323,9 +323,18 @@
     
     function navigateToSelected() {
         if (selectedResultIndex >= 0 && resultLinks[selectedResultIndex]) {
-            const link = resultLinks[selectedResultIndex];
-            closeSearchModal();
-            window.location.href = link.href;
+            const element = resultLinks[selectedResultIndex];
+            
+            // If it's a button, click it instead of navigating
+            if (element.classList.contains('pagefind-ui__button')) {
+                element.click();
+                clearSelection();
+                selectedResultIndex = -1;
+            } else {
+                // It's a link, navigate to it
+                closeSearchModal();
+                window.location.href = element.href;
+            }
         }
     }
     
