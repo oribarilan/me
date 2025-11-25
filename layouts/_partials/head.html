@@ -257,7 +257,7 @@
             }
         });
         
-        // Close modal when clicking on search results
+        // Close modal when clicking on search results and make cards fully clickable
         setTimeout(() => {
             const searchContainer = document.getElementById('search-container');
             if (searchContainer) {
@@ -266,6 +266,17 @@
                     const link = e.target.closest('a');
                     if (link && link.href) {
                         closeSearchModal();
+                    }
+                    
+                    // Make entire result card clickable
+                    const resultCard = e.target.closest('.pagefind-ui__result');
+                    if (resultCard && !link) {
+                        // Find the main result link (first link, not nested)
+                        const mainLink = resultCard.querySelector('.pagefind-ui__result-link');
+                        if (mainLink && mainLink.href) {
+                            closeSearchModal();
+                            window.location.href = mainLink.href;
+                        }
                     }
                 });
             }
