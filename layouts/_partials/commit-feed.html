@@ -1,0 +1,222 @@
+<div class="commit-feed">
+    <div class="commit-feed-header">
+        <span class="prompt-symbol">$</span> git log --oneline
+    </div>
+    <div class="commit-feed-content" id="commitFeed">
+        <div class="commit-loading">...</div>
+    </div>
+</div>
+
+<style>
+.commit-feed {
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.8rem;
+    max-width: 450px;
+    z-index: 100;
+}
+
+.commit-feed-header {
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+}
+
+.prompt-symbol {
+    color: var(--accent-secondary);
+    margin-right: 0.5ch;
+}
+
+.commit-feed-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.commit-loading {
+    color: var(--text-dim);
+}
+
+.commit-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1ch;
+    line-height: 1.3;
+}
+
+.commit-graph {
+    color: var(--accent-primary);
+    flex-shrink: 0;
+}
+
+.commit-hash {
+    color: var(--accent-warning);
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.commit-hash:hover {
+    filter: brightness(1.3);
+}
+
+.commit-decoration {
+    color: var(--accent-secondary);
+    flex-shrink: 0;
+}
+
+.commit-message {
+    color: var(--text-secondary);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.commit-time {
+    color: var(--text-dim);
+    flex-shrink: 0;
+}
+
+.commit-error {
+    color: var(--accent-error);
+}
+
+@media screen and (max-width: 768px) {
+    .commit-feed {
+        display: none;
+    }
+}
+</style>
+
+<script>
+(function() {
+    const GITHUB_USER = '{{ .Site.Params.user }}';
+    const REPO_NAME = 'me'; // Your repo name
+    const COMMIT_COUNT = 5;
+    const CACHE_KEY = 'github_commits_cache';
+    const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+    
+    function getRelativeTime(dateString) {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diffMs = now - date;
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / 86400000);
+        const diffWeeks = Math.floor(diffMs / 604800000);
+        
+        if (diffMins < 60) return diffMins === 1 ? '1m ago' : `${diffMins}m ago`;
+        if (diffHours < 24) return diffHours === 1 ? '1h ago' : `${diffHours}h ago`;
+        if (diffDays < 7) return diffDays === 1 ? '1d ago' : `${diffDays}d ago`;
+        if (diffWeeks < 4) return diffWeeks === 1 ? '1w ago' : `${diffWeeks}w ago`;
+        
+        const diffMonths = Math.floor(diffDays / 30);
+        if (diffMonths < 12) return diffMonths === 1 ? '1mo ago' : `${diffMonths}mo ago`;
+        
+        const diffYears = Math.floor(diffDays / 365);
+        return diffYears === 1 ? '1y ago' : `${diffYears}y ago`;
+    }
+    
+    function getBranchDecoration(commit, isLatest) {
+        if (isLatest) {
+            return '<span class="commit-decoration">(HEAD -> main)</span>';
+        }
+        return '';
+    }
+    
+    function renderCommits(commits) {
+        const feedContent = document.getElementById('commitFeed');
+        if (!commits || commits.length === 0) {
+            feedContent.innerHTML = '<div class="commit-error">No commits found</div>';
+            return;
+        }
+        
+        const html = commits.map((commit, index) => {
+            const shortHash = commit.sha.substring(0, 7);
+            const message = commit.commit.message.split('\n')[0]; // First line only
+            const relativeTime = getRelativeTime(commit.commit.author.date);
+            const decoration = getBranchDecoration(commit, index === 0);
+            const commitUrl = commit.html_url;
+            
+            return `
+                <div class="commit-item">
+                    <span class="commit-graph">*</span>
+                    <span class="commit-hash" onclick="window.open('${commitUrl}', '_blank')" title="View commit on GitHub">${shortHash}</span>
+                    ${decoration}
+                    <span class="commit-message">${message}</span>
+                    <span class="commit-time">${relativeTime}</span>
+                </div>
+            `;
+        }).join('');
+        
+        feedContent.innerHTML = html;
+    }
+    
+    function getCachedCommits() {
+        try {
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (!cached) return null;
+            
+            const { data, timestamp } = JSON.parse(cached);
+            const now = Date.now();
+            
+            if (now - timestamp < CACHE_DURATION) {
+                return data;
+            }
+            
+            localStorage.removeItem(CACHE_KEY);
+            return null;
+        } catch (e) {
+            return null;
+        }
+    }
+    
+    function setCachedCommits(commits) {
+        try {
+            const cacheData = {
+                data: commits,
+                timestamp: Date.now()
+            };
+            localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+        } catch (e) {
+            console.warn('Failed to cache commits:', e);
+        }
+    }
+    
+    function fetchCommits() {
+        const cached = getCachedCommits();
+        if (cached) {
+            renderCommits(cached);
+            return;
+        }
+        
+        const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/commits?per_page=${COMMIT_COUNT}`;
+        
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(commits => {
+                setCachedCommits(commits);
+                renderCommits(commits);
+            })
+            .catch(error => {
+                console.error('Error fetching commits:', error);
+                const feedContent = document.getElementById('commitFeed');
+                feedContent.innerHTML = '<div class="commit-error">Failed to load commits</div>';
+            });
+    }
+    
+    // Fetch on page load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fetchCommits);
+    } else {
+        fetchCommits();
+    }
+})();
+</script>
