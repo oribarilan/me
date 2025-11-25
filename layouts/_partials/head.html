@@ -291,7 +291,11 @@
     
     function clearSelection() {
         resultLinks.forEach(link => {
-            link.style.background = '';
+            link.classList.remove('keyboard-selected');
+            const resultCard = link.closest('.pagefind-ui__result');
+            if (resultCard) {
+                resultCard.classList.remove('keyboard-selected');
+            }
         });
     }
     
@@ -308,7 +312,11 @@
         const selectedLink = resultLinks[selectedResultIndex];
         
         if (selectedLink) {
-            selectedLink.style.background = 'rgba(163, 190, 140, 0.15)';
+            selectedLink.classList.add('keyboard-selected');
+            const resultCard = selectedLink.closest('.pagefind-ui__result');
+            if (resultCard) {
+                resultCard.classList.add('keyboard-selected');
+            }
             selectedLink.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     }
