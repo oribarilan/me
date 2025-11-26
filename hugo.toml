@@ -1,4 +1,4 @@
-baseURL = 'http://localhost:1313/'
+baseURL = 'https://oribi.sh/'
 languageCode = 'en-us'
 title = 'Ori Bar-ilan'
 theme = "nightfall"
@@ -30,9 +30,9 @@ pagerSize = 10
 
 [params]
 user = "oribarilan"
-hostname = "github.io"
+hostname = "oribi.sh"
 footerHtml = ""
-version = "0.61.3"
+version = "1.0.0"
 
 # Color theme: nord (default), dark, light, gruvbox, catppuccin
 colorTheme = "nord"
