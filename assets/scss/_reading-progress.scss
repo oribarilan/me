@@ -1,0 +1,84 @@
+// Reading progress bar - terminal prompt style
+@use 'variables' as *;
+
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background-color: $bg-darker;
+  border-bottom: 1px solid $border-color;
+  padding: 8px 20px;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .prompt {
+    color: $accent-primary;
+    font-weight: bold;
+  }
+  
+  .progress-bar {
+    color: $accent-secondary;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+  }
+  
+  .progress-stats {
+    color: $text-secondary;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  
+  .separator {
+    color: $text-dim;
+  }
+  
+  #progress-percent {
+    color: $accent-warning;
+    min-width: 3.5ch;
+    text-align: right;
+  }
+  
+  #progress-time {
+    color: $text-dim;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: $breakMobile) {
+  .reading-progress {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    gap: 6px;
+    
+    .progress-stats {
+      gap: 6px;
+    }
+  }
+}
+
+// Extra small screens - hide time estimate
+@media (max-width: 480px) {
+  .reading-progress {
+    .separator,
+    #progress-time {
+      display: none;
+    }
+  }
+}

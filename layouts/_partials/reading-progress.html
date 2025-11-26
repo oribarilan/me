@@ -1,0 +1,97 @@
+<div class="reading-progress" id="reading-progress">
+    <span class="prompt">&gt;</span>
+    <span class="progress-bar" id="progress-bar"></span>
+    <span class="progress-stats">
+        <span id="progress-percent">0%</span>
+        <span class="separator">|</span>
+        <span id="progress-time">~{{ .ReadingTime }} min left</span>
+    </span>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const progressContainer = document.getElementById('reading-progress');
+    const progressBar = document.getElementById('progress-bar');
+    const progressPercent = document.getElementById('progress-percent');
+    const progressTime = document.getElementById('progress-time');
+    const postWrapper = document.querySelector('.postWrapper');
+    const totalReadingTime = {{ .ReadingTime }};
+    
+    const TOTAL_BLOCKS = 30;
+    const FILLED_CHAR = '▓';
+    const EMPTY_CHAR = '░';
+    
+    // Threshold: show progress bar after scrolling past 50px
+    const SHOW_THRESHOLD = 50;
+    
+    function updateProgressBar() {
+        if (!postWrapper) return;
+        
+        const postTop = postWrapper.offsetTop;
+        const postHeight = postWrapper.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const scrollY = window.scrollY;
+        
+        // Calculate how far through the post content we've scrolled
+        const scrollableDistance = postHeight - windowHeight + postTop;
+        const scrolledDistance = scrollY - postTop + windowHeight;
+        
+        // Calculate percentage (0-100)
+        let percent = Math.max(0, Math.min(100, (scrolledDistance / postHeight) * 100));
+        
+        // Round to nearest integer
+        percent = Math.round(percent);
+        
+        // Calculate filled blocks
+        const filledBlocks = Math.round((percent / 100) * TOTAL_BLOCKS);
+        const emptyBlocks = TOTAL_BLOCKS - filledBlocks;
+        
+        // Build the progress bar string
+        const barString = FILLED_CHAR.repeat(filledBlocks) + EMPTY_CHAR.repeat(emptyBlocks);
+        
+        // Calculate remaining time
+        const remainingPercent = 100 - percent;
+        const remainingTime = Math.ceil((remainingPercent / 100) * totalReadingTime);
+        
+        // Update DOM
+        progressBar.textContent = barString;
+        progressPercent.textContent = percent + '%';
+        
+        if (percent >= 100) {
+            progressTime.textContent = 'done!';
+        } else if (remainingTime <= 0) {
+            progressTime.textContent = '< 1 min left';
+        } else if (remainingTime === 1) {
+            progressTime.textContent = '~1 min left';
+        } else {
+            progressTime.textContent = '~' + remainingTime + ' min left';
+        }
+        
+        // Show/hide based on scroll position
+        if (scrollY > SHOW_THRESHOLD) {
+            progressContainer.classList.add('visible');
+        } else {
+            progressContainer.classList.remove('visible');
+        }
+    }
+    
+    // Initialize progress bar
+    const initialBar = EMPTY_CHAR.repeat(TOTAL_BLOCKS);
+    progressBar.textContent = initialBar;
+    
+    // Update on scroll with throttling for performance
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateProgressBar();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+    
+    // Initial update
+    updateProgressBar();
+});
+</script>
