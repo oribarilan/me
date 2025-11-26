@@ -1,14 +1,14 @@
 ---
-title: "Ditch .ipynb Files: Use Interactive Python in Your Editor"
+title: ".ipynb: The Silent Collaboration Killer"
 date: 2025-11-27
 draft: false
 tags: ["python", "productivity", "coding-agents"]
 categories: ["development"]
-description: "Stop juggling notebook files. Modern editors let you run Python interactively without leaving your regular workflow."
+description: "Notebooks break collaboration with humans and coding agents. Here's how to get interactive Python without the .ipynb baggage."
 toc: true
 ---
 
-Jupyter notebooks revolutionized exploratory programming. The ability to run code in cells, see outputs inline, and iterate quickly changed how we analyze data. But `.ipynb` files come with baggage: version control is annoying, limited editor support, and a completely separate workflow from your production code. These pain points may have been tolerable so far, but now with the prevalence of coding agents, using a binary format like `.ipynb` is becoming increasingly impractical.
+Whether you're collaborating with a human or a coding agent, `.ipynb` is a silent collaboration. Jupyter notebooks revolutionized exploratory programming. The ability to run code in cells, see outputs inline, and iterate quickly changed how we analyze data. But `.ipynb` files come with baggage: version control is annoying, limited editor support, and a completely separate workflow from your production code.
 
 But you don't have to choose between interactivity and sanity. Modern editors now support running Python interactively in regular `.py` files, giving you the best of both worlds.
 
