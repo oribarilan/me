@@ -6,7 +6,7 @@ showMetadata: false
 toc: true
 ---
 
-Hi, I'm Ori Bar-ilan!
+Hi, I'm Ori.
 
 > *Give me coffee to change the things I can, and beer to accept those I can't*
 
