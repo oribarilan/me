@@ -6,7 +6,7 @@
             <span>© {{ now.Format "2006" }} {{ .Site.Params.author.name }}</span>
         {{ end }}
         {{ with .Site.Params.version }}
-            <span class="version">v{{ . }}</span>
+            <span class="version" id="versionToggle">v{{ . }}</span>
         {{ end }}
         <span class="keybindings-hint">[j/k] scroll [g]o home [w]hoami [p]rojects [b]log</span>
     </div>
