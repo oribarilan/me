@@ -1,14 +1,14 @@
 ---
 title: ".ipynb: The Silent Collaboration Killer"
-date: 2025-11-27
+date: 2025-11-26
 draft: false
 tags: ["python", "productivity", "coding-agents"]
 categories: ["development"]
-description: "Notebooks break collaboration with humans and coding agents. Here's how to get interactive Python without the .ipynb baggage."
+description: "Notebooks break collaboration with humans and coding agents. Here's how to get interactive Python without the .ipynb friction."
 toc: true
 ---
 
-Whether you're collaborating with a human or a coding agent, `.ipynb` is a silent collaboration. Jupyter notebooks revolutionized exploratory programming. The ability to run code in cells, see outputs inline, and iterate quickly changed how we analyze data. But `.ipynb` files come with baggage: version control is annoying, limited editor support, and a completely separate workflow from your production code.
+Whether you're collaborating with a human or a coding agent, `.ipynb` is a silent collaboration. Jupyter notebooks changed how we explore data. The ability to run code in cells, see outputs inline, and iterate quickly changed how we analyze data. But `.ipynb` files come with friction: version control is annoying, limited editor support, and a completely separate workflow from your production code.
 
 But you don't have to choose between interactivity and sanity. Modern editors now support running Python interactively in regular `.py` files, giving you the best of both worlds.
 
@@ -22,7 +22,7 @@ Notebooks are JSON files containing code, outputs, and metadata. This creates se
 
 **Separate workflow.** Notebooks live in isolation. You prototype in a notebook, then manually copy code to `.py` files. The gap between exploration and production widens, and notebooks often become throwaway experiments.
 
-**Coding agents can't work with them.** Tools like Cursor, Copilot, and Claude work by reading and editing your code. Notebooks are JSON blobs with base64-encoded outputs, cell metadata, and execution counts mixed in. IDE-integrated agents like Cursor can manage notebooks reasonably well since they hook into the editor's notebook support. But external agents (Claude Code, Codex, or any CI-based agent that operates directly on your repository) are basically useless with `.ipynb` files. They can't reliably parse cell structure or make targeted edits. As AI-assisted development becomes the norm, sticking with `.ipynb` means leaving your most powerful tools on the sideline.
+**Coding agents can't work with them.** Tools like Cursor, Copilot, and Claude work by reading and editing your code. Notebooks are JSON blobs with base64-encoded outputs, cell metadata, and execution counts mixed in. When loaded into an agent's context, all that redundant structure eats up tokens that could be spent on actual code. IDE-integrated agents like Cursor can manage notebooks reasonably well since they hook into the editor's notebook support. But external agents (Claude Code, Codex, or any CI-based agent that operates directly on your repository) are basically useless with `.ipynb` files. They can't reliably parse cell structure or make targeted edits. As AI-assisted development becomes the norm, sticking with `.ipynb` means leaving your most powerful tools on the sideline.
 
 ## The Solution: Interactive Python in Your Editor
 

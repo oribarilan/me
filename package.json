@@ -4,7 +4,7 @@
   "description": "Personal website",
   "scripts": {
     "start": "npm run build && hugo server",
-    "dev": "npm run build && hugo server -D",
+    "dev": "hugo --cleanDestinationDir && npm run build && hugo server -D",
     "build": "hugo --gc --minify && npx pagefind --site public --glob '**/*.html' --exclude-selectors '.blogCards,.blogListHeader'"
   },
   "keywords": [],
