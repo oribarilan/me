@@ -14,7 +14,7 @@
 
 ## Code Style & Conventions
 - **HTML templates**: Use Go template syntax, prefer Hugo partials for reusability
-- **CSS**: Inline styles in layout overrides acceptable, monospace fonts for terminal aesthetic
+- **CSS**: Inline styles in layout overrides acceptable, monospace fonts for terminal aesthetic. Avoid `!important` - use proper specificity instead. Prefer CSS custom properties and `calc()` over repetitive manual values.
 - **JavaScript**: Vanilla JS, use `DOMContentLoaded` for initialization
 - **File naming**: kebab-case for content files, lowercase for layouts
 - **Theme overrides**: Create files in root `/layouts/` to override theme templates

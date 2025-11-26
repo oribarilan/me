@@ -99,73 +99,27 @@
 .commit-feed.visible .commit-item:nth-child(n+6) { transition-delay: 0.35s; }
 
 /* Fade effect based on position - older commits are more faded */
-.commit-feed.visible .commit-item:nth-child(1) { opacity: 1; transform: translateY(0); }
-.commit-feed.visible .commit-item:nth-child(2) { opacity: 0.8; transform: translateY(0); }
-.commit-feed.visible .commit-item:nth-child(3) { opacity: 0.6; transform: translateY(0); }
-.commit-feed.visible .commit-item:nth-child(4) { opacity: 0.45; transform: translateY(0); }
-.commit-feed.visible .commit-item:nth-child(5) { opacity: 0.3; transform: translateY(0); }
-.commit-feed.visible .commit-item:nth-child(n+6) { opacity: 0.3; transform: translateY(0); }
-
-/* When expanded, override all items with subtle fading */
-.commit-feed:hover .commit-item:nth-child(1) {
-    opacity: 1 !important;
+.commit-feed.visible .commit-item {
+    --fade-per-item: 0.05;
+    opacity: calc(1 - (var(--i, 0) * var(--fade-per-item)));
+    transform: translateY(0);
 }
 
-.commit-feed:hover .commit-item:nth-child(2) {
-    opacity: 0.96 !important;
-}
-
-.commit-feed:hover .commit-item:nth-child(3) {
-    opacity: 0.92 !important;
-}
-
-.commit-feed:hover .commit-item:nth-child(4) {
-    opacity: 0.88 !important;
-}
-
-.commit-feed:hover .commit-item:nth-child(5) {
-    opacity: 0.84 !important;
-}
-
-.commit-feed:hover .commit-item:nth-child(6) {
-    opacity: 0.80 !important;
-}
-
-.commit-feed:hover .commit-item:nth-child(7) {
-    opacity: 0.77 !important;
-}
-
-.commit-feed:hover .commit-item:nth-child(8) {
-    opacity: 0.74 !important;
-}
-
-.commit-feed:hover .commit-item:nth-child(9) {
-    opacity: 0.71 !important;
-}
-
-.commit-feed:hover .commit-item:nth-child(10) {
-    opacity: 0.68 !important;
-}
-
-.commit-feed:hover .commit-item:nth-child(11) {
-    opacity: 0.65 !important;
-}
-
-.commit-feed:hover .commit-item:nth-child(12) {
-    opacity: 0.62 !important;
-}
-
-.commit-feed:hover .commit-item:nth-child(13) {
-    opacity: 0.59 !important;
-}
-
-.commit-feed:hover .commit-item:nth-child(14) {
-    opacity: 0.56 !important;
-}
-
-.commit-feed:hover .commit-item:nth-child(15) {
-    opacity: 0.53 !important;
-}
+.commit-feed.visible .commit-item:nth-child(1) { --i: 0; }
+.commit-feed.visible .commit-item:nth-child(2) { --i: 1; }
+.commit-feed.visible .commit-item:nth-child(3) { --i: 2; }
+.commit-feed.visible .commit-item:nth-child(4) { --i: 3; }
+.commit-feed.visible .commit-item:nth-child(5) { --i: 4; }
+.commit-feed.visible .commit-item:nth-child(6) { --i: 5; }
+.commit-feed.visible .commit-item:nth-child(7) { --i: 6; }
+.commit-feed.visible .commit-item:nth-child(8) { --i: 7; }
+.commit-feed.visible .commit-item:nth-child(9) { --i: 8; }
+.commit-feed.visible .commit-item:nth-child(10) { --i: 9; }
+.commit-feed.visible .commit-item:nth-child(11) { --i: 10; }
+.commit-feed.visible .commit-item:nth-child(12) { --i: 11; }
+.commit-feed.visible .commit-item:nth-child(13) { --i: 12; }
+.commit-feed.visible .commit-item:nth-child(14) { --i: 13; }
+.commit-feed.visible .commit-item:nth-child(n+15) { --i: 14; }
 
 .commit-graph {
     color: var(--accent-primary);
