@@ -28,18 +28,31 @@
     border: 1px solid var(--accent-primary);
     border-radius: 3px;
     overflow: hidden;
-    transition: border-color 0.2s ease;
+    transition: background-color 0.2s ease;
     background: var(--bg-primary);
     display: flex;
     flex-direction: column;
   }
   
   .blogCard:hover {
-    border-color: var(--accent-secondary);
+    background: var(--bg-secondary);
   }
   
-  .blogCard:hover .blogCardTitle {
-    color: var(--accent-primary);
+  .blogCardLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+    border-bottom: none;
+  }
+  
+  .blogCardLink:hover {
+    text-decoration: none;
+    filter: none;
+  }
+  
+  .blogCardLink:hover::after {
+    display: none;
   }
   
   .blogCardContent {
@@ -94,13 +107,6 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-  }
-  
-  .blogCardLink {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    height: 100%;
   }
   
   @media (max-width: 768px) {
