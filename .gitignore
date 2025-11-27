@@ -18,3 +18,7 @@ Thumbs.db
 
 # Node (if using npm for additional tooling)
 node_modules/
+
+# Personal notes
+TODO.md
+DEBT.md
