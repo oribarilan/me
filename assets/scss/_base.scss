@@ -68,18 +68,21 @@ code {
 h1 {
   font-family: 'Fira Mono', monospace;
   color: $accent-primary;
-  display: inline-block;
+  display: inline;
   line-height: 1.2;
   font-size: 2em;
+  // Prevent line break between last word and cursor
+  word-spacing: -0.25em;
   
   &::after {
-    content: '█';
+    content: '\2060█'; // Word joiner + block cursor to prevent wrapping separately
     animation: blink 1s step-end infinite;
     margin-left: 2px;
     font-weight: normal;
     color: $text-primary;
-    display: inline-block;
+    display: inline;
     vertical-align: baseline;
+    word-spacing: normal;
   }
 }
 

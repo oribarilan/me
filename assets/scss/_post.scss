@@ -109,6 +109,126 @@
   padding: 20px;    
 }
 
+// Post content typography - optimized for reading
+.postContent {
+  // Base typography
+  font-size: 1.05rem;
+  line-height: 1.75;
+  
+  // Paragraphs
+  p {
+    margin-bottom: 1.5em;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  // Headers - breathing room
+  h2 {
+    margin-top: 2.5em;
+    margin-bottom: 1em;
+    
+    &:first-child {
+      margin-top: 1.5em;
+    }
+  }
+  
+  h3 {
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+  }
+  
+  h4, h5, h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  
+  // Lists - improved readability
+  ul, ol {
+    padding-left: 2em;
+    margin-bottom: 1.5em;
+    
+    li {
+      margin-bottom: 0.5em;
+      line-height: 1.6;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    // Nested lists
+    ul, ol {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+  }
+  
+  // Unordered list styling
+  ul {
+    list-style: none;
+    
+    > li {
+      position: relative;
+      
+      &::before {
+        content: '>';
+        position: absolute;
+        left: -1.5em;
+        color: $accent-primary;
+        font-family: 'Fira Mono', monospace;
+        font-weight: bold;
+      }
+    }
+  }
+  
+  // Ordered lists keep numbers
+  ol {
+    list-style-position: outside;
+    
+    > li::marker {
+      color: $accent-primary;
+      font-family: 'Fira Mono', monospace;
+      font-weight: bold;
+    }
+  }
+  
+  // Code blocks - better spacing
+  pre {
+    margin: 1.5em 0;
+    border-radius: 4px;
+    
+    code {
+      padding: 1em;
+      line-height: 1.5;
+    }
+  }
+  
+  // Inline code
+  code {
+    font-size: 0.9em;
+  }
+  
+  // Images
+  img {
+    margin: 1.5em 0;
+    border-radius: 4px;
+  }
+  
+  // Blockquotes
+  blockquote {
+    margin: 1.5em 0;
+  }
+  
+  // Horizontal rules
+  hr {
+    margin: 2.5em 0;
+    border: none;
+    border-top: 1px dashed $text-dim;
+  }
+}
+
 .postMetadata {
   font-family: 'Fira Mono', monospace;
   display: block;
