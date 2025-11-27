@@ -1,0 +1,22 @@
+{{/*
+  Analytics Partial - Tracks page views for all pages
+  
+  This partial sends a view increment to the API for every page load.
+  It uses postId if available, otherwise falls back to the page path.
+  No UI is rendered - this is purely for analytics tracking.
+*/}}
+
+{{ $pageId := .Params.postId | default .RelPermalink }}
+
+<script>
+(function() {
+  const pageId = {{ $pageId }};
+  const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+  
+  if (isLocal) return;
+  
+  const url = "/api/views?slug=" + encodeURIComponent(pageId);
+
+  fetch(url).catch(() => {});
+})();
+</script>

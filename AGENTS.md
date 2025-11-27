@@ -37,3 +37,23 @@
 - Terminal/developer aesthetic with typing animations, block cursors, and command-line UI elements
 - Pixel art compatible (circular avatar with border-radius: 50%)
 - Responsive design with mobile-first approach
+
+## Analytics & View Tracking
+- **All pages are tracked**: The `analytics.html` partial in `baseof.html` sends a view increment to `/api/views` for every page load
+- **Page identification**: Uses `postId` from front matter if available, otherwise falls back to the page's `RelPermalink`
+- **Blog posts require postId**: Every blog post must have a unique `postId` in its front matter for stable view tracking (survives URL changes)
+- **postId format**: Use kebab-case, short but descriptive (e.g., `pathlib-vs-ospath`, `ipynb-collab-killer`)
+- **View counter display**: Currently shown on blog posts and blog list only via the `view-counter.html` partial
+- **When adding new pages**: The page will automatically be tracked. If you want to display view counts, use the `view-counter.html` partial
+
+### Blog Post Front Matter Example
+```yaml
+---
+title: "Your Post Title"
+date: 2025-01-15
+draft: false
+tags: ["tag1", "tag2"]
+description: "A brief description"
+postId: "unique-post-id"  # Required for view tracking
+---
+```

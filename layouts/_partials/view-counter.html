@@ -1,17 +1,18 @@
 {{/*
-  View Counter Partial
+  View Counter Partial - Display only (no increment)
   
   Usage:
-    {{ partial "view-counter.html" (dict "postId" .Params.postId "increment" true) }}
+    {{ partial "view-counter.html" (dict "postId" .Params.postId) }}
   
   Parameters:
     - postId: The unique post identifier for the API call
-    - increment: If true, increments view count (default). If false, just fetches.
     - elementId: Optional unique ID suffix for multiple counters on same page
+  
+  Note: This partial only fetches and displays view counts.
+  Incrementing is handled by the analytics.html partial in baseof.html.
 */}}
 
 {{ $postId := .postId | default "" }}
-{{ $increment := .increment | default true }}
 {{ $elementIdSuffix := .elementId | default "" }}
 {{ $elementId := printf "view-count%s" $elementIdSuffix }}
 
@@ -23,9 +24,7 @@
 <script>
 (function() {
   const postId = {{ $postId }};
-  const increment = {{ $increment }};
   const elementId = {{ $elementId }};
-  const mode = increment ? "" : "&mode=get";
   const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
   
   if (isLocal) {
@@ -34,7 +33,7 @@
     return;
   }
   
-  const url = "/api/views?slug=" + encodeURIComponent(postId) + mode;
+  const url = "/api/views?slug=" + encodeURIComponent(postId) + "&mode=get";
 
   fetch(url)
     .then(r => r.json())
