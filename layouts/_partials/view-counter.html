@@ -1,0 +1,50 @@
+{{/*
+  View Counter Partial
+  
+  Usage:
+    {{ partial "view-counter.html" (dict "slug" .RelPermalink "increment" true) }}
+  
+  Parameters:
+    - slug: The page slug/path for the API call
+    - increment: If true, increments view count (default). If false, just fetches.
+    - id: Optional unique ID suffix for multiple counters on same page
+*/}}
+
+{{ $slug := .slug | default "/" }}
+{{ $increment := .increment | default true }}
+{{ $id := .id | default "" }}
+{{ $elementId := printf "view-count%s" $id }}
+
+<span class="viewCounter">
+  <span id="{{ $elementId }}" class="viewCount">--</span> views
+</span>
+
+<script>
+(function() {
+  const slug = {{ $slug }};
+  const increment = {{ $increment }};
+  const elementId = {{ $elementId }};
+  const mode = increment ? "" : "&mode=get";
+  const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+  
+  if (isLocal) {
+    const el = document.getElementById(elementId);
+    if (el) el.textContent = "42";
+    return;
+  }
+  
+  const url = "/api/views?slug=" + encodeURIComponent(slug) + mode;
+
+  fetch(url)
+    .then(r => r.json())
+    .then(data => {
+      const el = document.getElementById(elementId);
+      if (el && typeof data.views === "number") {
+        el.textContent = data.views.toLocaleString();
+      }
+    })
+    .catch(() => {
+      // Silently fail - keep showing "--"
+    });
+})();
+</script>

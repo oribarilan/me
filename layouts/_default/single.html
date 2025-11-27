@@ -69,7 +69,7 @@
                 {{- end -}}
             </div>
             {{ end }}
-            {{/* Row 2: Date and reading time */}}
+            {{/* Row 2: Date, reading time, and view count */}}
             {{ if or $showPublished $showReadingTime }}
             <div class="metadataInfo">
                 {{- if $showPublished -}}
@@ -81,6 +81,7 @@
                 {{- if $showReadingTime -}}
                     <span>{{ .ReadingTime }} min read</span>
                 {{- end -}}
+                 — {{ partial "view-counter.html" (dict "slug" .RelPermalink "increment" true) }}
             </div>
             {{ end }}
         </div>

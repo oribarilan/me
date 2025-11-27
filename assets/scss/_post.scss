@@ -272,3 +272,14 @@
     }
   }
 }
+
+// View counter
+.viewCounter {
+  color: $text-dim;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.9rem;
+  
+  .viewCount {
+    color: $text-dim;
+  }
+}

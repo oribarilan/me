@@ -83,10 +83,16 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    flex-wrap: wrap;
   }
   
   .blogCardMeta .separator {
     opacity: 0.5;
+  }
+  
+  .blogCardMeta .viewCounter {
+    font-size: inherit;
+    color: inherit;
   }
   
   .blogCardTags {
@@ -134,39 +140,41 @@
   {{ $paginator := .Paginate $pages }}
 
   <div class="blogCards">
-    {{ range $paginator.Pages }}
+    {{ range $index, $page := $paginator.Pages }}
       <article class="blogCard">
-        <a class="blogCardLink" href="{{ .Permalink }}">
+        <a class="blogCardLink" href="{{ $page.Permalink }}">
           <div class="blogCardContent">
-            <h2 class="blogCardTitle">{{ .Title }}</h2>
+            <h2 class="blogCardTitle">{{ $page.Title }}</h2>
             
-            {{ if .Params.tags }}
+            {{ if $page.Params.tags }}
               <div class="blogCardTags">
-                {{ range .Params.tags }}
+                {{ range $page.Params.tags }}
                   <span class="blogCardTag">#{{ . | lower }}</span>
                 {{ end }}
               </div>
             {{ end }}
             
             <div class="blogCardMeta">
-              {{ $layout := .Site.Params.displayDateFormat | default "2006-01-02" }}
-              {{ $iso := .Date | time.Format "2006-01-02" }}
-              <time datetime="{{ $iso }}">{{ .Date | time.Format $layout }}</time>
+              {{ $layout := $page.Site.Params.displayDateFormat | default "2006-01-02" }}
+              {{ $iso := $page.Date | time.Format "2006-01-02" }}
+              <time datetime="{{ $iso }}">{{ $page.Date | time.Format $layout }}</time>
               
               {{ $showReadingTime := true }}
-              {{ if eq .Site.Params.showReadingTime false }}{{ $showReadingTime = false }}{{ end }}
-              {{ if eq .Site.Params.readingTime false }}{{ $showReadingTime = false }}{{ end }}
-              {{ if eq .Params.showReadingTime false }}{{ $showReadingTime = false }}{{ end }}
+              {{ if eq $page.Site.Params.showReadingTime false }}{{ $showReadingTime = false }}{{ end }}
+              {{ if eq $page.Site.Params.readingTime false }}{{ $showReadingTime = false }}{{ end }}
+              {{ if eq $page.Params.showReadingTime false }}{{ $showReadingTime = false }}{{ end }}
               {{ if $showReadingTime }}
                 <span class="separator">·</span>
-                <span>{{ .ReadingTime }} min</span>
+                <span>{{ $page.ReadingTime }} min</span>
               {{ end }}
+              <span class="separator">·</span>
+              {{ partial "view-counter.html" (dict "slug" $page.RelPermalink "increment" false "id" (printf "-%d" $index)) }}
             </div>
             
-            {{ if .Description }}
-              <p class="blogCardDescription">{{ .Description }}</p>
-            {{ else if .Summary }}
-              <p class="blogCardDescription">{{ .Summary | truncate 120 }}</p>
+            {{ if $page.Description }}
+              <p class="blogCardDescription">{{ $page.Description }}</p>
+            {{ else if $page.Summary }}
+              <p class="blogCardDescription">{{ $page.Summary | truncate 120 }}</p>
             {{ end }}
           </div>
         </a>
