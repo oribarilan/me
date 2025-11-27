@@ -7,6 +7,10 @@
 <div data-pagefind-ignore>
 
 <style>
+  .blogListWrapper {
+    padding: 20px;
+  }
+  
   .blogListHeader {
     margin-bottom: 1.5rem;
   }
@@ -74,8 +78,8 @@
   .blogCardMeta {
     font-family: 'Fira Mono', monospace;
     font-size: 0.8rem;
-    color: var(--text-secondary);
-    margin-bottom: 0.5rem;
+    color: var(--accent-primary-2);
+    margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
     gap: 0.4rem;
@@ -91,7 +95,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
   }
   
   .blogCardTag {
@@ -116,7 +120,7 @@
   }
 </style>
 
-<div>
+<div class="blogListWrapper">
   <div class="blogListHeader">
     <h1>{{ .Title }}</h1>
     {{ with .Content }}
@@ -136,6 +140,14 @@
           <div class="blogCardContent">
             <h2 class="blogCardTitle">{{ .Title }}</h2>
             
+            {{ if .Params.tags }}
+              <div class="blogCardTags">
+                {{ range .Params.tags }}
+                  <span class="blogCardTag">#{{ . | lower }}</span>
+                {{ end }}
+              </div>
+            {{ end }}
+            
             <div class="blogCardMeta">
               {{ $layout := .Site.Params.displayDateFormat | default "2006-01-02" }}
               {{ $iso := .Date | time.Format "2006-01-02" }}
@@ -150,14 +162,6 @@
                 <span>{{ .ReadingTime }} min</span>
               {{ end }}
             </div>
-            
-            {{ if .Params.tags }}
-              <div class="blogCardTags">
-                {{ range .Params.tags }}
-                  <span class="blogCardTag">#{{ . | lower }}</span>
-                {{ end }}
-              </div>
-            {{ end }}
             
             {{ if .Description }}
               <p class="blogCardDescription">{{ .Description }}</p>
