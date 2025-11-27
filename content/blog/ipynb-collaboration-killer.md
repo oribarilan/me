@@ -3,7 +3,6 @@ title: ".ipynb: The Silent Collaboration Killer"
 date: 2025-11-26
 draft: false
 tags: ["python", "productivity", "coding-agents"]
-categories: ["development"]
 description: "Notebooks break collaboration with humans and coding agents. Here's how to get interactive Python without the .ipynb friction."
 toc: true
 ---

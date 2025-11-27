@@ -3,7 +3,6 @@ title: "Choose Your Path: Python's pathlib vs os.path"
 date: 2024-02-13
 draft: false
 tags: ["python", "programming", "best-practices"]
-categories: ["development"]
 description: "Learn how to work with file system paths using Python's modern pathlib module"
 toc: true
 ---
