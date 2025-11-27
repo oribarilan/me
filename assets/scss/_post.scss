@@ -243,30 +243,32 @@
   }
 }
 
+// Two-row compact metadata layout
 .postMetadata {
   font-family: 'Fira Mono', monospace;
-  display: block;
-  background: $bg-secondary;
-  padding: 10px;
-}
-
-dt, dd {
-  line-height: 1.5;
-}
-
-dl {
-  display: grid;
-  grid-template-columns: max-content auto;
-}
-
-dt {
-  grid-column-start: 1;
-}
-
-dd {
-  grid-column-start: 2;
-}
-
-dt::after {
-  content: ":";
+  font-size: 0.9rem;
+  margin-top: 0.75em;
+  
+  .metadataTaxonomies {
+    color: $text-primary;
+    margin-bottom: 0.25em;
+    
+    a {
+      color: $accent-primary;
+      border-bottom: 1px dashed $accent-primary;
+      
+      &:hover {
+        color: $accent-secondary;
+        border-bottom-color: $accent-secondary;
+      }
+    }
+  }
+  
+  .metadataInfo {
+    color: $text-dim;
+    
+    time, span {
+      color: $text-dim;
+    }
+  }
 }

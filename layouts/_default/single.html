@@ -49,29 +49,41 @@
         {{ if eq .Params.showCategories false }}{{ $showCategories = false }}{{ end }}
 
         {{ if $showMetadata }}
-        <section class="postMetadata">
-            <dl>
-                {{ if and $showTags (.GetTerms "tags") }}
-                    {{ partial "taxonomy/tags.html" (.GetTerms "tags") }}
-                {{ end }}
-                {{ if and $showAuthors (.GetTerms "authors") }}
-                    {{ partial "taxonomy/authors.html" (.GetTerms "authors") }}
-                {{ end }}
-                {{ if and $showCategories (.GetTerms "categories") }}
-                    {{ partial "taxonomy/categories.html" (.GetTerms "categories") }}
-                {{ end }}
-                {{ if $showPublished }}
-                    <dt>{{ i18n "published" }}</dt>
-                     {{ $layout := .Site.Params.displayDateFormat | default "2006-01-02" }}
-                     {{ $iso := .Date | time.Format "2006-01-02" }}
-                     <dd><time datetime="{{ $iso }}">{{ .Date | time.Format $layout }}</time></dd>
-                {{ end }}
-                {{ if $showReadingTime }}
-                    <dt>{{ i18n "reading_time" }}</dt>
-                    <dd>{{ i18n "reading_time_desc" .ReadingTime }}</dd>
-                {{ end }}
-            </dl>
-        </section>
+        <div class="postMetadata">
+            {{/* Row 1: Tags and categories */}}
+            {{ $hasTaxonomies := or (and $showTags (.GetTerms "tags")) (and $showCategories (.GetTerms "categories")) }}
+            {{ if $hasTaxonomies }}
+            <div class="metadataTaxonomies">
+                {{- if and $showTags (.GetTerms "tags") -}}
+                    {{- range $index, $tag := (.GetTerms "tags") -}}
+                        {{- if $index }} · {{ end -}}
+                        <a href="{{ $tag.RelPermalink }}" class="metadataTag">#{{ $tag.LinkTitle | lower }}</a>
+                    {{- end -}}
+                {{- end -}}
+                {{- if and $showCategories (.GetTerms "categories") -}}
+                    {{- if and $showTags (.GetTerms "tags") }} · {{ end -}}
+                    {{- range $index, $cat := (.GetTerms "categories") -}}
+                        {{- if $index }} · {{ end -}}
+                        <a href="{{ $cat.RelPermalink }}" class="metadataCategory">{{ $cat.LinkTitle | lower }}</a>
+                    {{- end -}}
+                {{- end -}}
+            </div>
+            {{ end }}
+            {{/* Row 2: Date and reading time */}}
+            {{ if or $showPublished $showReadingTime }}
+            <div class="metadataInfo">
+                {{- if $showPublished -}}
+                    {{ $layout := .Site.Params.displayDateFormat | default "2006-01-02" }}
+                    {{ $iso := .Date | time.Format "2006-01-02" }}
+                    <time datetime="{{ $iso }}">{{ .Date | time.Format $layout }}</time>
+                {{- end -}}
+                {{- if and $showPublished $showReadingTime }} — {{ end -}}
+                {{- if $showReadingTime -}}
+                    <span>{{ .ReadingTime }} min read</span>
+                {{- end -}}
+            </div>
+            {{ end }}
+        </div>
         {{ end }}
 
         {{ if .Description }}
