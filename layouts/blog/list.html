@@ -8,7 +8,7 @@
 
 <style>
   .blogListHeader {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
   
   .blogListHeader h1 {
@@ -20,47 +20,30 @@
   .blogCards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 1.25rem;
     margin-bottom: 2rem;
   }
   
   .blogCard {
-    border: 2px solid var(--accent-primary);
-    border-radius: 4px;
+    border: 1px solid var(--accent-primary);
+    border-radius: 3px;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.2s ease;
     background: var(--bg-primary);
     display: flex;
     flex-direction: column;
   }
   
   .blogCard:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-secondary);
   }
   
-  .blogCardImage {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    background: var(--bg-secondary);
-    display: block;
-  }
-  
-  .blogCardPlaceholder {
-    width: 100%;
-    height: 200px;
-    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 3rem;
-    color: var(--bg-primary);
+  .blogCard:hover .blogCardTitle {
+    color: var(--accent-primary);
   }
   
   .blogCardContent {
-    padding: 1.5rem;
+    padding: 1rem 1.25rem;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -68,43 +51,49 @@
   
   .blogCardTitle {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: 0.5rem;
-    color: var(--text-primary);
+    color: var(--accent-warning);
+    transition: color 0.2s ease;
+    line-height: 1.3;
   }
   
   .blogCardMeta {
     font-family: 'Fira Mono', monospace;
-    font-size: 0.9rem;
-    color: var(--accent-secondary);
-    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  
+  .blogCardMeta .separator {
+    opacity: 0.5;
+  }
+  
+  .blogCardTags {
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.8rem;
+    display: flex;
     flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .blogCardTag {
+    color: var(--accent-primary);
   }
   
   .blogCardDescription {
     color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    line-height: 1.5;
+    font-size: 0.9rem;
     flex: 1;
-  }
-  
-  .blogCardTags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: auto;
-  }
-  
-  .blogCardTag {
-    font-family: 'Fira Mono', monospace;
-    font-size: 0.8rem;
-    padding: 0.25rem 0.5rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--accent-primary);
-    border-radius: 3px;
-    color: var(--accent-primary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   
   .blogCardLink {
@@ -138,14 +127,6 @@
     {{ range $paginator.Pages }}
       <article class="blogCard">
         <a class="blogCardLink" href="{{ .Permalink }}">
-          {{ if .Params.image }}
-            <img src="{{ .Params.image }}" alt="{{ .Title }}" class="blogCardImage">
-          {{ else }}
-            <div class="blogCardPlaceholder">
-              {{ substr .Title 0 1 }}
-            </div>
-          {{ end }}
-          
           <div class="blogCardContent">
             <h2 class="blogCardTitle">{{ .Title }}</h2>
             
@@ -159,15 +140,10 @@
               {{ if eq .Site.Params.readingTime false }}{{ $showReadingTime = false }}{{ end }}
               {{ if eq .Params.showReadingTime false }}{{ $showReadingTime = false }}{{ end }}
               {{ if $showReadingTime }}
-                <span>{{ .ReadingTime }} min read</span>
+                <span class="separator">·</span>
+                <span>{{ .ReadingTime }} min</span>
               {{ end }}
             </div>
-            
-            {{ if .Description }}
-              <p class="blogCardDescription">{{ .Description }}</p>
-            {{ else if .Summary }}
-              <p class="blogCardDescription">{{ .Summary | truncate 150 }}</p>
-            {{ end }}
             
             {{ if .Params.tags }}
               <div class="blogCardTags">
@@ -175,6 +151,12 @@
                   <span class="blogCardTag">#{{ . | lower }}</span>
                 {{ end }}
               </div>
+            {{ end }}
+            
+            {{ if .Description }}
+              <p class="blogCardDescription">{{ .Description }}</p>
+            {{ else if .Summary }}
+              <p class="blogCardDescription">{{ .Summary | truncate 120 }}</p>
             {{ end }}
           </div>
         </a>
