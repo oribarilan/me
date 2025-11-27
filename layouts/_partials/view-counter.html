@@ -2,26 +2,27 @@
   View Counter Partial
   
   Usage:
-    {{ partial "view-counter.html" (dict "slug" .RelPermalink "increment" true) }}
+    {{ partial "view-counter.html" (dict "postId" .Params.postId "increment" true) }}
   
   Parameters:
-    - slug: The page slug/path for the API call
+    - postId: The unique post identifier for the API call
     - increment: If true, increments view count (default). If false, just fetches.
-    - id: Optional unique ID suffix for multiple counters on same page
+    - elementId: Optional unique ID suffix for multiple counters on same page
 */}}
 
-{{ $slug := .slug | default "/" }}
+{{ $postId := .postId | default "" }}
 {{ $increment := .increment | default true }}
-{{ $id := .id | default "" }}
-{{ $elementId := printf "view-count%s" $id }}
+{{ $elementIdSuffix := .elementId | default "" }}
+{{ $elementId := printf "view-count%s" $elementIdSuffix }}
 
 <span class="viewCounter">
   <span id="{{ $elementId }}" class="viewCount">--</span> views
 </span>
 
+{{ if $postId }}
 <script>
 (function() {
-  const slug = {{ $slug }};
+  const postId = {{ $postId }};
   const increment = {{ $increment }};
   const elementId = {{ $elementId }};
   const mode = increment ? "" : "&mode=get";
@@ -33,7 +34,7 @@
     return;
   }
   
-  const url = "/api/views?slug=" + encodeURIComponent(slug) + mode;
+  const url = "/api/views?slug=" + encodeURIComponent(postId) + mode;
 
   fetch(url)
     .then(r => r.json())
@@ -48,3 +49,4 @@
     });
 })();
 </script>
+{{ end }}

@@ -81,7 +81,7 @@
                 {{- if $showReadingTime -}}
                     <span>{{ .ReadingTime }} min read</span>
                 {{- end -}}
-                , {{ partial "view-counter.html" (dict "slug" .RelPermalink "increment" true) }}
+                , {{ partial "view-counter.html" (dict "postId" .Params.postId "increment" true) }}
             </div>
             {{ end }}
         </div>

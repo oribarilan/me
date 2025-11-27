@@ -162,7 +162,7 @@
               {{ if $showReadingTime }}
                 <span>{{ $page.ReadingTime }} min</span>,
               {{ end }}
-              {{ partial "view-counter.html" (dict "slug" $page.RelPermalink "increment" false "id" (printf "-%d" $index)) }}
+              {{ partial "view-counter.html" (dict "postId" $page.Params.postId "increment" false "elementId" (printf "-%d" $index)) }}
             </div>
             
             {{ if $page.Description }}
