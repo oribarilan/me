@@ -15,9 +15,6 @@
 
     <div class="postWrapper {{ if .Params.toc }}withToc{{ end }}">
         <h1 id="page-top">{{ .Title }}</h1>
-        {{ if .Description}}
-        	<p>{{.Description}}</p>
-        {{ end }}
 
         {{/* Master switch */}}
         {{ $showMetadata := true }}
@@ -76,6 +73,11 @@
             </dl>
         </section>
         {{ end }}
+
+        {{ if .Description }}
+        <p class="postDescription">{{ .Description }}</p>
+        {{ end }}
+
         <div class="postContent">
             {{ .Content }}
         </div>

@@ -109,14 +109,28 @@
   padding: 20px;    
 }
 
+// Post description - emphasized lead-in
+.postDescription {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: $text-primary;
+  max-width: 65ch;
+  margin-top: 1.5em;
+  margin-bottom: 0;
+  font-style: italic;
+  border-left: 3px solid $accent-primary;
+  padding-left: 1em;
+}
+
 // Post content typography - optimized for reading
 .postContent {
   // Base typography
   font-size: 1.05rem;
   line-height: 1.75;
   
-  // Paragraphs
+  // Paragraphs - optimal line length (60-75 chars)
   p {
+    max-width: 65ch;
     margin-bottom: 1.5em;
     
     &:last-child {
