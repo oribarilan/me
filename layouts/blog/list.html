@@ -157,17 +157,15 @@
             <div class="blogCardMeta">
               {{ $layout := $page.Site.Params.displayDateFormat | default "2006-01-02" }}
               {{ $iso := $page.Date | time.Format "2006-01-02" }}
-              <time datetime="{{ $iso }}">{{ $page.Date | time.Format $layout }}</time>
+              <time datetime="{{ $iso }}">{{ $page.Date | time.Format $layout }}</time>,
               
               {{ $showReadingTime := true }}
               {{ if eq $page.Site.Params.showReadingTime false }}{{ $showReadingTime = false }}{{ end }}
               {{ if eq $page.Site.Params.readingTime false }}{{ $showReadingTime = false }}{{ end }}
               {{ if eq $page.Params.showReadingTime false }}{{ $showReadingTime = false }}{{ end }}
               {{ if $showReadingTime }}
-                <span class="separator">·</span>
-                <span>{{ $page.ReadingTime }} min</span>
+                <span>{{ $page.ReadingTime }} min</span>,
               {{ end }}
-              <span class="separator">·</span>
               {{ partial "view-counter.html" (dict "slug" $page.RelPermalink "increment" false "id" (printf "-%d" $index)) }}
             </div>
             

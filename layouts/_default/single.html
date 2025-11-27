@@ -77,11 +77,11 @@
                     {{ $iso := .Date | time.Format "2006-01-02" }}
                     <time datetime="{{ $iso }}">{{ .Date | time.Format $layout }}</time>
                 {{- end -}}
-                {{- if and $showPublished $showReadingTime }} — {{ end -}}
+                {{- if and $showPublished $showReadingTime }}, {{ end -}}
                 {{- if $showReadingTime -}}
                     <span>{{ .ReadingTime }} min read</span>
                 {{- end -}}
-                 — {{ partial "view-counter.html" (dict "slug" .RelPermalink "increment" true) }}
+                , {{ partial "view-counter.html" (dict "slug" .RelPermalink "increment" true) }}
             </div>
             {{ end }}
         </div>
