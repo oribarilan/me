@@ -64,6 +64,66 @@ code {
   border-radius: 3px;
 }
 
+// Code block enhancements (highlight div styling)
+.postContent .highlight {
+  position: relative;
+  margin: 1.5em 0;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid $border-color;
+  
+  &.enhanced {
+    pre {
+      margin: 0;
+      border: none;
+      border-radius: 0;
+    }
+    
+    pre code {
+      border: none;
+      border-radius: 0;
+    }
+  }
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $bg-darker;
+  border-bottom: 1px solid $border-color;
+  padding: 6px 10px;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.75rem;
+}
+
+.code-block-lang {
+  color: $text-dim;
+  text-transform: lowercase;
+}
+
+.code-copy-btn {
+  background: none;
+  border: 1px dashed $accent-primary;
+  color: $accent-primary;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba(var(--accent-primary-rgb), 0.1);
+    border-style: solid;
+  }
+  
+  &.copied {
+    color: $accent-secondary;
+    border-color: $accent-secondary;
+  }
+}
+
 // Headers with color hierarchy and cursor effect
 h1 {
   font-family: 'Fira Mono', monospace;

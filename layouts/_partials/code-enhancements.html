@@ -1,0 +1,67 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Find all highlight divs (Hugo's code block wrapper)
+    const highlightDivs = document.querySelectorAll('.postContent .highlight');
+    
+    highlightDivs.forEach(function(highlightDiv) {
+        // Skip if already enhanced
+        if (highlightDiv.classList.contains('enhanced')) return;
+        highlightDiv.classList.add('enhanced');
+        
+        const pre = highlightDiv.querySelector('pre');
+        const codeElement = highlightDiv.querySelector('code');
+        if (!pre || !codeElement) return;
+        
+        // Detect language from data-lang attribute or class
+        let language = codeElement.getAttribute('data-lang') || '';
+        
+        if (!language) {
+            const classes = codeElement.className.split(' ');
+            for (const cls of classes) {
+                if (cls.startsWith('language-')) {
+                    language = cls.replace('language-', '');
+                    break;
+                }
+            }
+        }
+        
+        // Create header with language label and copy button
+        const header = document.createElement('div');
+        header.className = 'code-block-header';
+        
+        // Language label
+        const langLabel = document.createElement('span');
+        langLabel.className = 'code-block-lang';
+        langLabel.textContent = language || 'code';
+        header.appendChild(langLabel);
+        
+        // Copy button
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'code-copy-btn';
+        copyBtn.innerHTML = '> cp';
+        copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
+        
+        copyBtn.addEventListener('click', function() {
+            const code = codeElement.textContent;
+            navigator.clipboard.writeText(code).then(function() {
+                copyBtn.innerHTML = '> copied!';
+                copyBtn.classList.add('copied');
+                setTimeout(function() {
+                    copyBtn.innerHTML = '> cp';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(function() {
+                copyBtn.innerHTML = '> error';
+                setTimeout(function() {
+                    copyBtn.innerHTML = '> cp';
+                }, 2000);
+            });
+        });
+        
+        header.appendChild(copyBtn);
+        
+        // Insert header at the beginning of highlight div
+        highlightDiv.insertBefore(header, pre);
+    });
+});
+</script>
