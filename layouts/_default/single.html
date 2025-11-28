@@ -91,6 +91,10 @@
         <p class="postDescription">{{ .Description }}</p>
         {{ end }}
 
+        {{ with .Params.image }}
+        <img class="postFeaturedImage" src="{{ . }}" alt="{{ $.Title }}">
+        {{ end }}
+
         <div class="postContent">
             {{ .Content }}
         </div>

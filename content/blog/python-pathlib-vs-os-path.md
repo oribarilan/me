@@ -6,6 +6,7 @@ tags: ["python", "programming", "best-practices"]
 description: "Learn how to work with file system paths using Python's modern pathlib module"
 toc: true
 postId: "pathlib-vs-ospath"
+image: "/thumb-pathlib.png"
 ---
 
 For years, Python developers used the `os.path` module for file system operations, working with paths as strings. Python 3.4 introduced `pathlib`, a modern object-oriented approach that makes path handling more intuitive and readable.

@@ -122,6 +122,17 @@
   padding-left: 1em;
 }
 
+// Featured image in post
+.postFeaturedImage {
+  width: 100%;
+  max-width: 65ch;
+  height: auto;
+  border-radius: 4px;
+  margin-top: 1.5em;
+  margin-bottom: 0;
+  border: 1px solid $accent-primary;
+}
+
 // Post content typography - optimized for reading
 .postContent {
   // Base typography

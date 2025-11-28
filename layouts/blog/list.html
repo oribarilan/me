@@ -38,6 +38,14 @@
     flex-direction: column;
   }
   
+  .blogCardImage {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--accent-primary);
+  }
+  
   .blogCard:hover {
     background: var(--bg-secondary);
   }
@@ -139,6 +147,9 @@
     {{ range $index, $page := $paginator.Pages }}
       <article class="blogCard">
         <a class="blogCardLink" href="{{ $page.Permalink }}">
+          {{ with $page.Params.image }}
+          <img class="blogCardImage" src="{{ . }}" alt="{{ $page.Title }}">
+          {{ end }}
           <div class="blogCardContent">
             <h2 class="blogCardTitle">{{ $page.Title }}</h2>
             
