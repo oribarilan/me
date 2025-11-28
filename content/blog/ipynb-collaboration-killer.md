@@ -8,7 +8,7 @@ toc: true
 postId: "ipynb-collab-killer"
 ---
 
-Whether you're collaborating with a human or a coding agent, `.ipynb` is a silent collaboration. Jupyter notebooks changed how we explore data. The ability to run code in cells, see outputs inline, and iterate quickly changed how we analyze data. But `.ipynb` files come with friction: version control is annoying, limited editor support, and a completely separate workflow from your production code.
+Whether you're collaborating with a human or a coding agent, `.ipynb` is a collaboration killer. Jupyter notebooks changed how we explore data. The ability to run code in cells, see outputs inline, and iterate quickly changed how we analyze data. But `.ipynb` files come with friction: version control is annoying, limited editor support, and a completely separate workflow from your production code.
 
 But you don't have to choose between interactivity and sanity. Modern editors now support running Python interactively in regular `.py` files, giving you the best of both worlds.
 
@@ -48,12 +48,7 @@ df['new_feature'] = df['a'] * df['b']
 df.describe()
 ```
 
-Each `# %%` creates a cell. Click "Run Cell" or use `Ctrl+Enter` to execute and see results in the Python Interactive window. You get:
-
-- **Variable explorer** - inspect all variables in your session
-- **Data viewer** - double-click dataframes to view and filter
-- **Plot viewer** - pan, zoom, and export matplotlib/altair figures
-- **Full IntelliSense** - completions, type hints, documentation
+Each `# %%` creates a cell. Click "Run Cell" or use `Ctrl+Enter` to execute and see results in the Python Interactive window.
 
 The file is still just Python. No JSON, no cell outputs embedded in the file, perfect git diffs.
 
