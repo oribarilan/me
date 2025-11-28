@@ -15,7 +15,7 @@
   
   if (isLocal) return;
   
-  const url = "/api/views?slug=" + encodeURIComponent(pageId);
+  const url = "https://www.oribi.sh/api/views?slug=" + encodeURIComponent(pageId);
 
   fetch(url).catch(() => {});
 })();

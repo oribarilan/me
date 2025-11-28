@@ -33,7 +33,7 @@
     return;
   }
   
-  const url = "/api/views?slug=" + encodeURIComponent(postId) + "&mode=get";
+  const url = "https://www.oribi.sh/api/views?slug=" + encodeURIComponent(postId) + "&mode=get";
 
   fetch(url)
     .then(r => r.json())
