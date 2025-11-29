@@ -55,7 +55,7 @@ Five days of LLM basics and practical app-building – combine core concepts wit
 Practical patterns for collaboration-ready repos. From command runners and formatting to dev containers and CI/CD, learn how to reduce setup pain and keep contributions flowing.
 
 ## Education
-### 2013 - 2018 · B.Sc. + M.Sc. @ Ben-Gurion University of the Negev
+### B.Sc. + M.Sc. @ Ben-Gurion University of the Negev
 - B.Sc. in Computer Science (Software Engineering track), **Dean's excellence award**.
 - M.Sc. in Software and Information Systems Engineering
 - Thesis on “Automated Software Fault Localization" (Italy, 2017).

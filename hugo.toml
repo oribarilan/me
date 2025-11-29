@@ -50,7 +50,6 @@ showCategories = true
 
   [params.author]
     name = "Ori Bar-ilan"
-    email = "your-email@example.com"
     avatar = "ori.png"
     avatarSize = "size-l"
     description = "I build real-world AI systems and share what I learn in talks and workshops. Off the keyboard, I’m usually with my family, woodworking, or blundering a chess piece."
