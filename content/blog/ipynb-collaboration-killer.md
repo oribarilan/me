@@ -88,4 +88,4 @@ And probably other cases I haven't thought of.
 
 The interactive programming experience that made Jupyter notebooks so popular is now available in your regular editor, with regular Python files. You get clean version control, powerful editing features, and seamless integration with coding agents.
 
-Try it now, and your future self (and your git history) will thank you.
+Stop letting `.ipynb` kill your collaboration. Open your editor, type `# %%`, and see for yourself.
