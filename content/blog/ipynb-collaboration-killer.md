@@ -6,7 +6,7 @@ tags: ["python", "productivity", "coding-agents"]
 description: "Notebooks break collaboration with humans and coding agents. Here's how to get interactive Python without the .ipynb friction."
 toc: true
 postId: "ipynb-collab-killer"
-image: "/thumb-ipynb.png"
+image: "/thumb_ipynb.png"
 ---
 
 Whether you're collaborating with a human or a coding agent, `.ipynb` is a collaboration killer. Jupyter notebooks changed how we explore data. The ability to run code in cells, see outputs inline, and iterate quickly changed how we analyze data. But `.ipynb` files come with friction: version control is annoying, limited editor support, and a completely separate workflow from your production code.
