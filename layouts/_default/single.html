@@ -105,6 +105,8 @@
     {{ partial "toc-script.html" . }}
 {{ end }}
 {{ partial "h1-typing.html" . }}
+{{ if eq .Section "blog" }}
 {{ partial "reading-progress.html" . }}
+{{ end }}
 {{ partial "code-enhancements.html" . }}
 {{ end }}

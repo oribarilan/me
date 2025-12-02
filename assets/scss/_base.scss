@@ -171,6 +171,32 @@ h3 {
   color: $accent-primary-3;
 }
 
+// Heading anchor links
+.heading-anchor {
+  position: relative;
+  
+  .anchor-link {
+    opacity: 0;
+    margin-left: 0.5em;
+    font-weight: normal;
+    color: $text-dim;
+    border-bottom: none;
+    transition: opacity 0.2s ease;
+    
+    &:hover {
+      color: $accent-secondary;
+    }
+    
+    &::after {
+      display: none;
+    }
+  }
+  
+  &:hover .anchor-link {
+    opacity: 1;
+  }
+}
+
 h4 {
   font-family: 'Fira Mono', monospace;
   color: $accent-primary-4;

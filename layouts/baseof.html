@@ -10,7 +10,7 @@
 
 </head>
 
-<body>
+<body{{ if eq .Section "blog" }} class="has-reading-progress"{{ end }}>
 
     <div class="flexWrapper">
         {{ partial "header.html" . }}

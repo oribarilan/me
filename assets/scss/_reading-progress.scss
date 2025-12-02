@@ -1,6 +1,10 @@
 // Reading progress bar - terminal prompt style
 @use 'variables' as *;
 
+// Height of progress bar: padding (8px * 2) + line-height (~1.2 * 0.85rem ≈ 17px) + border (1px) ≈ 34px
+// Adding a bit of breathing room
+$progress-bar-height: 45px;
+
 .reading-progress {
   position: fixed;
   top: 0;
@@ -57,6 +61,16 @@
   
   #progress-time {
     color: $text-dim;
+  }
+}
+
+// Scroll offset for anchor links when progress bar is present
+// Only applies to blog posts (which have the reading-progress element)
+body.has-reading-progress {
+  .heading-anchor,
+  h2[id],
+  h3[id] {
+    scroll-margin-top: $progress-bar-height;
   }
 }
 
