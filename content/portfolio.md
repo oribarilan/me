@@ -12,7 +12,7 @@ toc: true
   <img src="/stackwars.jpeg" alt="Stack Wars" style="width: 120px; border-radius: 8px;">
   <div>
     <p style="margin: 0 0 0.5rem 0;">Two software engineers from opposite edges of the stack argue about technology. <em>(In Hebrew)</em></p>
-    <p style="margin: 0;"><a href="https://open.spotify.com/episode/6BDkXrIq9i7wfEAjWLikog?si=e42394ad0d044466">Spotify</a> | <a href="https://podcasts.apple.com/il/podcast/4-adi%C3%B3s-app-store/id1809650883?i=1000732451964">Apple Podcasts</a> | <a href="https://youtu.be/sQ3VItD6p4c?si=4KzCYK2ozzTXcz30">YouTube</a> | <a href="https://anchor.fm/s/fad7e970/podcast/rss">RSS</a></p>
+    <p style="margin: 0;"><a href="https://open.spotify.com/show/2z0UsqByQIfaamU6yqEfnM">Spotify</a> | <a href="https://podcasts.apple.com/il/podcast/stack-wars/id1809650883">Apple Podcasts</a> | <a href="https://www.youtube.com/@StackWarsPodcast">YouTube</a> | <a href="https://anchor.fm/s/fad7e970/podcast/rss">RSS</a></p>
     <p style="margin: 0.5rem 0 0 0; font-style: italic; opacity: 0.8;">Search "Stack Wars" in your favorite podcast app</p>
   </div>
 </div>
