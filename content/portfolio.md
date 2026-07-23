@@ -12,12 +12,24 @@ toc: true
   <img src="/stackwars.jpeg" alt="Stack Wars" style="width: 120px; border-radius: 8px;">
   <div>
     <p style="margin: 0 0 0.5rem 0;">Two software engineers from opposite edges of the stack argue about technology. <em>(In Hebrew)</em></p>
-    <p style="margin: 0;"><a href="https://open.spotify.com/show/2z0UsqByQIfaamU6yqEfnM">Spotify</a> | <a href="https://podcasts.apple.com/il/podcast/stack-wars/id1809650883">Apple Podcasts</a> | <a href="https://www.youtube.com/@StackWarsPodcast">YouTube</a> | <a href="https://anchor.fm/s/fad7e970/podcast/rss">RSS</a></p>
+    <p style="margin: 0;"><a href="https://stackwarspod.com/">Website</a> | <a href="https://open.spotify.com/show/2z0UsqByQIfaamU6yqEfnM">Spotify</a> | <a href="https://podcasts.apple.com/il/podcast/stack-wars/id1809650883">Apple Podcasts</a> | <a href="https://www.youtube.com/@StackWarsPodcast">YouTube</a> | <a href="https://anchor.fm/s/fad7e970/podcast/rss">RSS</a></p>
     <p style="margin: 0.5rem 0 0 0; font-style: italic; opacity: 0.8;">Search "Stack Wars" in your favorite podcast app</p>
   </div>
 </div>
 
 ## Personal Projects
+
+### DebugMCP
+
+> Gift your VS Code agent a real debugger: breakpoints, stepping, inspection.
+
+**1st place, Microsoft Israel Hackathon 2025**
+
+DebugMCP is a VS Code extension that provides real debugging capabilities to any AI coding agent.
+
+It does so by spinning up a local MCP Server that communicates with the relevant Debugger (using DAP) to achieve full debugging capabilities, and exposing this server to the AI agent using ngrok.
+
+[![GitHub stars](https://img.shields.io/github/stars/microsoft/DebugMCP?style=flat-square&logo=github)](https://github.com/microsoft/DebugMCP)
 
 ### Lensline.nvim
 
@@ -29,29 +41,13 @@ It is completely modular and extensible, allowing users to create their own lens
 
 [![GitHub stars](https://img.shields.io/github/stars/oribarilan/lensline.nvim?style=flat-square&logo=github)](https://github.com/oribarilan/lensline.nvim)
 
-## Achievements
+### vimcode
 
-### 1st place, Microsoft Israel Hackathon 2025
+> Vim for OpenCode
 
-> Gift your VS Code agent a real debugger: breakpoints, stepping, inspection.
+vimcode is an experimental OpenCode plugin that brings Vim keybindings to the prompt input. It adds normal, insert, and visual modes with vim motions, operators, and counts, stepping aside when OpenCode's own overlays are active.
 
-DebugMCP is a VS Code extension that provides real deubugging capabilities to any AI coding agent.
-
-It does so by spininning a local MCP Server that communicates with the relevant Debugger (using DAP) to achieve full debugging capabilities, and exposing this server to the AI agent using ngrok.
-
-[![GitHub stars](https://img.shields.io/github/stars/microsoft/DebugMCP?style=flat-square&logo=github)](https://github.com/microsoft/DebugMCP)
-
-### 1st place, DBMI Hackathon 2018
-
-Predicting drug-to-drug interactions
-
-### 2nd place, Microsoft Global Hackathon 2021
-
-Executive challenge, "Hack for Industry" (of 700 projects)
-
-### 2nd place, Microsoft Israel Hackathon 2023
-
-"Hack for Good" track (of 176 projects)
+[![GitHub stars](https://img.shields.io/github/stars/oribarilan/vimcode?style=flat-square&logo=github)](https://github.com/oribarilan/vimcode)
 
 ## Patents
 
