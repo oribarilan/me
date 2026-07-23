@@ -22,25 +22,28 @@ $progress-bar-height: 45px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-100%);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-  
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s ease;
+
   &.visible {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
   }
-  
+
   .prompt {
     color: $accent-primary;
     font-weight: bold;
   }
-  
+
   .progress-bar {
     color: $accent-secondary;
     letter-spacing: -1px;
     flex-shrink: 0;
   }
-  
+
   .progress-stats {
     color: $text-secondary;
     display: flex;
@@ -48,17 +51,17 @@ $progress-bar-height: 45px;
     gap: 8px;
     white-space: nowrap;
   }
-  
+
   .separator {
     color: $text-dim;
   }
-  
+
   #progress-percent {
     color: $accent-warning;
     min-width: 3.5ch;
     text-align: right;
   }
-  
+
   #progress-time {
     color: $text-dim;
   }
@@ -80,7 +83,7 @@ body.has-reading-progress {
     font-size: 0.75rem;
     padding: 6px 12px;
     gap: 6px;
-    
+
     .progress-stats {
       gap: 6px;
     }

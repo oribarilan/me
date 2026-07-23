@@ -34,9 +34,9 @@
   }
 
   @media screen and (max-width: $breakLarge) {
-    width: 100%;    
+    width: 100%;
   }
-  
+
   // Expand main container when TOC is present
   &:has(.singlePageWrapper) {
     @media only screen and (min-width: $breakTocVisible) {

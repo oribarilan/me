@@ -34,11 +34,11 @@
         border-bottom: none;
         position: relative;
         transition: color 0.2s ease;
-        
+
         &:hover {
           color: $accent-secondary;
         }
-        
+
         &:hover::after {
           display: none; // Don't show underline gradient in header
         }
@@ -53,7 +53,7 @@
   text-decoration: none;
   border-bottom: none;
   transition: color 0.2s ease;
-  
+
   &:hover {
     color: $accent-secondary;
     filter: brightness(1.2);
@@ -79,7 +79,7 @@
 .hamb-line::before,
 .hamb-line::after {
   background: $text-primary;
-  content: "";
+  content: '';
   display: block;
   height: 100%;
   position: absolute;

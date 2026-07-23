@@ -17,11 +17,11 @@ a {
   position: relative;
   border-bottom: 1px dashed $accent-secondary;
   transition: filter 0.2s ease;
-  
+
   &:hover {
     filter: brightness(1.2);
   }
-  
+
   &:hover::after {
     content: '';
     position: absolute;
@@ -71,14 +71,14 @@ code {
   border-radius: 4px;
   overflow: hidden;
   border: 1px solid $border-color;
-  
+
   &.enhanced {
     pre {
       margin: 0;
       border: none;
       border-radius: 0;
     }
-    
+
     pre code {
       border: none;
       border-radius: 0;
@@ -112,12 +112,12 @@ code {
   cursor: pointer;
   border-radius: 3px;
   transition: all 0.2s ease;
-  
+
   &:hover {
     background: rgba(var(--accent-primary-rgb), 0.1);
     border-style: solid;
   }
-  
+
   &.copied {
     color: $accent-secondary;
     border-color: $accent-secondary;
@@ -133,7 +133,7 @@ h1 {
   font-size: 2em;
   // Prevent line break between last word and cursor
   word-spacing: -0.25em;
-  
+
   &::after {
     content: '\2060█'; // Word joiner + block cursor to prevent wrapping separately
     animation: blink 1s step-end infinite;
@@ -153,10 +153,12 @@ h1 {
 }
 
 @keyframes blink {
-  0%, 50% {
+  0%,
+  50% {
     opacity: 1;
   }
-  51%, 100% {
+  51%,
+  100% {
     opacity: 0;
   }
 }
@@ -174,7 +176,7 @@ h3 {
 // Heading anchor links
 .heading-anchor {
   position: relative;
-  
+
   .anchor-link {
     opacity: 0;
     margin-left: 0.5em;
@@ -182,16 +184,16 @@ h3 {
     color: $text-dim;
     border-bottom: none;
     transition: opacity 0.2s ease;
-    
+
     &:hover {
       color: $accent-secondary;
     }
-    
+
     &::after {
       display: none;
     }
   }
-  
+
   &:hover .anchor-link {
     opacity: 1;
   }
@@ -213,7 +215,8 @@ h6 {
 }
 
 // Make bold text stand out with color and weight
-strong, b {
+strong,
+b {
   font-weight: 700;
   color: $accent-warning;
 }
@@ -224,27 +227,30 @@ strong, b {
 }
 
 // Fonts
-@font-face{
-    font-family: "Fira Mono";
-    src: url("../fonts/FiraMono/FiraMono-Medium.eot");
-    src: local("Fira Mono"),
-         url("../fonts/FiraMono/FiraMono-Medium.eot") format("embedded-opentype"),
-         url("../fonts/FiraMono/FiraMono-Medium.woff2") format("woff2"),
-         url("../fonts/FiraMono/FiraMono-Medium.woff") format("woff"),
-         url("../fonts/FiraMono/FiraMono-Medium.ttf") format("truetype");
-    font-weight: 500;
-    font-style: normal;
+@font-face {
+  font-family: 'Fira Mono';
+  src: url('../fonts/FiraMono/FiraMono-Medium.eot');
+  src:
+    local('Fira Mono'),
+    url('../fonts/FiraMono/FiraMono-Medium.eot') format('embedded-opentype'),
+    url('../fonts/FiraMono/FiraMono-Medium.woff2') format('woff2'),
+    url('../fonts/FiraMono/FiraMono-Medium.woff') format('woff'),
+    url('../fonts/FiraMono/FiraMono-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "Open Sans";
-    src: url("../fonts/OpenSans/OpenSans-Regular.eot");
-    src: url("../fonts/OpenSans/OpenSans-Regular.eot?#iefix") format("embedded-opentype"),
-    url("../fonts/OpenSans/OpenSans-Regular.woff") format("woff"),
-    url("../fonts/OpenSans/OpenSans-Regular.ttf") format("truetype"),
-    url("../fonts/OpenSans/OpenSans-Regular.svg#OpenSansRegular") format("svg");
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Open Sans';
+  src: url('../fonts/OpenSans/OpenSans-Regular.eot');
+  src:
+    url('../fonts/OpenSans/OpenSans-Regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('../fonts/OpenSans/OpenSans-Regular.woff') format('woff'),
+    url('../fonts/OpenSans/OpenSans-Regular.ttf') format('truetype'),
+    url('../fonts/OpenSans/OpenSans-Regular.svg#OpenSansRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 // Colored blockquotes using theme accent
@@ -258,20 +264,20 @@ blockquote {
   background-color: rgba(0, 0, 0, 0.1);
   padding: 10px 10px 10px 20px;
   border-radius: 0 4px 4px 0;
-  
+
   p {
     margin: 0.5em 0;
     color: $text-primary;
-    
+
     &:first-child {
       margin-top: 0;
     }
-    
+
     &:last-child {
       margin-bottom: 0;
     }
   }
-  
+
   em {
     color: $accent-warning;
   }

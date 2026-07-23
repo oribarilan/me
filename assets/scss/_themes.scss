@@ -3,26 +3,26 @@
 // Default theme is Nord (set via data-theme attribute)
 
 // Dark theme (formerly plain/default) - blue to purple gradient
-[data-theme="dark"] {
+[data-theme='dark'] {
   --bg-primary: #292a2d;
   --bg-secondary: #252627;
   --bg-darker: #252627;
   --text-primary: #f8f8ff;
   --text-secondary: #e0e0e0;
   --text-dim: #a0a0a0;
-  --accent-primary: #80AADD;
-  --accent-primary-2: #8095CC;
-  --accent-primary-3: #8080BB;
-  --accent-primary-4: #806BAA;
+  --accent-primary: #80aadd;
+  --accent-primary-2: #8095cc;
+  --accent-primary-3: #8080bb;
+  --accent-primary-4: #806baa;
   --accent-primary-5: #805699;
   --accent-primary-6: #804188;
-  --accent-secondary: #FF9800;
-  --accent-subheader: #FFB300;
-  --accent-warning: #FFB300;
-  --accent-error: #F26E74;
-  --prompt-user: #FF9800;
-  --prompt-host: #80AADD;
-  --prompt-path: #FFB300;
+  --accent-secondary: #ff9800;
+  --accent-subheader: #ffb300;
+  --accent-warning: #ffb300;
+  --accent-error: #f26e74;
+  --prompt-user: #ff9800;
+  --prompt-host: #80aadd;
+  --prompt-path: #ffb300;
   --code-bg: #252627;
   --code-text: #f8f8ff;
   --border-color: #404040;
@@ -34,25 +34,25 @@
 }
 
 // Light theme
-[data-theme="light"] {
+[data-theme='light'] {
   --bg-primary: #f8f8ff;
   --bg-secondary: #ffffff;
   --bg-darker: #ffffff;
   --text-primary: #2d2d2d;
   --text-secondary: #3d3d3d;
   --text-dim: #6d6d6d;
-  --accent-primary: #4080CC;
+  --accent-primary: #4080cc;
   --accent-primary-2: #5070b8;
   --accent-primary-3: #5f60a5;
   --accent-primary-4: #6e5091;
   --accent-primary-5: #7d407e;
   --accent-primary-6: #8c306a;
-  --accent-secondary: #28A05A;
+  --accent-secondary: #28a05a;
   --accent-subheader: #996600;
   --accent-warning: #996600;
-  --accent-error: #D24450;
-  --prompt-user: #28A05A;
-  --prompt-host: #4080CC;
+  --accent-error: #d24450;
+  --prompt-user: #28a05a;
+  --prompt-host: #4080cc;
   --prompt-path: #996600;
   --code-bg: #f0f0f0;
   --code-text: #2d2d2d;
@@ -65,7 +65,7 @@
 }
 
 // Tokyo Night theme - blue to pink gradient
-[data-theme="tokyonight"] {
+[data-theme='tokyonight'] {
   --bg-primary: #1a1b26;
   --bg-secondary: #16161e;
   --bg-darker: #16161e;
@@ -96,7 +96,7 @@
 }
 
 // Gruvbox theme - cyan to orange gradient
-[data-theme="gruvbox"] {
+[data-theme='gruvbox'] {
   --bg-primary: #282828;
   --bg-secondary: #1d2021;
   --bg-darker: #1d2021;
@@ -127,7 +127,7 @@
 }
 
 // Catppuccin theme - blue to pink gradient
-[data-theme="catppuccin"] {
+[data-theme='catppuccin'] {
   --bg-primary: #1e1e2e;
   --bg-secondary: #181825;
   --bg-darker: #181825;
@@ -158,7 +158,7 @@
 }
 
 // Nord theme - cyan to purple gradient
-[data-theme="nord"] {
+[data-theme='nord'] {
   --bg-primary: #2e3440;
   --bg-secondary: #3b4252;
   --bg-darker: #3b4252;
