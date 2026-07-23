@@ -1,7 +1,9 @@
-name: Deploy Hugo site to Pages
+name: Validate and deploy Hugo site to Pages
 
 on:
   push:
+    branches: ["main"]
+  pull_request:
     branches: ["main"]
   workflow_dispatch:
 
@@ -19,8 +21,44 @@ defaults:
     shell: bash
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.152.0
+    steps:
+      - name: Install Hugo CLI
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
+      - name: Install Dart Sass
+        run: sudo snap install dart-sass
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup just
+        uses: extractions/setup-just@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Run just validate (formatting + build)
+        run: just validate
+
   build:
     runs-on: ubuntu-latest
+    needs: validate
+    if: github.event_name != 'pull_request'
     env:
       HUGO_VERSION: 0.152.0
     steps:

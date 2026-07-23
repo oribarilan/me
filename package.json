@@ -11,6 +11,7 @@
   "author": "Ori Bar-ilan",
   "license": "MIT",
   "devDependencies": {
-    "pagefind": "^1.1.0"
+    "pagefind": "^1.1.0",
+    "prettier": "3.5.3"
   }
 }

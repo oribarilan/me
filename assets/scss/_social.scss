@@ -20,13 +20,13 @@
     border-bottom: none;
     position: relative;
     text-decoration: none;
-    
+
     &:hover,
     &:active {
       border-bottom: none;
       text-decoration: none;
     }
-    
+
     &:hover::after {
       content: '';
       position: absolute;

@@ -19,27 +19,27 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  
+
   &:hover,
   &:focus {
     border-color: $accent-secondary;
     color: $accent-secondary;
     outline: none;
-    
+
     .search-key {
       border-color: $accent-secondary;
       color: $accent-secondary;
     }
   }
-  
+
   &:focus {
     box-shadow: 0 0 0 2px rgba(var(--accent-secondary-rgb), 0.3);
   }
-  
+
   .search-text {
     opacity: 0.7;
   }
-  
+
   .search-key {
     border: 1px solid $border-color;
     padding: 2px 6px;
@@ -63,7 +63,7 @@
   align-items: flex-start;
   justify-content: center;
   padding-top: 100px;
-  
+
   &.active {
     display: flex;
   }
@@ -108,7 +108,7 @@
   align-items: center;
   gap: 4px;
   color: $text-dim;
-  
+
   code {
     font-size: 0.75rem;
     padding: 2px 6px;
@@ -135,13 +135,13 @@
   justify-content: center;
   transition: color 0.2s ease;
   border-radius: 3px;
-  
+
   &:hover,
   &:focus {
     color: $accent-error;
     outline: none;
   }
-  
+
   &:focus {
     box-shadow: 0 0 0 2px rgba(var(--accent-error-rgb), 0.3);
   }
@@ -155,7 +155,7 @@
 // Pagefind UI customization for terminal aesthetic
 .pagefind-ui {
   font-family: 'Fira Mono', monospace !important;
-  
+
   --pagefind-ui-scale: 1;
   --pagefind-ui-primary: #{$accent-secondary};
   --pagefind-ui-text: #{$text-primary};
@@ -186,13 +186,13 @@
   color: $text-primary !important;
   padding: 12px !important;
   padding-left: 12px !important;
-  
+
   &:focus {
     border-color: $accent-secondary !important;
     outline: 2px solid $accent-secondary !important;
     outline-offset: 2px !important;
   }
-  
+
   &::placeholder {
     color: $text-dim !important;
   }
@@ -205,7 +205,7 @@
   margin-bottom: 12px !important;
   border-radius: 4px !important;
   transition: all 0.2s ease !important;
-  
+
   &:hover,
   &.keyboard-selected {
     border-color: $accent-secondary !important;
@@ -222,11 +222,11 @@
   border-radius: 3px !important;
   transition: background 0.2s ease !important;
   cursor: pointer !important;
-  
-    &:hover,
-    &.keyboard-selected {
-      background: rgba(var(--accent-secondary-rgb), 0.15) !important;
-    }
+
+  &:hover,
+  &.keyboard-selected {
+    background: rgba(var(--accent-secondary-rgb), 0.15) !important;
+  }
 }
 
 .pagefind-ui__result-title {
@@ -237,7 +237,7 @@
   font-weight: 600 !important;
   display: flex !important;
   align-items: baseline !important;
-  
+
   &::before {
     content: '> ' !important;
     color: $prompt-user !important;
@@ -245,19 +245,21 @@
     margin-right: 4px !important;
     flex-shrink: 0 !important;
   }
-  
-    a {
-      border-bottom: none !important;
-      color: $accent-primary !important;
-      display: inline !important;
-      border-bottom: 1px dashed rgba(var(--accent-secondary-rgb), 0.3) !important;
-      transition: border-color 0.2s ease, color 0.2s ease !important;
-      
-      &:hover {
-        color: $accent-secondary !important;
-        border-bottom-color: rgba(var(--accent-secondary-rgb), 0.6) !important;
-      }
-    
+
+  a {
+    border-bottom: none !important;
+    color: $accent-primary !important;
+    display: inline !important;
+    border-bottom: 1px dashed rgba(var(--accent-secondary-rgb), 0.3) !important;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease !important;
+
+    &:hover {
+      color: $accent-secondary !important;
+      border-bottom-color: rgba(var(--accent-secondary-rgb), 0.6) !important;
+    }
+
     &:hover::after {
       display: none !important;
     }
@@ -289,7 +291,7 @@
 
 .pagefind-ui__result-nested .pagefind-ui__result-title {
   font-size: 0.95rem !important;
-  
+
   &::before {
     content: '└─ ' !important;
     color: $text-dim !important;
@@ -336,7 +338,7 @@
   border-radius: 3px !important;
   cursor: pointer !important;
   transition: all 0.2s ease !important;
-  
+
   &:hover,
   &:focus,
   &.keyboard-selected {
@@ -345,7 +347,7 @@
     background: $bg-darker !important;
     outline: none !important;
   }
-  
+
   &:focus {
     box-shadow: 0 0 0 2px rgba(var(--accent-secondary-rgb), 0.3) !important;
   }
@@ -382,7 +384,7 @@
   .search-modal {
     padding-top: $headerHeight;
   }
-  
+
   .search-modal-content {
     width: 95%;
     max-height: 85vh;

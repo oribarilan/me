@@ -10,24 +10,24 @@
   align-items: center;
   width: $width;
   font-size: 0.7rem;
-  
+
   .version {
     cursor: pointer;
     text-decoration: underline;
     text-decoration-style: dashed;
     text-underline-offset: 3px;
     transition: opacity 0.2s ease;
-    
+
     &:hover {
       opacity: 0.7;
     }
   }
-  
+
   .keybindings-hint {
     opacity: 0.7;
     font-family: 'Fira Mono', monospace;
   }
-  
+
   @media screen and (max-width: $breakMobile) {
     display: none;
   }
@@ -43,7 +43,7 @@
   position: sticky;
   bottom: 0;
   z-index: 100;
-  
+
   @media screen and (max-width: $breakMobile) {
     display: none;
   }

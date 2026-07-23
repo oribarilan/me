@@ -2,11 +2,11 @@
 title: "Choose Your Path: Python's pathlib vs os.path"
 date: 2024-02-13
 draft: false
-tags: ["python", "programming", "best-practices"]
+tags: ['python', 'programming', 'best-practices']
 description: "Learn how to work with file system paths using Python's modern pathlib module"
 toc: true
-postId: "pathlib-vs-ospath"
-image: "/thumb_pathlib.png"
+postId: 'pathlib-vs-ospath'
+image: '/thumb_pathlib.png'
 ---
 
 For years, Python developers used the `os.path` module for file system operations, working with paths as strings. Python 3.4 introduced `pathlib`, a modern object-oriented approach that makes path handling more intuitive and readable.
@@ -37,6 +37,7 @@ Let me show you how `pathlib` simplifies common path operations.
 ### Working with Paths & File Attributes
 
 Traditional approach:
+
 ```python
 import os
 
@@ -49,6 +50,7 @@ extension = os.path.splitext(file_path)[1]  # .txt
 ```
 
 Modern approach with pathlib:
+
 ```python
 from pathlib import Path
 
@@ -65,6 +67,7 @@ Notice how `pathlib` uses intuitive properties like `.parent`, `.name`, and `.su
 ### Reading Files
 
 Traditional approach:
+
 ```python
 import os
 
@@ -74,6 +77,7 @@ with open(file_path, 'r') as file:
 ```
 
 Modern approach with pathlib:
+
 ```python
 from pathlib import Path
 
@@ -86,18 +90,20 @@ The `read_text()` method eliminates boilerplate - no need to manually open and c
 ### Listing All Files in a Directory
 
 Traditional approach:
+
 ```python
 import os
 
 directory = 'some_directory'
 files = [
-    os.path.join(directory, f) 
-    for f in os.listdir(directory) 
+    os.path.join(directory, f)
+    for f in os.listdir(directory)
     if os.path.isfile(os.path.join(directory, f))
 ]
 ```
 
 Modern approach with pathlib:
+
 ```python
 from pathlib import Path
 
