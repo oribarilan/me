@@ -253,6 +253,23 @@ b {
   font-style: normal;
 }
 
+// Real 700 faces so bold text stops being synthesized from the 400/500 weights
+@font-face {
+  font-family: 'Fira Mono';
+  src: url('../fonts/FiraMono/FiraMono-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/OpenSans/OpenSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 // Colored blockquotes using theme accent
 blockquote {
   border-left: 4px solid $accent-warning;
@@ -280,5 +297,15 @@ blockquote {
 
   em {
     color: $accent-warning;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  h1::after {
+    animation: none;
+  }
+
+  a:hover::after {
+    animation: none;
   }
 }

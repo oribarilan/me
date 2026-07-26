@@ -2,6 +2,9 @@
 // Shared typing animation utility
 function createTypingEffect(element, startDelay = 300) {
     const fullText = element.textContent;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
     element.textContent = '';
     
     let charIndex = 0;

@@ -16,7 +16,7 @@
   }
   
   .blogListHeader h1 {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Fira Mono', monospace;
     font-size: 2rem;
     margin-bottom: 1rem;
   }
@@ -29,10 +29,10 @@
   }
   
   .blogCard {
-    border: 1px solid var(--accent-primary);
+    border: 1px solid var(--border-color);
     border-radius: 3px;
     overflow: hidden;
-    transition: background-color 0.2s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
     background: var(--bg-primary);
     display: flex;
     flex-direction: column;
@@ -40,9 +40,10 @@
   
   .blogCardImageWrapper {
     width: 100%;
-    aspect-ratio: 21 / 9;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
-    border-bottom: 1px solid var(--accent-primary);
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color 0.2s ease;
   }
   
   .blogCardImage {
@@ -51,11 +52,24 @@
     object-fit: cover;
     object-position: center;
     display: block;
-    transform: scale(1.5);
   }
   
-  .blogCard:hover {
+  .blogCard:hover,
+  .blogCard:focus-within {
+    border-color: var(--accent-primary);
     background: var(--bg-secondary);
+    transform: translateY(-2px);
+    box-shadow: inset 3px 0 0 0 var(--accent-primary), 0 6px 18px rgba(0, 0, 0, 0.28);
+  }
+
+  .blogCard:hover .blogCardImageWrapper,
+  .blogCard:focus-within .blogCardImageWrapper {
+    border-bottom-color: var(--accent-primary);
+  }
+
+  .blogCard:hover .blogCardTitle,
+  .blogCard:focus-within .blogCardTitle {
+    color: var(--accent-secondary);
   }
   
   .blogCardLink {
@@ -83,7 +97,7 @@
   }
   
   .blogCardTitle {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Fira Mono', monospace;
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
     color: var(--accent-warning);
@@ -134,6 +148,18 @@
   @media (max-width: 768px) {
     .blogCards {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blogCard {
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+
+    .blogCard:hover,
+    .blogCard:focus-within {
+      transform: none;
+      box-shadow: inset 3px 0 0 0 var(--accent-primary);
     }
   }
 </style>
@@ -202,5 +228,4 @@
 
 </div>
 
-{{ partial "h1-typing.html" . }}
 {{ end }}
