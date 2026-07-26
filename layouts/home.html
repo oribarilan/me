@@ -9,29 +9,128 @@
     {{ partial "head.html" . }}
     
     <style>
+        /* Shell-session hero. Dotted-grid atmosphere (Batch 3) carried onto the
+           wrapper; name in Fira Mono with a block cursor (Batch 1). */
         .indexWrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem 1.75rem;
+            position: relative;
+            font-family: 'Fira Mono', monospace;
+        }
+
+        .indexWrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: radial-gradient(rgba(var(--accent-primary-rgb), 0.1) 1px, transparent 1.4px);
+            background-size: 22px 22px;
+            opacity: 0.6;
+        }
+
+        .indexWrapper > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Prompt line: ori@oribi.sh ~ $ whoami */
+        .shellPrompt {
+            margin: 0;
+            font-size: 1.15rem;
+            text-align: left;
+            line-height: 1.5;
+            word-spacing: -0.15em;
+        }
+
+        .shellPrompt .pUser { color: var(--accent-secondary); }
+        .shellPrompt .pAt,
+        .shellPrompt .pDollar { color: var(--text-dim); }
+        .shellPrompt .pHost { color: var(--accent-primary); }
+        .shellPrompt .pPath { color: var(--accent-primary-2); }
+        .shellCmd { color: var(--text-primary); }
+
+        .shellCaret {
+            display: inline-block;
+            color: var(--accent-secondary);
+            animation: blink 1s step-end infinite;
+        }
+
+        /* Shell "response": avatar + identity, revealed after the command types */
+        .shellResponse {
             display: flex;
             flex-direction: row;
             align-items: center;
-            gap: 3rem;
-            max-width: 900px;
-            margin: 0 auto;
+            gap: 2.5rem;
+            text-align: left;
         }
-        
-        .indexContent {
+
+        /* Reveal choreography only runs when motion is allowed (html.hero-anim).
+           Without JS or under reduced-motion the response is visible by default. */
+        html.hero-anim .shellResponse {
+            opacity: 0;
+            transform: translateY(6px);
+        }
+
+        html.hero-anim .shellResponse.revealed {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        /* Avatar: framed as a deliberate terminal element (accent ring + inset
+           halo) with a monospace filename caption, aligned to the identity block. */
+        .avatarCol {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            flex-shrink: 0;
+        }
+
+        .avatarCol .authorImageWrapper {
+            line-height: 0;
+        }
+
+        .avatarCol .authorImageWrapper img {
+            width: 9.5rem;
+            height: 9.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-primary);
+            box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 5px var(--border-color);
+        }
+
+        .avatarCaption {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        .avatarCaption::before {
+            content: '> ';
+            color: var(--accent-primary);
+        }
+
+        .idCol {
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.65rem;
+            min-width: 0;
         }
-        
+
         .indexHeader {
             margin: 0;
-            text-align: left;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Fira Mono', monospace;
+            font-size: 2rem;
+            color: var(--text-primary);
             display: inline-block;
         }
-        
+
         .indexHeader::after {
             content: '█';
             animation: blink 1s step-end infinite;
@@ -39,7 +138,7 @@
             font-weight: normal;
             color: var(--text-primary);
         }
-        
+
         @keyframes blink {
             0%, 50% {
                 opacity: 1;
@@ -48,43 +147,93 @@
                 opacity: 0;
             }
         }
-        
-        .indexHeader .typed-text {
-            display: inline-block;
+
+        .tagline {
+            font-size: 1rem;
+            color: var(--accent-secondary);
+            margin: 0;
         }
-        
+
         .authorDescription {
-            text-align: left;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: var(--text-primary);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.65;
+            color: var(--text-secondary);
+            max-width: 48ch;
         }
-        
+
         .authorDescription p {
             margin: 0;
         }
-        
-        .authorImageWrapper img {
-            border-radius: 50%;
-            object-fit: cover;
+
+        /* Nav line surfaces the real g/w/b/p keybindings */
+        .shellNav {
+            margin: 0.25rem 0 0;
+            font-size: 0.95rem;
+            color: var(--text-dim);
         }
-        
-        /* Responsive design for smaller screens */
+
+        .shellNav .pDollar { color: var(--text-dim); margin-right: 0.4ch; }
+
+        .navKey {
+            color: var(--accent-primary);
+            text-decoration: none;
+            border-bottom: 1px dashed transparent;
+            margin-right: 1.25ch;
+        }
+
+        .navKey b { color: var(--accent-warning); font-weight: 700; }
+
+        .navKey:hover {
+            color: var(--accent-secondary);
+            border-bottom-color: var(--accent-secondary);
+        }
+
+        .navKey:focus-visible,
+        .indexWrapper .socialNavbar a:focus-visible {
+            outline: 2px solid var(--accent-secondary);
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+
+        /* Reduced motion: static hero, solid (non-blinking) cursors, no typing */
+        @media (prefers-reduced-motion: reduce) {
+            .indexHeader::after,
+            .shellCaret {
+                animation: none;
+            }
+        }
+
+        /* Responsive: stack the response cleanly on mobile */
         @media (max-width: 768px) {
             .indexWrapper {
-                flex-direction: column;
-                gap: 2rem;
+                padding: 2rem 1.25rem;
             }
-            
-            .indexHeader {
+
+            .shellResponse {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .authorDescription {
                 text-align: center;
             }
-            
-            .authorDescription {
+
+            .shellNav {
                 text-align: center;
             }
         }
     </style>
+
+    <script>
+        // Enable the reveal choreography only when motion is allowed, set
+        // synchronously before paint so the response never flashes then hides.
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('hero-anim');
+        }
+    </script>
 
 </head>
 
@@ -96,22 +245,34 @@
         <div class="content vertical">
             <main class="main">
                 <div class="indexWrapper">
-                    {{ partial "avatar.html" . }}
-                    <div class="indexContent">
-                        <h1 class="indexHeader"><span class="typed-text">{{ .Site.Params.author.name }}</span></h1>
-                        <div class="tagline">
-                            <p style="font-family: 'Fira Mono', monospace; font-size: 1rem; color: var(--accent-secondary); margin: 0.5rem 0;">
-                                design over beer, code over coffee
-                            </p>
+                    <p class="shellPrompt">
+                        <span class="pUser">{{ .Site.Params.user }}</span><span class="pAt">@</span><span class="pHost">{{ .Site.Params.hostname }}</span><span class="pPath"> ~ </span><span class="pDollar">$ </span><span class="shellCmd" id="shellCmd">whoami</span><span class="shellCaret" id="shellCaret" aria-hidden="true">█</span>
+                    </p>
+                    <div class="shellResponse" id="shellResponse">
+                        <div class="avatarCol">
+                            {{ partial "avatar.html" . }}
+                            {{ with .Site.Params.author.avatar }}
+                                <span class="avatarCaption" aria-hidden="true">{{ . }}</span>
+                            {{ end }}
                         </div>
-                        {{ if .Site.Params.author.description }}
-                            <div class="authorDescription">
-                                <p>{{ .Site.Params.author.description }}</p>
-                            </div>
-                        {{ end }}
-                        {{ if isset .Site.Params "social" }}
-                            {{ partial "social.html" . }}
-                        {{ end }}
+                        <div class="idCol">
+                            <h1 class="indexHeader">{{ .Site.Params.author.name }}</h1>
+                            <p class="tagline">design over beer, code over coffee</p>
+                            {{ if .Site.Params.author.description }}
+                                <div class="authorDescription">
+                                    <p>{{ .Site.Params.author.description }}</p>
+                                </div>
+                            {{ end }}
+                            <p class="shellNav">
+                                <span class="pDollar">$</span>open
+                                <a class="navKey" href="{{ "blog" | relLangURL }}">[<b>b</b>]log</a>
+                                <a class="navKey" href="{{ "about" | relLangURL }}">[<b>w</b>]hoami</a>
+                                <a class="navKey" href="{{ "portfolio" | relLangURL }}">[<b>p</b>]ortfolio</a>
+                            </p>
+                            {{ if isset .Site.Params "social" }}
+                                {{ partial "social.html" . }}
+                            {{ end }}
+                        </div>
                     </div>
                 </div>
             </main>
@@ -124,11 +285,46 @@
 
     {{ partial "typing-utility.html" . }}
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const typedText = document.querySelector('.typed-text');
-        if (typedText) {
-            createTypingEffect(typedText, 300);
+    document.addEventListener('DOMContentLoaded', function () {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var cmd = document.getElementById('shellCmd');
+        var caret = document.getElementById('shellCaret');
+        var response = document.getElementById('shellResponse');
+        var COMMAND = 'whoami';
+
+        function finish() {
+            if (caret) caret.style.display = 'none';
+            if (response) response.classList.add('revealed');
         }
+
+        // No JS-driven typing under reduced motion: show the command and reveal
+        // the response instantly (the reveal class is a no-op without hero-anim).
+        if (!cmd || reduce) {
+            if (cmd) cmd.textContent = COMMAND;
+            finish();
+            return;
+        }
+
+        // Type the command once, then reveal the shell response.
+        cmd.textContent = '';
+        var i = 0;
+
+        function nextDelay() {
+            return Math.random() < 0.15
+                ? Math.random() * 150 + 150  // 150-300ms pause
+                : Math.random() * 100 + 50;  // 50-150ms normal typing
+        }
+
+        function typeNext() {
+            if (i < COMMAND.length) {
+                cmd.textContent += COMMAND.charAt(i++);
+                setTimeout(typeNext, nextDelay());
+            } else {
+                setTimeout(finish, 250);
+            }
+        }
+
+        setTimeout(typeNext, 300);
     });
     </script>
 

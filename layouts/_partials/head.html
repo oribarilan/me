@@ -248,6 +248,13 @@
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .notification,
+    .notification.hiding {
+        animation: none;
+    }
+}
+
 @media screen and (max-width: 600px) {
     .notification-container {
         bottom: 10px;
