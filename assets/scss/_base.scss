@@ -11,6 +11,56 @@ body {
   min-height: 100vh;
 }
 
+// Refined-mono (TUI) design tokens — a single modular scale, rhythm, radius,
+// and focus-ring shared across the hero and content pages so they read as one
+// system. Theme-independent, so they live here rather than in _themes.
+:root {
+  --tui-fs-xs: 0.78rem;
+  --tui-fs-sm: 0.9rem;
+  --tui-fs-base: 1rem;
+  --tui-fs-lg: 1.25rem;
+  --tui-fs-xl: clamp(1.7rem, 1.4rem + 1vw, 2.15rem);
+  --tui-line: 1.7;
+  --tui-radius: 6px;
+  --tui-focus: 2px solid #{$accent-secondary};
+  --tui-focus-offset: 2px;
+}
+
+// Crisp, visible keyboard focus for every interactive element. Components with
+// their own focus styling still override this by later/equal specificity.
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: var(--tui-focus);
+  outline-offset: var(--tui-focus-offset);
+  border-radius: 2px;
+}
+
+// Reusable box-drawing frame. `data-label` rides the top border as `│ label`.
+.tuiFrame {
+  position: relative;
+  border: 1px solid $border-color;
+  border-radius: var(--tui-radius);
+  padding: 1.6rem 1.5rem;
+
+  &[data-label]::before {
+    content: '\2502\00a0' attr(data-label);
+    position: absolute;
+    top: -0.72em;
+    left: 1.1rem;
+    background: $bg-primary;
+    padding: 0 0.5rem;
+    font-family: 'Fira Mono', monospace;
+    font-size: var(--tui-fs-xs);
+    color: $accent-primary;
+    letter-spacing: 0.05em;
+  }
+}
+
 a {
   color: $accent-secondary;
   text-decoration: none;
@@ -212,6 +262,17 @@ h5 {
 h6 {
   font-family: 'Fira Mono', monospace;
   color: $accent-primary-6;
+}
+
+// Refined-mono cohesion: a touch of negative tracking on every heading so the
+// monospace headings read as deliberate type, matching the hero.
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.01em;
 }
 
 // Make bold text stand out with color and weight
